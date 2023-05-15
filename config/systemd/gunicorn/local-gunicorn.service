@@ -1,0 +1,12 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=herbew 
+Group=www-data
+WorkingDirectory=/home/herbew/gabis
+ExecStart=/home/herbew/envgabis/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/herbew/root.sock config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

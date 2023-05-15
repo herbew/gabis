@@ -1,0 +1,12 @@
+[Unit]
+Description=celery daemon
+After=network.target
+
+[Service]
+User=root 
+Group=www-data
+WorkingDirectory=/opt/gabis
+ExecStart=/opt/envgabis/bin/python3 celery -A backoffice beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+[Install]
+WantedBy=multi-user.target

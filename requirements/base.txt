@@ -1,0 +1,105 @@
+# Python Env
+# ------------------------------------------------------------------------------
+pytz==2021.3
+python-slugify==5.0.2
+Pillow==8.4.0
+argon2-cffi==21.1.0
+redis==4.0.2
+
+# Django
+# ------------------------------------------------------------------------------
+
+# Django core
+django==3.2.10
+django-environ==0.8.1
+django-model-utils==4.2.0
+django-allauth==0.46.0
+django-crispy-forms==1.13.0
+django-debug-toolbar==3.2.2
+django-extensions==3.1.5
+
+# Django Database
+psycopg2-binary==2.9.2
+psycopg2==2.9.2
+
+# Django sass
+django-sass-processor==1.1
+libsass==0.21.0
+
+# Django REST Framework
+djangorestframework==3.12.4
+coreapi==2.3.3
+django-cors-headers==3.11.0
+
+# Django rest social oauth2
+# https://github.com/RealmTeam/django-rest-framework-social-oauth2
+# django-rest-framework-social-oauth2==1.1.0
+
+# Django Email
+django-anymail==8.4
+
+# https://pypi.org/project/django-import-export/
+django-import-export==2.6.1
+
+# https://django-modeltranslation.readthedocs.io/en/latest/installation.html
+django-modeltranslation==0.18.2
+
+
+# https://pypi.org/project/django-braces/
+django-braces==1.15.0
+
+# Storage
+# django-googledrive-storage==1.3.5
+# https://django-storages.readthedocs.io/en/latest/backends/gcloud.html 
+google-cloud-storage==1.30.0
+django-storages==1.9.1
+django-storages[google]==1.9.1
+
+# mongoengine
+mongoengine==0.20.0 #pymongo-3.11.0
+blinker==1.4 #for activate mongoengine blinker
+
+# https://pypi.org/project/django-mongoengine/
+django-mongoengine==0.4.6
+
+# oauth2_provider 
+# https://pypi.org/project/django-oauth-toolkit/
+django-oauth-toolkit==1.5.0
+
+# https://pypi.org/project/social-auth-app-django/
+social-auth-app-django==5.0.0
+
+# https://pypi.org/project/django-rest-framework-social-oauth2/
+django-rest-framework-social-oauth2==1.1.0
+
+
+# https://pypi.org/project/pylokit/ --Office
+pylokit==0.8.1
+
+# https://pypi.org/project/django-appconf/ --avatar
+django-appconf==1.0.5
+
+
+# Celery
+# --------------------------------------------------------------------------
+celery[redis]==5.2.7
+django-celery-beat==2.3.0
+django-celery-results==2.4.0 
+gevent==21.12.0
+
+# https://dj-stripe.dev/dj-stripe/2.6/
+# --------------------------------------------------------------------------
+dj-stripe==2.6
+
+# Test
+# --------------------------------------------------------------------------
+codecov==2.1.12 #https://github.com/codecov/codecov-python
+pytest-django==4.4.0
+pytest-cov==2.12.1
+mixer==7.1.2
+selenium==3.141.0
+
+# https://pypi.org/project/django-qr-code/
+django-qr-code==3.1.0
+
+

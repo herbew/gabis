@@ -1,0 +1,12 @@
+[Unit]
+Description=celery daemon
+After=network.target
+
+[Service]
+User=root 
+Group=www-data
+WorkingDirectory=/opt/gabis
+ExecStart=/opt/envgabis/bin/python3 celery -A backoffice worker -l info --pool=gevent
+
+[Install]
+WantedBy=multi-user.target

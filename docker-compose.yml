@@ -1,0 +1,240 @@
+version: '3.7'
+
+services:
+    # Postgress
+    container_postgres:
+        image: postgres:10
+        restart: always
+        env_file:
+            - config/docker/postgres/env
+          
+        logging:
+          options:
+            max-size: 10m
+            max-file: "3"
+            
+        ports:
+          - '5432:5432'
+          
+        volumes: 
+          - container_postgres_vol:/var/lib/postgresql/data
+          - ./opt/gabis/config/postgres/init_postgres.sql:/docker-entrypoint-initdb.d/init_postgres.sql
+         
+        networks:
+          - gabis_network
+    
+    # Mongo service
+    container_mongo:
+        image: mongo:4.4.4
+        restart: always
+        environment:
+           - MONGO_INITDB_DATABASE=admin
+           - MONGO_INITDB_ROOT_USERNAME=root
+           - MONGO_INITDB_ROOT_PASSWORD=PwDgabisSatu1Dua3
+        
+        ports:
+          - "27017:27017"
+        
+        volumes:
+          - container_mongo_vol:/data/db
+          
+        networks:
+          - gabis_network
+          
+    # Container for create user trail_gabis, only run once process
+    container_mongo_trail_gabis:
+       image: mongo:4.4.4
+       links:
+        - container_mongo
+        
+       command: mongo --host container_mongo --eval  "connect('mongodb://root:PwDgabisSatu1Dua3@container_mongo:27017/admin').getSiblingDB('db_gabis_trails').createUser({user:'trail_gabis', pwd:'PwDgabisSatu1Dua3', roles:[ { role:'readWrite', db:'db_gabis_trails'} ], passwordDigestor:'server', });"
+       
+       depends_on:
+        - container_mongo
+       
+       networks:
+          - gabis_network
+    
+    # Container for create user django_messages_gabis, only run once process
+    container_mongo_django_messages_gabis:
+       image: mongo:4.4.4
+       links:
+        - container_mongo
+        
+       command: mongo --host container_mongo --eval  "connect('mongodb://root:PwDgabisSatu1Dua3@container_mongo:27017/admin').getSiblingDB('db_gabis_django_messages').createUser({user:'django_messages_gabis', pwd:'PwDgabisSatu1Dua3', roles:[ { role:'readWrite', db:'db_gabis_django_messages'} ], passwordDigestor:'server', });"
+       
+       depends_on:
+        - container_mongo
+       
+       networks:
+          - gabis_network
+    
+    # Container for create user booking_gabis, only run once process
+    container_mongo_booking_gabis:
+       image: mongo:4.4.4
+       links:
+        - container_mongo
+        
+       command: mongo --host container_mongo --eval  "connect('mongodb://root:PwDgabisSatu1Dua3@container_mongo:27017/admin').getSiblingDB('db_gabis_bookings').createUser({user:'booking_gabis', pwd:'PwDgabisSatu1Dua3', roles:[ { role:'readWrite', db:'db_gabis_bookings'} ], passwordDigestor:'server', });"
+       
+       depends_on:
+        - container_mongo
+       
+       networks:
+          - gabis_network
+    
+    # Redis      
+    container_redis:
+        image: redis:4.0.2
+        restart: always
+        expose:
+            - "6379"
+      
+        # --apendonly: enable fully-durable alternative to snapshotting
+        command: ["sh", "-c", "redis-server --appendonly yes"]
+      
+        volumes:
+            - ./opt/queue_data:/data
+            
+        networks:
+          - gabis_network
+
+          
+    # Django container
+    container_django:
+        build: 
+            context: .
+            dockerfile: ./compose/django/Dockerfile
+            
+        container_name: gabis
+        restart: always
+        entrypoint: 
+          - /bin/sh
+          - ./compose/django/docker-entrypoint.sh
+          
+        depends_on:
+          - container_postgres
+          - container_mongo
+          - container_mongo_trail_gabis
+          - container_mongo_django_messages_gabis
+          - container_mongo_booking_gabis
+          
+        environment:
+            - DATABASE_URL=postgres://ugabis:PwDgabisSatu1Dua3@container_postgres/db_gabis
+
+            - DJANGO_ADMIN_URL=admin/
+            - DJANGO_SETTINGS_MODULE=config.settings.production
+            - DJANGO_SECRET_KEY=#6kuxzt=%fb(+npb18f%l$b$t2+nkh*t48*2$l&r4-h-zyprn6
+            
+            - DJANGO_EMAIL_BACKEND=anymail.backends.mailjet.EmailBackend
+            - DJANGO_SERVER_EMAIL=
+            - DJANGO_SECURE_SSL_REDIRECT=False
+            - DJANGO_DEBUG=True
+            
+            - DJANGO_MAILGUN_API_KEY=
+            - DJANGO_MAILGUN_SERVER_NAME=
+            
+            - DJANGO_EMAIL_HOST=
+            - DJANGO_EMAIL_PORT=
+            - DJANGO_EMAIL_USER=
+            - DJANGO_EMAIL_PASSWORD=
+            
+            - MAILJET_API_KEY=
+            - MAILJET_SECRET_KEY=
+            
+            - REDIS_URL=redis://container_redis:6379
+            - REDISTOGO_URL=redis://container_redis:6379
+            - IP_MONGODB=container_mongo
+            - DJANGO_ALLOWED_HOSTS=192.168.0.161
+        
+        
+        volumes:
+          - .:/opt/gabis
+          - static:/opt/gabis/staticfiles/
+          - media:/opt/gabis/gabis/media/
+          
+        expose:
+            - 8000
+        ports:
+            - 9999:9999
+            - 8000:80
+        
+        networks:
+          - gabis_network
+          
+        links:
+           - container_mongo
+           - container_redis
+    
+#     # Container celery worker
+#     container_celery_worker:
+#         build:
+#             context: .
+#             dockerfile: ./compose/django/Dockerfile
+#             
+#         restart: always
+#         command: celery -A gabis.apps.backoffice worker -l info --pool=gevent
+#         depends_on:
+#           - container_django
+#           - container_redis
+#         
+#         volumes:
+#           - .:/opt/gabis
+#           
+#         networks:
+#           - gabis_network
+#           
+#         links:
+#            - container_django
+#            - container_redis
+#         
+#     # Container celery beat
+#     container_celery_beat:
+#         build:
+#             context: .
+#             dockerfile: ./compose/django/Dockerfile
+#             
+#         restart: always
+#         command: celery -A gabis.apps.backoffice beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+#         depends_on:
+#           - container_celery_worker
+#           - container_redis
+#         volumes:
+#           - .:/opt/gabis
+#           
+#         networks:
+#           - gabis_network
+#           
+#         links:
+#            - container_django
+#            - container_redis
+           
+    
+    # reverse proxy container (nginx)
+    container_nginx:
+      image: nginx:1.13
+      restart: always
+      ports:
+        - 80:80
+      volumes:
+        - ./opt/gabis/config/nginx/conf.d/local.conf:/etc/nginx/conf.d/local.conf
+        - static:/opt/gabis/staticfiles/
+        - media:/opt/gabis/gabis/media/
+      
+      networks:
+        - gabis_network
+      
+      depends_on:
+        - container_django
+    
+    
+networks:
+    gabis_network:
+        driver: bridge   
+        
+volumes:
+   container_postgres_vol:
+   container_mongo_vol:
+   static:
+   media:
+   
