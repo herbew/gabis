@@ -42,34 +42,6 @@ DATABASES = {
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
-IP_MONGODB = env('IP_MONGODB', default='127.0.0.1')
-
-MONGODB_DATABASES = {
-        
-        "trails": {
-            "name":"db_gabis_trails",
-            "host": "%s:27017" % (IP_MONGODB),
-            "username": "trail_gabis", #used normal user
-            "password": "PwDgabisSatu1Dua3",
-            "tz_aware": True, # if you using timezones in django (USE_TZ = True)
-        },
-        "django_messages": {
-            "name":"db_gabis_django_messages",
-            "host": "%s:27017" % (IP_MONGODB),
-            "username": "django_messages_gabis", #used normal user
-            "password": "PwDgabisSatu1Dua3",
-            "tz_aware": True, # if you using timezones in django (USE_TZ = True)
-        },
-        "bookings": {
-            "name":"db_gabis_bookings",
-            "host": "%s:27017" % (IP_MONGODB),
-            "username": "booking_gabis", #used normal user
-            "password": "PwDgabisSatu1Dua3",
-            "tz_aware": True, # if you using timezones in django (USE_TZ = True)
-        },
-    }
-
-
 # URLS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
@@ -514,11 +486,5 @@ MODELTRANSLATION_AUTO_POPULATE = True
 MODELTRANSLATION_DEBUG = True
 
 
-# CELERY STUFF
-BROKER_URL =  env('REDIS_URL', default='redis://127.0.0.1:6379'),
-CELERY_RESULT_BACKEND =  env('REDIS_URL', default='redis://127.0.0.1:6379'),
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+
 

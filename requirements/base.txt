@@ -55,13 +55,6 @@ google-cloud-storage==1.30.0
 django-storages==1.9.1
 django-storages[google]==1.9.1
 
-# mongoengine
-mongoengine==0.20.0 #pymongo-3.11.0
-blinker==1.4 #for activate mongoengine blinker
-
-# https://pypi.org/project/django-mongoengine/
-django-mongoengine==0.4.6
-
 # oauth2_provider 
 # https://pypi.org/project/django-oauth-toolkit/
 django-oauth-toolkit==1.5.0
@@ -79,17 +72,6 @@ pylokit==0.8.1
 # https://pypi.org/project/django-appconf/ --avatar
 django-appconf==1.0.5
 
-
-# Celery
-# --------------------------------------------------------------------------
-celery[redis]==5.2.7
-django-celery-beat==2.3.0
-django-celery-results==2.4.0 
-gevent==21.12.0
-
-# https://dj-stripe.dev/dj-stripe/2.6/
-# --------------------------------------------------------------------------
-dj-stripe==2.6
 
 # Test
 # --------------------------------------------------------------------------

@@ -35,10 +35,7 @@
 
 # 2. DONWNLOAD REPOSITORY
 	git clone https://github.com/herbew/gabis.git
-	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
-	
 	git clone https://herbew@bitbucket.org/8campus/static33.git static
-	xspsWjPPE9WMTP4KLRca
 	  
 	cp -Rf static gabis/gabis
 	

@@ -102,10 +102,7 @@ sudo apt-get install -y python3-venv
 python3 -m pip install --user pipenv
 
 git clone https://github.com/herbew/gabis.git
-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
-
 git clone https://herbew@bitbucket.org/8campus/static33.git static
-xspsWjPPE9WMTP4KLRca
   
 cp -Rf static gabis/gabis
 
