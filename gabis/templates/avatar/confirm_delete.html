@@ -1,0 +1,31 @@
+{% extends "base_settings.html" %}
+{% load i18n %}
+
+{% block page_title %}
+	{% trans "Delete Picture" %}
+{% endblock page_title %}
+
+{% block settings_avatar_nav %}active{% endblock %}
+
+{% block setting_content %}
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Delete Picture</h3>
+  </div>
+  <div class="ibox-content">
+    <p>{% trans "Please select the pictures that you would like to delete." %}</p>
+    {% if not avatars %}
+      {% url 'avatar:avatar_change' as avatar_change_url %}
+      <p>{% blocktrans %}You have no pictures to delete. Please <a href="{{ avatar_change_url }}">upload one</a> now.{% endblocktrans %}</p>
+    {% else %}
+      <form class="form-material form-horizontal" method="POST" action="{% url 'avatar:avatar_delete' %}" class="form-avatar">
+        <ul>
+            {{ delete_avatar_form.as_ul }}
+        </ul>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{% trans "Delete These" %}</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

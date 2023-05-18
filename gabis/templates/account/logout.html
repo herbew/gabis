@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block page_title %}
+	{% trans "Sign Out" %}
+{% endblock page_title %}
+
+
+{% block content %}
+	<div class="row">
+	    <div class="card col-md-12">
+	        <div class="card-body text-center">
+	        	<h1>{% trans "Sign Out" %}</h1>
+
+				<p>{% trans 'Are you sure you want to sign out?' %}</p>
+				
+				<form method="post" action="{% url 'account_logout' %}">
+				  {% csrf_token %}
+				  {% if redirect_field_value %}
+				  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+				  {% endif %}
+				  <button 
+				    	type="submit" 
+				    	class="btn waves-effect waves-light btn-primary"
+				    	data-toggle="tooltip" 
+				    	data-placement="bottom"
+				    	title="{% trans 'Sign Out ..' %}" 
+			            data-original-title="{% trans 'Sign Out ..' %}"
+				    	>
+				    	<i class="fa fa-power-off text-danger"></i>
+			            {% trans 'Sign Out' %}
+				   </button>
+				    
+				</form>
+	        </div>
+	    </div>
+	</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load avatar_tags %}
+{% load utility_tags %}
+
+{% block extra_head %}
+	<link href="{% static 'sweetalert2/css/sweetalert2.css' %}" rel="stylesheet"/>
+    <link href="{% static 'sweetalert2/css/sweetalert2.min.css' %}" rel="stylesheet"/>
+    
+	<link href="{% static 'select2-4.0.13/css/select2.css' %}" rel="stylesheet"/>
+	<style>
+        .select2-container--open {
+			z-index: 99999999999999;
+			}
+    </style>
+{% endblock extra_head %}
+
+{% block page_title %}
+	{% trans "Update Profile" %} 
+{% endblock page_title %}
+
+{% block content %}
+	<div class="row">
+	    <div class="card col-md-12">
+	        <div class="card-body">
+	        	<form class="form-material form-horizontal" 
+				            	id="id_form"
+				            	class="form-horizontal" 
+				            	method="post" 
+				            	action="./"
+				            	enctype="multipart/form-data">
+				          {% csrf_token %}
+				          {{ form.as_p }}
+				                
+			    	 <button 
+				    	type="submit" 
+				    	class="btn waves-effect waves-light btn-success"
+				    	data-toggle="tooltip" 
+				    	data-placement="bottom"
+				    	title="{% trans 'Update Profile ..' %}" 
+			            data-original-title="{% trans 'Update Profile ..' %}"
+				    	>
+				    	<i class="icon-cloud-upload"></i>
+			            {% trans 'Update' %}
+				    </button>
+			    </form>
+	        </div>
+	    </div>
+	</div>
+	 
+{% endblock content %}
+
+{% block js_plugin %}
+	<script src="{% static 'select2-4.0.13/js/select2.full.min.js' %}"></script>
+{% endblock js_plugin %}
+
+{% block extra_js %}
+	<script>
+	$(document).ready(function() {
+		// Form ============================================================
+		$('#id_form').submit(function(){
+			// Prevent multiple submits
+	        if ($.data(this, 'submitted')) return false;
+			
+			// Loading Alert
+			swal({
+                  position: 'top-end',
+                  type:'warning',
+                  html:'<div><div><h3>{% trans "Store Data"%}</h3></div><div><label>{% trans "Storing data on progress .." %}</label></div></div>',
+                  showConfirmButton: false
+                });
+			swal.showLoading();
+			$.data(this, 'submitted', true); // mark form as submitted.
+	        return true;
+		});
+		// End Form ========================================================
+			
+     });
+	
+	$("#id_gender").select2({ width: '100%' });
+	
+	</script>
+{% endblock %}

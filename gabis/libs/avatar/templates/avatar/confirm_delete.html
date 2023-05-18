@@ -1,0 +1,17 @@
+{% extends "avatar/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <p>{% trans "Please select the pictures that you would like to delete." %}</p>
+    {% if not avatars %}
+        {% url 'avatar:avatar_change' as avatar_change_url %}
+        <p>{% blocktrans %}You have no pictures to delete. Please <a href="{{ avatar_change_url }}">upload one</a> now.{% endblocktrans %}</p>
+    {% else %}
+        <form class="form-material form-horizontal" method="POST" action="{% url 'avatar:avatar_delete' %}">
+            <ul>
+                {{ delete_avatar_form.as_ul }}
+            </ul>
+            <p>{% csrf_token %}<input type="submit" value='{% trans "Delete These" %}" /></p>
+        </form>
+    {% endif %}
+{% endblock %}

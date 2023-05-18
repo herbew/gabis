@@ -1,0 +1,37 @@
+{% extends "base_settings.html" %}
+{% load i18n avatar_tags %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block page_title %}
+	{% trans "Add Avatar" %} 
+{% endblock page_title %}
+
+{% block settings_avatar_nav %}active{% endblock %}
+
+{% block setting_content %}
+  <div class="ibox">
+    <div class="ibox-title">
+      <h3>{% trans "Change Avatar" %}</h3>
+    </div>
+    <div class="ibox-content">
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Upload new picture</h4>
+          <img src="{% avatar_url user 120 %}" id="avatar-image" class="img-circle pull-left m-r-15" alt="">
+          <form class="form-material form-horizontal" enctype="multipart/form-data" class="pull-left" method="POST" action="{% url 'avatar:avatar_add' %}">
+          {% csrf_token %}
+
+          {{ upload_avatar_form|crispy }}
+
+          <button type="submit" class="btn btn-primary">{% trans "Upload New Picture" %}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock setting_content%}
+
+{% block extrajs %}
+<script src="{% static 'js/user_form.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "avatar/base.html" %}
+{% load i18n avatar_tags %}
+
+{% block content %}
+    <p>{% trans "Your current picture: " %}</p>
+    {% avatar user %}
+    {% if not avatars %}
+        <p>{% trans "You haven't uploaded a picture yet. Please upload one now." %}</p>
+    {% else %}
+        <form class="form-material form-horizontal" method="POST" action="{% url 'avatar:avatar_change' %}">
+            <ul>
+                {{ primary_avatar_form.as_ul }}
+            </ul>
+            <p>{% csrf_token %}<input type="submit" value='{% trans "Choose new Default" %}" /></p>
+        </form>
+    {% endif %}
+    <form class="form-material form-horizontal" enctype="multipart/form-data" method="POST" action="{% url 'avatar:avatar_add' %}">
+        {{ upload_avatar_form.as_p }}
+        <p>{% csrf_token %}<input type="submit" value='{% trans "Upload New Picture" %}" /></p>
+    </form>
+{% endblock %}

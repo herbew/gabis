@@ -1,0 +1,71 @@
+{% load i18n %}
+
+
+<li {% if process in 'company, room'|slice:',' %} class="active" {% else %} class="" {% endif %}>
+	<a {% if process in process in 'company, room'|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
+        href="{% url 'staffs:master_company_list' %}">
+        <i class="icons-Profile"></i>
+        <span class="hide-menu">{% trans "MASTER" %}</span>
+    </a>
+    <ul {% if process in 'company, room'|slice:',' %} class="nav nav-second-level collapse aria-expanded=true in" market="1" {% else %} class="nav nav-second-level collapse aria-expanded=false"{% endif%}>
+    	<li {% if process in 'company, room'|slice:',' %} class="active" marked="1" {% else %} class="" {% endif %}>
+		   	
+		   	<li><a
+		   		class="waves-effect {% ifequal process 'company' %} active {% endifequal%}"  
+		   		href="{% url 'staffs:master_company_list' %}"  marked="1">
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Company" %}</span></a></li>
+    		
+    		<li><a
+		   		class="waves-effect {% ifequal process 'room' %} active {% endifequal%}"  
+		   		href="{% url 'staffs:master_building_list' %}"  marked="1">
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Room" %}</span></a></li>
+		   		
+    	</li>
+    </ul>
+</li>
+
+<li {% if process in 'booking'|slice:',' %} class="active" {% else %} class="" {% endif %}>
+	<a {% if process in process in 'booking'|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
+        href="{% url 'staffs:schedule_user_booking_room_list' %}">
+        <i class="icon-calender"></i>
+        <span class="hide-menu">{% trans "SCHEDULE" %}</span>
+    </a>
+    <ul {% if process in 'booking'|slice:',' %} class="nav nav-second-level collapse aria-expanded=true in" market="1" {% else %} class="nav nav-second-level collapse aria-expanded=false"{% endif%}>
+    	<li {% if process in 'booking'|slice:',' %} class="active" marked="1" {% else %} class="" {% endif %}>
+		   	
+		   	<li><a
+		   		class="waves-effect {% ifequal process 'booking' %} active {% endifequal%}"  
+		   		href="{% url 'staffs:schedule_user_booking_room_list' %}"  marked="1">
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Booking" %}</span></a></li>
+    		
+    	</li>
+    </ul>
+</li>
+    		
+<li {% if process in 'message_inbox,message_outbox,message_trash,'|slice:',' %} class="active" {% else %} class="" {% endif %}>
+    <a {% if process in 'message_inbox,message_outbox,message_trash,'|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
+        href="{% url 'messages:messages_inbox' %}">
+        <i class="icons-Mail"></i>
+        <span class="hide-menu">{% trans "MESSAGE" %}</span>
+    </a>
+    <ul {% if process in 'message_inbox,message_outbox,message_trash,'|slice:',' %} class="nav nav-second-level collapse aria-expanded=true in" market="1" {% else %} class="nav nav-second-level collapse aria-expanded=false"{% endif%}>
+		<li {% if process in 'message_inbox,message_outbox,message_trash,'|slice:',' %} class="active" marked="1" {% else %} class="" {% endif %}>
+		   <li><a
+		   		class="waves-effect {% ifequal process 'message_inbox' %} active {% endifequal%}"  
+		   		href="{% url 'messages:messages_inbox' %}"  marked="1"><i class="icons-Mail-Inbox"></i>
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Inbox" %}</span></a></li>
+		   <li><a
+		   		class="waves-effect {% ifequal process 'message_outbox' %} active {% endifequal%}"  
+		   		href="{% url 'messages:messages_outbox' %}"  marked="1"><i class="icons-Mail-Outbox"></i>
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Sent" %}</span></a></li>
+		   <li><a
+		   		class="waves-effect {% ifequal process 'message_trash' %} active {% endifequal%}" 
+		   		href="{% url 'messages:messages_trash' %}"  marked="1"><i class="icons-Mail-Delete"></i>
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Trash" %}</span></a></li> 
+		</li>
+	</ul>
+</li> 
+<li>
+	<a href="{% url 'logout' %}" class="dropdown-item"><i class="fa fa-power-off text-danger"></i>  <span class="hide-menu">{% trans "Logout" %}</span> </a>
+</li>		
+	

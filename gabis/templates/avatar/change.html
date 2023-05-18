@@ -1,0 +1,70 @@
+{% extends "base_settings.html" %}
+{% load i18n avatar_tags %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block page_title %}
+	{% trans "Change Picture" %}
+{% endblock page_title %}
+
+{% block settings_avatar_nav %}active{% endblock %}
+
+{% block setting_content %}
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+        
+		  <div class="ibox">
+		    <div class="ibox-title">
+		      <h3>{% trans "Change Picture" %}</h3>
+		    </div>
+		    <div class="ibox-content">
+		      <div class="row">
+		        <div class="col-md-12">
+		          <h4>Upload new Picture</h4>
+		          <div class="pull-left m-r-15">
+		            {% avatar user 120 %}
+		          </div>
+		          <form class="form-material form-horizontal" enctype="multipart/form-data" class="pull-left" method="POST" action="{% url 'avatar:avatar_add' %}">
+		          {% csrf_token %}
+		
+		          {{ upload_avatar_form|crispy }}
+		
+		          <button type="submit" class="btn btn-primary">{% trans "Upload New Picture" %}</button>
+		          </form>
+		        </div>
+		      </div>
+		
+		      <hr>
+		
+		      <div class="row">
+		        <div class="col-md-12">
+		          <h4>Select from your previous picture</h4>
+		          {% if not avatars %}
+		            <p>{% trans "You haven't uploaded a pictures yet. Please upload one now." %}</p>
+		          {% else %}
+		            <form class="form-material form-horizontal" method="POST" action="{% url 'avatar:avatar_change' %}" class="form-avatar">
+		              {% csrf_token %}
+		              <ul>
+		                {{ primary_avatar_form.as_ul }}
+		              </ul>
+		              <button type="submit" class="btn btn-primary">{% trans "Choose new Default" %}</button>
+		            </form>
+		          {% endif %}
+		        </div>
+		      </div>
+		
+		      <hr>
+		
+		      <p>You can remove any pictures by using the following link.</p>
+		      <a href="{% url 'avatar:avatar_delete' %}" class="btn btn-danger">Delete Picture</a>
+		
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+{% endblock setting_content%}
+
+{% block extrajs %}
+<script src="{% static 'js/user_form.js' %}"></script>
+{% endblock %}

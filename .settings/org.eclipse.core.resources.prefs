@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//gabis/apps/masters/admin.py=utf-8
+encoding//gabis/apps/masters/models/events.py=utf-8
+encoding//gabis/apps/masters/models/zones.py=utf-8
+encoding//gabis/apps/schedules/admin.py=utf-8
+encoding//gabis/apps/schedules/models/bookings.py=utf-8
+encoding//gabis/apps/schedules/models/guestbooks.py=utf-8
+encoding//gabis/apps/staffs/urls/__init__.py=utf-8
+encoding//gabis/apps/staffs/urls/masters/__init__.py=utf-8
+encoding//gabis/apps/staffs/urls/schedules/__init__.py=utf-8
+encoding//gabis/apps/users/admin.py=utf-8
+encoding//gabis/apps/users/models/users.py=utf-8
+encoding//gabis/apps/users/views/signin.py=utf-8
+encoding//gabis/apps/users/views/signup.py=utf-8

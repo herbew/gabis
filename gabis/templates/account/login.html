@@ -1,0 +1,126 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block extra_head %}
+	<style>
+        .login-register {
+            background: url({% static 'gabis/images/product_landing_bg.jpg' %})!important;
+            position: fixed;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+        }
+        
+        .login-register .login-box {
+            margin-top: -30px;
+            box-sizing: border-box;
+            }
+            
+    </style>
+{% endblock %}
+    
+{% block content %}
+
+	<body class="skin-default card-no-border">
+        <div class="login-register">
+            <div class="login-box card">
+                <div class="card-body">
+                	<h1>{% trans "Sign In" %}</h1>
+	
+					{% get_providers as socialaccount_providers %}
+					
+					{% if socialaccount_providers %}
+					<p><small>{% blocktrans with site.name as site_name %}Please sign in with one
+					of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+					for a {{ site_name }} account and sign in below:{% endblocktrans %}</small></p>
+					
+					<div class="socialaccount_ballot">
+					
+					  <ul class="socialaccount_providers">
+					    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+					  </ul>
+					
+					  <div class="login-or">{% trans 'or' %}</div>
+					
+					</div>
+					
+					{% include "socialaccount/snippets/login_extra.html" %}
+					
+					{% else %}
+					<p>{% blocktrans %}If you have not created an account yet, then please
+					<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+					{% endif %}
+					
+					<form class="form-material form-horizontal" class="form-horizontal form-material" id="loginform" method="POST" action="{% url 'account_login' %}">
+					  {% csrf_token %}
+					  {{ form|crispy }}
+					  {% if redirect_field_value %}
+					  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+					  {% endif %}
+					  <div class="form-group row">
+                       	 <div class="col-md-6">
+                               <div class="d-flex no-block align-items-left">
+                                    <input type="checkbox" onclick="myFunction()"><span class="text-muted">&nbsp;{% trans "Show Password" %}</span>
+                               </div>
+                           </div>
+                       	  <div class="col-md-6">
+                               <div class="d-flex no-block align-items-right">
+                                   <div class="ml-auto">
+                                       <a href="{% url 'account_reset_password' %}" id="to-recover" class="text-muted"><i class="fas fa-lock m-r-5"></i> {% trans "Forgot pwd?" %}</a> 
+                                   </div>
+                               </div>
+                           </div>
+                          
+                       </div>
+                       <div class="form-group text-center">
+                           <div class="col-xs-12 p-b-20">
+                               <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">{% trans "Log In" %}</button>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                               <div class="social">
+                               	&nbsp;
+                                   <!-- <button class="btn btn-googleplus" data-toggle="tooltip" title="Login with Google"> <i aria-hidden="true" class="fab fa-google-plus-g"></i> </button> -->
+                               </div>
+                           </div>
+                       </div>
+                       {% load utility_tags %}
+                       <div class="row">
+                           <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                           		2021 {{ ""|year_content }} &copy; <font color="green"><strong>{% trans "Biomeet" %}</strong></font>
+                           </div>
+                       </div>
+				        
+					</form>
+                </div>
+            </div>
+        </div>
+        
+    
+	</body>
+	
+{% endblock %}
+
+{% block extra_js %}
+ 	$(function() {
+           $(".preloader").fadeOut();
+       });
+       $(function() {
+           $('[data-toggle="tooltip"]').tooltip()
+       });
+       
+       function myFunction() {
+       	  var x = document.getElementById("id_password");
+       	  if (x.type === "password") {
+       	    x.type = "text";
+       	  } else {
+       	    x.type = "password";
+       	  }
+       	}
+{% endblock extra_js %}

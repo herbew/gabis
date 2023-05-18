@@ -1,0 +1,59 @@
+.nobull-login {
+    list-style-type:none;
+    position:relative;
+    left:-40px;
+    top:-30px;
+    }
+.circle {list-style-type:circle}
+
+.divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ height:1px;
+ width:100%;
+ border-top:1px solid gray;
+}
+
+/* MESSAGES & ERRORS */
+
+
+ul.errorlist {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.errorlist li {
+    font-size: 13px !important;
+    list-style-type: none;
+    margin: 0 0 3px 0;
+    color: red;
+}
+
+.label-d {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fb9678;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.alert-error {
+    background: #fb9678;
+    color: #ffffff;
+    border-color: #fb9678;
+}
+
+
+.full-color-table.full-light-table tr:hover {
+    color: #f86060;
+}
+
+.company-image-md {
+    height:124px;
+    width: 256px;
+}

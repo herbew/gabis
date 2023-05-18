@@ -77,8 +77,6 @@ THIRD_PARTY_APPS = [
     'gabis.libs.templated_docs.apps.TemplatedDocsConfig',
     'gabis.libs.avatar.apps.AvatarConfig',
     'gabis.libs.django_messages.apps.DjangoMessagesConfig',
-    'django_celery_beat',
-    'django_celery_results',
     'import_export',
     'qr_code',
      
@@ -86,10 +84,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'gabis.core',
-    'gabis.apps.trails.apps.TrailsAppConfig',
-    'gabis.apps.localized.apps.LocalizedAppConfig',
     'gabis.apps.users.apps.UsersAppConfig',
-    'gabis.apps.backoffice.apps.BackOfficeAppConfig',
     'gabis.apps.masters.apps.MastersAppConfig',
     'gabis.apps.schedules.apps.SchedulesAppConfig',
 ]
@@ -288,7 +283,7 @@ ADMIN_URL = 'admin/'
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
-    ("""Heribertus Rustyawan""", 'heribertus.rustyawan@thepucukan.com'),
+    ("""Heribertus Rustyawan""", 'herbew@gmail.com'),
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
@@ -474,6 +469,7 @@ MODELTRANSLATION_PREPOPULATE_LANGUAGE = "en_us"
 MODELTRANSLATION_TRANSLATION_FILES = (
     'gabis.apps.users.translation',
     'gabis.apps.masters.translation',
+    'gabis.apps.schedules.translation',
     )
 
 # MODELTRANSLATION_CUSTOM_FIELDS = (

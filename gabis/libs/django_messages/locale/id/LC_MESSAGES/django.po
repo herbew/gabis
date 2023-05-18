@@ -1,0 +1,413 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-27 07:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gabis/libs/contrib/django_messages/admin.py:21
+msgid "group"
+msgstr "grup"
+
+#: gabis/libs/contrib/django_messages/admin.py:22
+msgid "Creates the message optionally for all users or a group of users."
+msgstr ""
+"Membuat pesan secara opsional untuk semua pengguna atau sekelompok pengguna."
+
+#: gabis/libs/contrib/django_messages/admin.py:30
+msgid "All users"
+msgstr "Semua pengguna"
+
+#: gabis/libs/contrib/django_messages/admin.py:48
+#: gabis/libs/contrib/django_messages/models.py:90
+msgid "Message"
+msgstr "Pesan"
+
+#: gabis/libs/contrib/django_messages/admin.py:55
+msgid "Date/time"
+msgstr "Tanggal/waktu"
+
+#: gabis/libs/contrib/django_messages/apps.py:6
+#: gabis/libs/contrib/django_messages/models.py:91
+msgid "Messages"
+msgstr "Pesan"
+
+#: gabis/libs/contrib/django_messages/fields.py:56
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "Username pengguna berikut salah: %(users)s"
+
+#: gabis/libs/contrib/django_messages/forms.py:18
+#: gabis/libs/contrib/django_messages/models.py:55
+#: gabis/libs/contrib/django_messages/templates/django_messages/outbox.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/view.html:13
+msgid "Recipient"
+msgstr "Penerima"
+
+#: gabis/libs/contrib/django_messages/forms.py:19
+#: gabis/libs/contrib/django_messages/models.py:52
+#: gabis/libs/contrib/django_messages/templates/django_messages/inbox.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/outbox.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/view.html:7
+msgid "Subject"
+msgstr "Subyek"
+
+#: gabis/libs/contrib/django_messages/forms.py:20
+#: gabis/libs/contrib/django_messages/models.py:53
+msgid "Body"
+msgstr "Isi Pesan"
+
+#: gabis/libs/contrib/django_messages/management.py:9
+msgid "Message Received"
+msgstr "Pesan Diterima"
+
+#: gabis/libs/contrib/django_messages/management.py:9
+msgid "you have received a message"
+msgstr "anda mendapatkan sebuah pesan baru"
+
+#: gabis/libs/contrib/django_messages/management.py:10
+msgid "Message Sent"
+msgstr "Pesan Terkirim"
+
+#: gabis/libs/contrib/django_messages/management.py:10
+msgid "you have sent a message"
+msgstr "anda telah mengirim pesan"
+
+#: gabis/libs/contrib/django_messages/management.py:11
+msgid "Message Replied"
+msgstr "Pesan Dibalas"
+
+#: gabis/libs/contrib/django_messages/management.py:11
+msgid "you have replied to a message"
+msgstr "anda telah membalas pesan"
+
+#: gabis/libs/contrib/django_messages/management.py:12
+msgid "Reply Received"
+msgstr "Balas Pesan"
+
+#: gabis/libs/contrib/django_messages/management.py:12
+msgid "you have received a reply to a message"
+msgstr "anda telah menerima balasan pesan"
+
+#: gabis/libs/contrib/django_messages/management.py:13
+msgid "Message Deleted"
+msgstr "Pesan Dihapus"
+
+#: gabis/libs/contrib/django_messages/management.py:13
+msgid "you have deleted a message"
+msgstr "anda telah menghapus pesan"
+
+#: gabis/libs/contrib/django_messages/management.py:14
+msgid "Message Recovered"
+msgstr "Pesan Dipulihkan"
+
+#: gabis/libs/contrib/django_messages/management.py:14
+msgid "you have undeleted a message"
+msgstr "anda telah membatalkan penghapusan pesan"
+
+#: gabis/libs/contrib/django_messages/models.py:54
+#: gabis/libs/contrib/django_messages/templates/django_messages/inbox.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/view.html:9
+msgid "Sender"
+msgstr "Pengirim"
+
+#: gabis/libs/contrib/django_messages/models.py:56
+msgid "Parent message"
+msgstr "Pesan Induk"
+
+#: gabis/libs/contrib/django_messages/models.py:57
+msgid "sent at"
+msgstr "dikirim pada"
+
+#: gabis/libs/contrib/django_messages/models.py:58
+msgid "read at"
+msgstr "dibaca pada"
+
+#: gabis/libs/contrib/django_messages/models.py:59
+msgid "replied at"
+msgstr "dibalas pada"
+
+#: gabis/libs/contrib/django_messages/models.py:60
+msgid "Sender deleted at"
+msgstr "Pengirim menghapus pada"
+
+#: gabis/libs/contrib/django_messages/models.py:61
+msgid "Recipient deleted at"
+msgstr "Penerima menghapus pada"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/base.html:8
+#: gabis/libs/contrib/django_messages/templates/django_messages/inbox.html:5
+#: gabis/libs/contrib/django_messages/templates/django_messages/new_message.html:12
+msgid "Inbox"
+msgstr "Kotak Masuk"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/base.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/outbox.html:5
+msgid "Sent Messages"
+msgstr "Pesan Terkirim"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/base.html:10
+msgid "New Message"
+msgstr "Pesan Baru"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/base.html:11
+msgid "Trash"
+msgstr "Sampah"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/compose.html:5
+msgid "Compose Message"
+msgstr "Menulis Pesan"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/compose.html:11
+msgid "Send"
+msgstr "Kirim"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/inbox.html:9
+msgid "Received"
+msgstr "Diterima"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/inbox.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/outbox.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:9
+msgid "Action"
+msgstr "Tindakan"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/inbox.html:21
+#: gabis/libs/contrib/django_messages/templates/django_messages/outbox.html:18
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:18
+#: gabis/libs/contrib/django_messages/templates/django_messages/view.html:12
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/inbox.html:22
+#: gabis/libs/contrib/django_messages/templates/django_messages/outbox.html:19
+msgid "delete"
+msgstr "hapus"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/inbox.html:28
+#: gabis/libs/contrib/django_messages/templates/django_messages/outbox.html:25
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:25
+msgid "No messages."
+msgstr "Tidak ada pesan."
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/new_message.html:3
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+"Halo %(recipient)s,\n"
+"\n"
+"anda mendapatkan pesan pribadi dari %(sender)s dengan\n"
+"isi berikut:"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/new_message.html:11
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "Dikirim dari %(site_url)s"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/new_message.html:13
+#: gabis/libs/contrib/django_messages/templates/django_messages/view.html:19
+msgid "Reply"
+msgstr "Balas"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/outbox.html:9
+msgid "Sent"
+msgstr "Terkirim"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:5
+msgid "Deleted Messages"
+msgstr "Pesan Dihapus"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:9
+#: gabis/libs/contrib/django_messages/templates/django_messages/view.html:11
+msgid "Date"
+msgstr "Tanggal"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:19
+msgid "undelete"
+msgstr "batalkan penghapusan"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/trash.html:28
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"Pesan yang dihapus, dihapus dari sampah pada interval yang tidak teratur, "
+"jangan bergantung pada penggunaan fitur ini untuk penyimpanan jangka panjang."
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/view.html:5
+msgid "View Message"
+msgstr "Buka Pesan"
+
+#: gabis/libs/contrib/django_messages/templates/django_messages/view.html:21
+msgid "Delete"
+msgstr "Hapus"
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_deleted/full.txt:1
+#, python-format
+msgid "You have deleted the message '%(message)s'."
+msgstr "Anda telah menghapus pesan '%(message)s'."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr ""
+"Anda telah menghapus pesan <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_received/full.txt:1
+#, python-format
+msgid ""
+"%(message_sender)s has sent you a message:\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+msgstr ""
+"%(message_sender)s telah mengirimkan anda sebuah pesan:\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr ""
+"Anda mendapatkan pesan <a href=\"%(message_url)s\">%(message)s</a> dari "
+"%(message_sender)s."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_received/short.txt:1
+#: gabis/libs/contrib/django_messages/templates/notification/messages_reply_received/short.txt:1
+#, python-format
+msgid "%(notice)s by %(message_sender)s"
+msgstr "%(notice)s oleh %(message_sender)s"
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_recovered/full.txt:1
+#, python-format
+msgid "You have recovered the message '%(message)s'."
+msgstr "Anda telah memulihkan pesan '%(message)s'."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr ""
+"Anda telah memulihkan pesan <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_replied/full.txt:1
+#, python-format
+msgid ""
+"You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
+msgstr ""
+"Anda telah membalas ke '%(message_parent_msg)s' dari %(message_recipient)s."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr ""
+"Anda telah membalas ke <a href=\"%(message_url)s\">%(message_parent_msg)s</"
+"a> dari %(message_recipient)s."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_reply_received/full.txt:1
+#, python-format
+msgid ""
+"%(message_sender)s replied to '%(message_parent_msg)s':\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+msgstr ""
+"%(message_sender)s dibalas ke '%(message_parent_msg)s':\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr ""
+"%(message_sender)s telah mengirimkan anda balasan ke %(message_parent_msg)s."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_sent/full.txt:1
+#, python-format
+msgid "You have sent the message '%(message)s' to %(message_recipient)s."
+msgstr "Anda telah mengirimkan pesan '%(message)s' ke %(message_recipient)s."
+
+#: gabis/libs/contrib/django_messages/templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to "
+"%(message_recipient)s."
+msgstr ""
+"Anda telah mengirimkan pesan <a href=\"%(message_url)s\">%(message)s</a> ke "
+"%(message_recipient)s."
+
+#: gabis/libs/contrib/django_messages/utils.py:25
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s menulis:\n"
+"%(body)s"
+
+#: gabis/libs/contrib/django_messages/utils.py:53
+#, python-format
+msgid "Re%(prefix)s: %(subject)s"
+msgstr ""
+
+#: gabis/libs/contrib/django_messages/utils.py:59
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Pesan Baru: %(subject)s"
+
+#: gabis/libs/contrib/django_messages/views.py:92
+#: gabis/libs/contrib/django_messages/views.py:129
+msgid "Message successfully sent."
+msgstr "Pesan berhasil terkirim."
+
+#: gabis/libs/contrib/django_messages/views.py:111
+#: gabis/libs/contrib/django_messages/views.py:208
+#, python-format
+msgid "Re: %(subject)s"
+msgstr ""
+
+#: gabis/libs/contrib/django_messages/views.py:173
+msgid "Message successfully deleted."
+msgstr "Pesan berhasil dihapus."
+
+#: gabis/libs/contrib/django_messages/views.py:200
+msgid "Message successfully recovered."
+msgstr "Pesan berhasil dipulihkan."

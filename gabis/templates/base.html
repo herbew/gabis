@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+{% load avatar_tags %}
+{% load utility_tags %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'gabis/images/suprema_fave.ico' %}">
+    <title>{% trans "Suprema|Biomeet" %}</title>
+    
+    <link href="{% static 'datatables-1.10.21/css/jquery.dataTables.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'eliteadmin-2020/css/tab-page.css' %}" rel="stylesheet"/>
+    {% block extra_head %}
+    {% endblock extra_head %}
+    
+    <!-- This page CSS -->
+    <!--Toaster Popup message CSS -->
+    <link href="{% static 'eliteadmin-2020/css/jquery.toast-2017.min.css' %}" rel="stylesheet"/>
+    
+    <!-- Custom CSS -->
+    <link href="{% static 'eliteadmin-2020/css/style.min.css' %}" rel="stylesheet"/>
+    
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <script src="{% static 'eliteadmin-2020/js/html5shiv.js' %}"></script>
+    <script src="{% static 'eliteadmin-2020/js/respond.min.js' %}"></script>
+    <!--[if lt IE 9]>-->
+    <link href="{% static 'sweetalert2/css/sweetalert2.css' %}" rel="stylesheet"/>
+    <link href="{% static 'sweetalert2/css/sweetalert2.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'gabis/css/gabis.css' %}" rel="stylesheet"/>
+    {% block css_datepicker %}
+    {% endblock %}
+</head>
+
+
+<body class="fixed-layout skin-megna-dark">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">{% trans "Suprema Inc" %}</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    
+    
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="{% static 'gabis/images/thepucukan_48.png' %}" height="60px" width="60px" class="img-text img-responsive" />
+                            <img src="{% static 'gabis/images/thepucukan_48.png' %}" alt="homepage" class="light-logo" />
+                            -->
+                            <img src="{% static 'gabis/images/s.png' %}" alt="home" height="60px" width="60px" />
+                        </b>
+                        <span class="hidden-xs">
+                             <span class="font-bold">{% trans "u p r e m a" %}</span>
+                         </span>
+                        <!--End Logo icon -->
+                        
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
+                        <!-- ============================================================== -->
+                        
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                            	<i class="ti-email"></i>
+	                            {% if user_messages %}
+		                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+	                            {% endif %}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
+                                <ul>
+                                   {% if user_messages %}
+			                            <li>
+			                                <div class="drop-title">{% trans "You have" %} {{ total_messages }} {% trans "new messages" %}</div>
+			                            </li>
+			                            <li>
+			                                <div class="message-center">
+			                                    {% for i in user_messages %}
+			                                    <a href="{{ i.get_absolute_url }}" marked="1">
+			                                        <div class="user-img"> 
+			                                        	<img src="{% avatar_url i.sender 130 %}" alt="user" class="img-circle" width="40"> 
+			                                        	<span class="profile-status online pull-right"></span> 
+			                                        </div>
+			                                        <div class="mail-contnet">
+			                                            <h5>{% if i.sender.name %} {{ i.sender.name }} {% else %} {{ i.sender }} {% endif %}</h5> 
+			                                            <span class="mail-desc">{{ i.subject|message_subject }}</span> 
+			                                            <span class="time">{{ i.sent_at|date:"d M Y H:i:s " }} {% trans "WIB" %}</span> 
+			                                        </div>
+			                                    </a>
+			                                    {% endfor %}
+			                                </div>
+			                            </li>
+			                            <li>
+			                                <a 
+			                                	class="text-center" 
+			                                	href="{% url 'messages_inbox' %}" 
+			                                	marked="1"> <strong>{% trans "See all messages" %}</strong><i class="fa fa-angle-right"></i> </a>
+			                            </li>
+			                        {% else %}
+			                        	 <li>
+			                                <div class="drop-title">{% trans "No new messages yet!" %}</div>
+			                            </li>
+		                            {% endif %}
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                            	<i class="icon-note"></i>
+                                {% if user_tasks %}
+		          					<div class="notify">
+		          						<span class="heartbit"></span><span class="point"></span>
+		          					</div>
+	          					{% endif %}
+                            </a>
+                            <div class="dropdown-menu mailbox dropdown-menu-right animated bounceInDown" aria-labelledby="2">
+                                <ul>
+                                    {% if user_tasks %}
+			                            {% for i in user_tasks %}
+			                            <li>
+			                                <a href="{{ i.get_absolute_url }}" marked="1">
+		                                        <div class="user-img"> 
+		                                        	<img src="{% avatar_url i.sender 130 %}" alt="user" class="img-circle" width="40"> 
+		                                        	<span class="profile-status online pull-right"></span> 
+		                                        </div>
+		                                        <div class="mail-contnet">
+		                                            <h5>{% if i.sender.name %} {{ i.sender.name }} {% else %} {{ i.sender }} {% endif %}</h5> 
+		                                            <span class="mail-desc">{{ i.subject|message_subject }}</span> 
+		                                            <span class="time">{{ i.sent_at|date:"d M Y H:i:s " }} {% trans "WIB" %}</span> 
+		                                        </div>
+		                                    </a>
+			                            </li>
+			                            <li class="divider"></li>
+		                            	{% endfor %}
+			                            <li>
+			                                <a class="text-center" href="{% url 'messages_inbox' %}"  marked="1"> <strong>{% trans "See All Tasks" %}</strong> <i class="fa fa-angle-right"></i> </a>
+			                            </li>
+			                        {% else %}
+			                        	 <li>
+			                                <div class="drop-title">{% trans "No new Task yet!" %}</div>
+			                            </li>
+		                            {% endif %}
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- mega menu -->
+                        <!-- ============================================================== -->
+                        {% if form_filter %}
+                            <li class="nav-item dropdown mega-dropdown"> 
+                            	<a 
+                            		class="nav-link dropdown-toggle waves-effect waves-dark" 
+                            		href="" data-toggle="dropdown"
+                            		title={% trans "Searching data .." %} 
+                            		aria-haspopup="true" 
+                            		aria-expanded="false">
+                            		<i class="fas fa-search"></i> <small><small>{% trans "SEARCH" %}</small></small>
+                            	</a>
+                                <div class="dropdown-menu animated bounceInDown">
+                                    {% block title_filter %}{% endblock title_filter %}
+                                </div>
+                            </li>
+                        {% endif %}
+                        <!-- ============================================================== -->
+                        <!-- End mega menu -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- User Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown u-pro">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% avatar_url request.user 130 %}" alt="user" class=""> <span class="hidden-md-down">{{request.user.name}}&nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                                <!-- text-->
+                                <a href="{% url 'users:change_profile' %}" class="dropdown-item"><i class="ti-user"></i> {% trans "My Profile" %}</a>
+                                <!-- text-->
+                                <a href="{% url 'avatar:avatar_change' %}" class="dropdown-item"><i class="ti-camera"></i> {% trans "Picture" %}</a>
+                                <!-- text-->
+                                <div class="dropdown-divider"></div>
+                                <!-- text-->
+                                <a href="{% url 'setting_change_password' %}" class="dropdown-item"><i class="ti-settings"></i> {% trans "Change Password" %}</a>
+                                <!-- text-->
+                                <div class="dropdown-divider"></div>
+                                <!-- text-->
+                                <a href="{% url 'logout' %}" class="dropdown-item"><i class="fa fa-power-off"></i> {% trans "Logout" %}</a>
+                                <!-- text-->
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End User Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item right-side-toggle"> <a class="nav-link  waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav" style="padding-top:0px;">
+                    <ul id="sidebarnav">
+                        {% if request.user.types in '001,'|slice:',' %}
+                            {% include 'staffs/layout/menu.html' %}
+                        {% endif %}
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 align-self-center">
+                        <h5 class="text-themecolor text-uppercase text-bold">{% block page_title %}{% endblock page_title %}</h5>
+                    </div>
+                    <div class="col-md-6 align-self-center text-right">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <ol class="breadcrumb text-uppercase">{% block breadcrumb %}{% endblock %}</ol>&nbsp;&nbsp;
+                            {% block add_new_button %}{% endblock add_new_button %}
+                        </div>
+                     </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Info box -->
+                <!-- ============================================================== -->
+                <!--.row -->
+                {% block content %}{% endblock %}
+                <!-- /.row  -->
+                <!-- ============================================================== -->
+                <!-- End Page Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <div class="right-sidebar">
+                    <div class="slimscrollright">
+                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                        <div class="r-panel-body">
+                            <ul id="themecolors" class="m-t-20">
+                                <li><b>{% trans "With Light sidebar" %}</b></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-default" class="default-theme">{% trans "1" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-green" class="green-theme">{% trans "2" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-red" class="red-theme">{% trans "3" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-blue" class="blue-theme working">{% trans "4" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-purple" class="purple-theme">{% trans "5" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-megna" class="megna-theme">{% trans "6" %}</a></li>
+                                <li class="d-block m-t-30"><b>{% trans "With Dark sidebar" %}</b></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-default-dark" class="default-dark-theme ">{% trans "7" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-green-dark" class="green-dark-theme">{% trans "8" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-red-dark" class="red-dark-theme">{% trans "9" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-blue-dark" class="blue-dark-theme">{% trans "10" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-purple-dark" class="purple-dark-theme">{% trans "11" %}</a></li>
+                                <li><a href="javascript:void(0)" data-skin="skin-megna-dark" class="megna-dark-theme ">{% trans "12" %}</a></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        {% load utility_tags %}
+        <footer class="footer text-center">
+            2021 {{ ""|year_content }} &copy; <font color="green"><strong>{% trans "Biomeet" %}</strong></font><font color="red"> {% trans "Suprema Inc" %}</font>
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="{% static 'eliteadmin-2020/js/jquery-3.2.1.min.js' %}"></script>
+    {% block js_telephone %}
+	{% endblock js_telephone %}
+    
+    {% block extra_jquery %}
+    {% endblock extra_jquery %}
+    
+    {% block js_datepicker %}
+    {% endblock js_datepicker %}
+    
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'eliteadmin-2020/js/popper.min.js' %}"></script>
+    <script src="{% static 'eliteadmin-2020/js/bootstrap.min.js' %}"></script>
+    
+    
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'eliteadmin-2020/js/perfect-scrollbar.jquery.min.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'eliteadmin-2020/js/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'eliteadmin-2020/js/sidebarmenu.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'eliteadmin-2020/js/custom.min.js' %}"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+        
+    {% block js_plugin %}
+    {% endblock js_plugin %}
+    
+   	<script src="{% static 'datatables-1.10.21/js/jquery.dataTables.min.js' %}"></script>
+    <!-- Popup message jquery -->
+    <script src="{% static 'eliteadmin-2020/js/jquery.toast-2017.min.js' %}"></script>
+    <!-- Addtional js -->
+    
+    <script src="{% static 'gabis/js/gabis.js' %}"></script>
+    <script src="{% static 'sweetalert2/js/sweetalert2.all.js' %}"></script>
+    <script src="{% static 'sweetalert2/js/sweetalert2.all.min.js' %}"></script>
+    <!--<script src="{% static 'sweetalert2/js/sweetalert2.common.js' %}"></script> -->
+    <script src="{% static 'sweetalert2/js/sweetalert2.js' %}"></script>
+    <script src="{% static 'sweetalert2/js/sweetalert2.min.js' %}"></script>
+    
+    {% block extra_js %}
+    {% endblock extra_js %}
+    <script type="text/javascript">
+        {% if messages %}
+                {% for message in messages %}
+                    toast_alert('{{message.tags}}', '{{ message }}', '{{message.tags}}');
+                {% endfor %}
+        {% endif %}
+    </script>
+    
+</body>
+
+</html>

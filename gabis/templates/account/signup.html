@@ -1,0 +1,57 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block extra_head %}
+	<style>
+        .login-register {
+            background: url({% static 'gabis/images/product_landing_bg.jpg' %})!important;
+            position: fixed;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+        }
+        
+        .login-register .login-box {
+            margin-top: -30px;
+            box-sizing: border-box;
+            }
+            
+    </style>
+{% endblock %}
+
+{% block content %}
+	<body class="skin-default card-no-border">
+	     <div class="login-register">
+	         <div class="login-box card">
+	             <div class="card-body">
+	             	<h1>{% trans "Sign Up" %}</h1>
+
+					<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+					
+					<form class="signup form-material form-horizontal" id="signup_form" method="post" action="{% url 'account_signup' %}">
+					  {% csrf_token %}
+					  {{ form|crispy }}
+					  {% if redirect_field_value %}
+					  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+					  {% endif %}
+					  <button id="sign-up-button" class="btn btn-info" type="submit">{% trans "Register" %} &raquo;</button>
+					</form>
+
+	             </div>
+	             {% load utility_tags %}
+                 <div class="row">
+                     <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                     		2021 {{ ""|year_content }} &copy; <font color="green"><strong>{% trans "Biomeet" %}</strong></font>
+                     </div>
+                 </div>
+	         </div>
+	     </div>
+	</body>
+
+{% endblock %}
+
