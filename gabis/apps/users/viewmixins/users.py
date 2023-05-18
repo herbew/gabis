@@ -5,7 +5,8 @@ from __future__ import absolute_import
 from django.http import Http404
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-from mongoengine.queryset.visitor import Q as mongo_Q
+# from mongoengine.queryset.visitor import Q as mongo_Q
+from django.db.models import Q
 
 from gabis.core.choices import USER_CHOICES
 
@@ -24,11 +25,11 @@ class MessageMixin(UserPassesTestMixin):
         
         
         user_messages = Message.objects.filter(
-            mongo_Q(recipient=self.request.user.username,
+            Q(recipient=self.request.user.username,
             read_at__in=(None,""),
             recipient_deleted_at__in=(None,""),
             subject____startswith="NOTIFICATION_")|
-            mongo_Q(recipient=self.request.user.username,
+            Q(recipient=self.request.user.username,
             read_at__in=(None,""),
             recipient_deleted_at__in=(None,""),
             subject____startswith="MESSAGING_")

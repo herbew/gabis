@@ -1,9 +1,9 @@
 #|==============================================================================
-#|          D E P L O Y M E N T   G U I D A N C E with Ubuntu 20.04
+#|          D E P L O Y M E N T   G U I D A N C E with Ubuntu 22.04
 #|==============================================================================
 
 sudo apt-get install build-essential checkinstall
-sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libpq-dev \
+sudo apt-get install libncursesw5-dev libssl-dev libpq-dev \
     libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev
 
 INSTALL DATABASE
@@ -157,7 +157,6 @@ ____________________________________________________________________________
 
 
  python3 ./manage.py migrate sites
- python3 ./manage.py makemigrations localized
  python3 ./manage.py makemigrations users
  python3 ./manage.py makemigrations masters
  python3 ./manage.py makemigrations schedules
@@ -166,7 +165,6 @@ ____________________________________________________________________________
  
  python3 ./manage.py update_translation_fields users
  python3 ./manage.py update_translation_fields masters
- python3 ./manage.py update_translation_fields localized
  python3 ./manage.py update_translation_fields schedules
  
  python3 ./manage.py collectstatic --noinput

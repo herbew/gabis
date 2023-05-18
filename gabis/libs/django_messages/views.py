@@ -11,7 +11,9 @@ except ImportError:
     from django.urls import reverse
 from django.conf import settings
 
-from mongoengine.queryset.visitor import Q as mongo_Q
+# from mongoengine.queryset.visitor import Q as mongo_Q
+
+from django.db.models import Q
 
 from gabis.libs.django_messages.models import Message
 from gabis.libs.django_messages.forms import ComposeForm
@@ -62,10 +64,10 @@ def trash(request, template_name='django_messages/trash.html'):
     by sender and recipient.
     """
     message_list = Message.objects.filter(
-        mongo_Q(
+        Q(
             sender=request.user.username,
             sender_deleted_at__nin=(None,""))|
-        mongo_Q(
+        Q(
             recipient=request.user.username,
             recipient_deleted_at__nin=(None,"")))
     return render(request, template_name, {
