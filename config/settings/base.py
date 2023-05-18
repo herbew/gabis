@@ -181,7 +181,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'gabis.apps.localized.middleware.BiomeetLocaleMiddleware'
+    'gabis.apps.masters.middleware.GabisLocaleMiddleware'
 ]
 
 # STATIC
