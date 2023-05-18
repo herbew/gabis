@@ -52,16 +52,13 @@ urlpatterns += i18n_patterns(
     path('qr_code/', include('qr_code.urls', namespace="qr_code")),
     
     # User Management
-    path("trails/", include('gabis.apps.trails.urls', 
-                    namespace='trails')),
+    
     path("users/", include('gabis.apps.users.urls', 
                     namespace='users')),
-    path("localized/", include('gabis.apps.localized.urls', 
-                    namespace='localized')),
-    path("masters/", include('gabis.apps.masters.urls', 
-                    namespace='masters')),
-    path("staff/", include('gabis.apps.staffs.urls', 
-                    namespace='staffs')),
+    # path("masters/", include('gabis.apps.masters.urls', 
+    #                 namespace='masters')),
+    # path("staff/", include('gabis.apps.staffs.urls', 
+    #                 namespace='staffs')),
     
 
 ) + static(
