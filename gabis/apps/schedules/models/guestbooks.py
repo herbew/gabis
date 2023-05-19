@@ -15,9 +15,15 @@ from gabis.apps.users.models import User
 from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkungan)
 from gabis.apps.masters.models.events import TimeEvent
 from gabis.apps.schedules.models.bookings import BookingTimeEvent
+from jedi.inference.value import instance
 
 log = logging.getLogger(__name__)
 
+def get_random():
+        import random
+        r = random.randrange(000000,999999,1)
+        
+        return "%s" % (r,)
 
 class GuestBook(TimeStampedModel):
     """GuestBook"""
@@ -73,6 +79,9 @@ class GuestBook(TimeStampedModel):
         _("Mobile"), max_length=64, 
         null=True, blank=True)
     
+    pin = models.CharField( 
+        _("PIN of Guest"), max_length=64, 
+        null=True, blank=True)
     
     user_update = models.CharField(
             max_length=30,
@@ -84,7 +93,7 @@ class GuestBook(TimeStampedModel):
         verbose_name = u"GuestBook"
         verbose_name_plural = u"002001 Guest Book"
         
-        unique_together = (("booking_time_event", "keuskupan", "paroki", "wilayah", "lingkungan", "name"),)
+        unique_together = (("booking_time_event", "keuskupan", "paroki", "wilayah", "lingkungan", "name", "mobile"),)
 
     def __init__(self, *args, **kwargs):
         super(BookingTimeEvent, self).__init__(*args, **kwargs)
@@ -116,7 +125,12 @@ def save_guest_book(sender, instance, created, *args, **kwargs):
     
     if created:
         # Create a group
-        pass
+        r = get_random()
+        while GuestBook.objects.filter(pin=r):
+            r = get_random()
+        
+        instance.pin = r
+        instance.save()
     
 post_save.connect(save_guest_book, sender=GuestBook)
 

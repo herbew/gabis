@@ -1,0 +1,159 @@
+{% extends "staffs/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load avatar_tags %}
+{% load utility_tags %}
+{% load tz %}
+
+{% block extra_head %}
+	{% get_current_language as LANGUAGE_CODE %}
+	{% get_current_timezone as TIME_ZONE %}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js'></script>
+    <script type="text/javascript">
+    /* Document Event Listener */
+    document.addEventListener('DOMContentLoaded', function() {
+        var language_code = '{{LANGUAGE_CODE}}';
+        var calendar_element = document.getElementById('calender');
+        var now_date_ts = new Date({{ts_dict.year}}, {{ts_dict.month}}, {{ts_dict.day}}, {{ts_dict.hour}}, {{ts_dict.minute}}, {{ts_dict.second}});
+        
+        var now_date = now_date_ts.getDate();
+        var now_month = now_date_ts.getMonth();
+        var now_year = now_date_ts.getFullYear();
+        
+        
+        /* Initial Calendar Object */
+        var calendar = new FullCalendar.Calendar(
+        	calendar_element, 
+        	{
+				locale: language_code,
+              	header: {
+                  left: "title",
+                  right: "prev,next today agendaWeek,agendaDay,listWeek"
+
+              	},
+              	editable: true,
+              	height: 'auto',
+              	now: '{{ ts_biostar_room_string }}', 
+              	timeZone: 'local',
+              	nowIndicator: true,
+              	firstDay: 1, // first days from monday,
+              	slotMinTime: 6,
+              	allDaySlot:false,
+              	slotMinTime:"06:00:00",
+              	initialView: 'timeGridWeek',
+              	selectable: true,
+          		buttonIcons: false, // show the prev/next text
+                initialDate: "{{ ts_biostar_room|date:'Y-m-d' }}",
+              
+              	defaultView: "{% if 'search_availability/' in request.META.PATH_INFO %}agendaDay{% else %}agendaWeek{% endif %}",
+
+	            headerToolbar: {
+	                    left: 'prev,next today',
+	                    center: 'title',
+	                    right: 'timeGridWeek,timeGridDay',
+		
+	              },
+	            
+	            /* IF select */
+              	select: function(info) {
+              		// ----
+              	},
+              	/* end IF select */
+              	
+              	/* IF click */
+              	eventClick: function(e) {
+                	//--
+              	},
+              	/* end IF click */
+              	
+              	/* IF resize */
+              	eventResize: function(e) {
+              		//--
+              	},
+              	/* end IF resize */
+              	
+              	/* IF event Drop */
+              	eventDrop: function(info) {
+              		//--
+                },
+                /* end IF event Drop */
+                
+                /* IF event Allow */
+                eventAllow: function(dropInfo, draggedEvent) {
+                	//--
+                
+              	},
+              	/* end IF event Allow */
+              	
+              	/* IF events */
+              	events: [
+              	//--
+              	]
+              	/* end IF events */
+        });
+
+        calendar.render();
+        
+    })
+    
+    </script>
+{% endblock extra_head %}
+
+   
+{% block title_filter %}{% endblock title_filter %}
+
+{% block breadcrumb %}
+	<span class="breadcrumb-item active text-right">
+		<a class="breadcrumb-item" href="{% url 'staffs:schedule_user_booking_room_list' %}?page={{page}}&{{params_filter}}" >{% trans "Booking Room Schedule" %}</a>
+	    <span class="breadcrumb-item active">{% trans "Meeting Schedule" %}</span>
+	</span>
+{% endblock breadcrumb %}
+
+{% block page_title %}
+	<b>{{ biostar_room.room.name.upper }}</b>, <small id="biostar_room_ts"></small> <b>{{ biostar_room.room.abbreviation }}</b> 
+	{% if biostar_room.room.gmt_offset_hour_display %}<small>[{{ biostar_room.room.gmt_offset_hour_display }}]</small> {% endif %} 
+{% endblock page_title %}
+
+{% block add_new_button %}{% endblock add_new_button %}
+
+{% block content %}
+	<div class="row">
+         <div class="col-sm-12">
+             <div class="card">
+                <section class="col-sm-12" id="calender-room-wrapper">
+                	<div id="calender"></div>
+                </section>
+             </div>
+         </div>
+     </div>
+{% endblock content %}
+
+{% block extra_jquery %}{% endblock extra_jquery %}
+
+{% block js_plugin %} {% endblock js_plugin %}
+
+{% block extra_js %}
+	<script>
+	function doDate()
+		{
+		    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+		    var str = "";
+		    var now = new Date({{ts_dict.year}}, {{ts_dict.month}}, {{ts_dict.day}}, {{ts_dict.hour}}, {{ts_dict.minute}}, {{ts_dict.second}});
+		    str = now.toLocaleDateString('{{LANGUAGE_CODE}}', options) +' '+now.toLocaleTimeString('{{LANGUAGE_CODE}}', {hour12: false}) ;
+		    document.getElementById("biostar_room_ts").innerHTML = str;
+		}
+	
+	setInterval(doDate, 1000);
+	
+	</script>
+{% endblock %}
+
+
+
+
+
+
+

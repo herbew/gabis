@@ -55,6 +55,9 @@ urlpatterns += i18n_patterns(
     
     path("users/", include('gabis.apps.users.urls', 
                     namespace='users')),
+    path("schedules/", include('gabis.apps.schedules.urls', 
+                     namespace='schedules'))
+    
     # path("masters/", include('gabis.apps.masters.urls', 
     #                 namespace='masters')),
     # path("staff/", include('gabis.apps.staffs.urls', 

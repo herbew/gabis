@@ -22,7 +22,8 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
             return
         
         logout(self.request)
-        return reverse_lazy("account_login")
+        # return reverse_lazy("account_login")
+        return reverse_lazy("schedules:schedule_time_event_list")
         
 redirect = UserRedirectView.as_view()
 
@@ -36,7 +37,8 @@ class SignUpRedirectView(LoginRequiredMixin, RedirectView):
             _("Have successfully registered.") 
             )
         logout(self.request)
-        return reverse_lazy("account_login")
+        # return reverse_lazy("account_login")
+        return reverse_lazy("schedules:schedule_time_event_list")
         
 signup_redirect = SignUpRedirectView.as_view()
 
