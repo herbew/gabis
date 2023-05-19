@@ -15,7 +15,6 @@ from gabis.apps.users.models import User
 from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkungan)
 from gabis.apps.masters.models.events import TimeEvent
 from gabis.apps.schedules.models.bookings import BookingTimeEvent
-from jedi.inference.value import instance
 
 log = logging.getLogger(__name__)
 
