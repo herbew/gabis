@@ -3,7 +3,7 @@
 
 <li {% if process in 'company, room'|slice:',' %} class="active" {% else %} class="" {% endif %}>
 	<a {% if process in process in 'company, room'|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
-        href="{% url 'staffs:master_company_list' %}">
+        href="">
         <i class="icons-Profile"></i>
         <span class="hide-menu">{% trans "MASTER" %}</span>
     </a>
@@ -12,12 +12,12 @@
 		   	
 		   	<li><a
 		   		class="waves-effect {% ifequal process 'company' %} active {% endifequal%}"  
-		   		href="{% url 'staffs:master_company_list' %}"  marked="1">
+		   		href=""  marked="1">
 		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Company" %}</span></a></li>
     		
     		<li><a
 		   		class="waves-effect {% ifequal process 'room' %} active {% endifequal%}"  
-		   		href="{% url 'staffs:master_building_list' %}"  marked="1">
+		   		href=""  marked="1">
 		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Room" %}</span></a></li>
 		   		
     	</li>
@@ -26,7 +26,7 @@
 
 <li {% if process in 'booking'|slice:',' %} class="active" {% else %} class="" {% endif %}>
 	<a {% if process in process in 'booking'|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
-        href="{% url 'staffs:schedule_user_booking_room_list' %}">
+        href="">
         <i class="icon-calender"></i>
         <span class="hide-menu">{% trans "SCHEDULE" %}</span>
     </a>
@@ -35,7 +35,7 @@
 		   	
 		   	<li><a
 		   		class="waves-effect {% ifequal process 'booking' %} active {% endifequal%}"  
-		   		href="{% url 'staffs:schedule_user_booking_room_list' %}"  marked="1">
+		   		href=""  marked="1">
 		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Booking" %}</span></a></li>
     		
     	</li>
