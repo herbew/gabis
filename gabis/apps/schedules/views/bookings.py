@@ -83,14 +83,18 @@ class TimeEventListView(ListView):
         # Set to 08:00 AM
         d = datetime.strptime(d, "%d/%m/%Y") + timedelta(hours=8)
         
-        ts_dict = dict(
-            year=d.year, 
-            month=d.month-1,
-            day=d.day,
-            hour=d.hour,
-            minute=d.minute,
-            second=d.second
+        datef.update(ts_dict=dict(
+                    year=d.year, 
+                    month=d.month-1,
+                    day=d.day,
+                    hour=d.hour,
+                    minute=d.minute,
+                    second=d.second
+                    )
             )
+        
+        datef.update(ts_string=datetime.strftime(d, "%Y-%m-%dT%H:%M:%S"))
+        
         
         try:
             context = super(TimeEventListView, self).get_context_data(*args, **kwargs)
@@ -101,7 +105,6 @@ class TimeEventListView(ListView):
             context.update(
                 dict(
                     datef=datef,
-                    ts_dict=ts_dict,
                     object_list=object_list,
                     history_filter=history_filter,
                     params_filter=params_filter,
@@ -137,7 +140,6 @@ class TimeEventListView(ListView):
             
             return  dict(
                     datef=datef,
-                    ts_dict=ts_dict,
                     page_obj=p,
                     object_list=object_list,
                     history_filter=history_filter,

@@ -15,7 +15,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var language_code = '{{LANGUAGE_CODE}}';
         var calendar_element = document.getElementById('calender');
-        var now_date_ts = new Date({{ts_dict.year}}, {{ts_dict.month}}, {{ts_dict.day}}, {{ts_dict.hour}}, {{ts_dict.minute}}, {{ts_dict.second}});
+        var now_date_ts = new Date({{datef.ts_dict.year}}, {{datef.ts_dict.month}}, {{datef.ts_dict.day}}, {{datef.ts_dict.hour}}, {{datef.ts_dict.minute}}, {{datef.ts_dict.second}});
         
         var now_date = now_date_ts.getDate();
         var now_month = now_date_ts.getMonth();
@@ -29,22 +29,22 @@
 				locale: language_code,
               	header: {
                   left: "title",
-                  right: "prev,next today agendaWeek,agendaDay,listWeek"
+                  right: "prev,next today agendaWeek, agendaDay, listWeek"
 
               	},
               	editable: true,
               	height: 'auto',
-              	now: '{{ ts_biostar_room_string }}', 
+              	now: '{{ datef.ts_string }}', 
               	timeZone: 'local',
               	nowIndicator: true,
-              	firstDay: 1, // first days from monday,
-              	slotMinTime: 6,
+              	firstDay: 7, // first days from monday,
               	allDaySlot:false,
-              	slotMinTime:"06:00:00",
+              	slotMinTime:"08:00:00",
+              	slotMaxTime:"21:00:00",
               	initialView: 'timeGridWeek',
               	selectable: true,
           		buttonIcons: false, // show the prev/next text
-                initialDate: "{{ ts_biostar_room|date:'Y-m-d' }}",
+                initialDate: "{{ datef.date|date:'Y-m-d' }}",
               
               	defaultView: "{% if 'search_availability/' in request.META.PATH_INFO %}agendaDay{% else %}agendaWeek{% endif %}",
 
@@ -139,7 +139,7 @@
 		{
 		    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 		    var str = "";
-		    var now = new Date({{ts_dict.year}}, {{ts_dict.month}}, {{ts_dict.day}}, {{ts_dict.hour}}, {{ts_dict.minute}}, {{ts_dict.second}});
+		    var now = new Date({{datef.ts_dict.year}}, {{datef.ts_dict.month}}, {{datef.ts_dict.day}}, {{datef.ts_dict.hour}}, {{datef.ts_dict.minute}}, {{datef.ts_dict.second}});
 		    str = now.toLocaleDateString('{{LANGUAGE_CODE}}', options) +' '+now.toLocaleTimeString('{{LANGUAGE_CODE}}', {hour12: false}) ;
 		    document.getElementById("biostar_room_ts").innerHTML = str;
 		}
