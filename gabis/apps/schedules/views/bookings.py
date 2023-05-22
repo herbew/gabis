@@ -81,7 +81,7 @@ class TimeEventListView(ListView):
                          )
         
         # Set to 08:00 AM
-        d = d + timedelta(hours=8)
+        d = datetime.strptime(d, "%d/%m/%Y").date() + timedelta(hours=8)
         
         ts_dict = dict(
             year=d.year, 
