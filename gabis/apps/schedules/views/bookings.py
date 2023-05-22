@@ -71,7 +71,8 @@ class TimeEventListView(ListView):
             d = self.date_events[0]
         else:
             d = datetime.strftime(self.int2date(datef),"%d/%m/%Y")
-            
+        
+        
         datef = dict(
                     dint=self.date2int(d),
                     date=datetime.strptime(d, "%d/%m/%Y").date(),
@@ -79,7 +80,17 @@ class TimeEventListView(ListView):
                         "%d/%m/%Y").date(),"%d %h %Y")
                          )
         
+        # Set to 08:00 AM
+        d = d + timedelta(hours=8)
         
+        ts_dict = dict(
+            year=d.year, 
+            month=d.month-1,
+            day=d.day,
+            hour=d.hour,
+            minute=d.minute,
+            second=d.second
+            )
         
         try:
             context = super(TimeEventListView, self).get_context_data(*args, **kwargs)
@@ -90,6 +101,7 @@ class TimeEventListView(ListView):
             context.update(
                 dict(
                     datef=datef,
+                    ts_dict=ts_dict,
                     object_list=object_list,
                     history_filter=history_filter,
                     params_filter=params_filter,
@@ -125,6 +137,7 @@ class TimeEventListView(ListView):
             
             return  dict(
                     datef=datef,
+                    ts_dict=ts_dict,
                     page_obj=p,
                     object_list=object_list,
                     history_filter=history_filter,
