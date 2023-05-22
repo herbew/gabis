@@ -305,6 +305,7 @@ LANGUAGES = (
     ('ko', _('Korean')),
     ('hi', _('Hindi')),
     ('es', _('Spanish')),
+    ('id', _('Indonesia')),
     
 )
 
@@ -314,10 +315,15 @@ MULTILINGUAL_LANGUAGES = (
     'ar',
     'ko',
     'hi',
-    'es'
+    'es',
+    'id'
+    
 )
-LANGUAGE_CODE = env('LANGUAGE_CODE', default='en-us')
-TIME_ZONE = env('TIME_ZONE', default='UTC')
+# LANGUAGE_CODE = env('LANGUAGE_CODE', default='en-us')
+# TIME_ZONE = env('TIME_ZONE', default='UTC')
+
+LANGUAGE_CODE = env('LANGUAGE_CODE', default='id')
+TIME_ZONE = env('TIME_ZONE', default='Asia/Jakarta')
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
