@@ -89,6 +89,15 @@
               	/* IF events */
               	events: [
               	//--
+              		{% for no, object in object_list %}
+              			{
+              				id: "{{ object.id }}",
+              				title: "{{ object.group }}",
+              				start:"{{ object.calendar_start_time_string }}",
+                      		end:"{{ object.calendar_end_time_string }}",
+                      		color:'green'
+              			}{% if not forloop.last %},{% endif %}
+              		{% endfor %}
               	]
               	/* end IF events */
         });

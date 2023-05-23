@@ -151,13 +151,15 @@ class TimeEventListView(ListView):
     def get_queryset(self):
         
         # Convert date filter
-        datef = self.request.GET.get('datef','')
-        if datef in (None,""):
-            d = datetime.strptime(self.date_events[0], "%d/%m/%Y").date()
-        else:
-            d = self.int2date(datef)
-        
-        queryset = self.model.objects.filter(
-            start_time__year=d.year, start_time__month=d.month, start_time__day=d.day).order_by("created")
+        # datef = self.request.GET.get('datef','')
+        # if datef in (None,""):
+        #     d = datetime.strptime(self.date_events[0], "%d/%m/%Y").date()
+        # else:
+        #     d = self.int2date(datef)
+        #
+        # queryset = self.model.objects.filter(
+        #     start_time__year=d.year, start_time__month=d.month, start_time__day=d.day).order_by("created")
+            
+        queryset = self.model.objects.all().order_by("created")
         
         return queryset

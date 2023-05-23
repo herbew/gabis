@@ -2,7 +2,7 @@
 from __future__ import unicode_literals, absolute_import
 
 import logging
-
+from datetime import datetime, timedelta
 from django.db import models
 
 from django.utils.translation import gettext_lazy as _
@@ -73,8 +73,12 @@ class TimeEvent(TimeStampedModel):
     start_time = models.DateTimeField(null=True, blank=True) 
     end_time = models.DateTimeField(null=True, blank=True)
     
-    max_guest =  models.IntegerField( 
+    ordered =  models.IntegerField( 
+            _("Ordered"))
+    
+    max_guest =  models.IntegerField(default=80, 
             _("Maximum Guests"))
+    
     booked = models.BooleanField(default=False)
     
     
@@ -96,7 +100,18 @@ class TimeEvent(TimeStampedModel):
     def __str__(self):
         return "%s %s - %s" % (self.event, self.start_time, self.end_time)
     
-
+    @property
+    def group(self):
+        return "%s %s" % (_("Kloter"), self.ordered)
+    
+    @property
+    def calendar_start_time_string(self):
+        return datetime.strftime(self.start_time, "%Y-%m-%dT%H:%M:%S")
+    
+    @property
+    def calendar_end_time_string(self):
+        return datetime.strftime(self.end_time, "%Y-%m-%dT%H:%M:%S")
+        
     def get_user_update(self):
         return self._user_update
 
@@ -112,6 +127,10 @@ class TimeEvent(TimeStampedModel):
         
 class PICEvent(TimeStampedModel):
     """Personal Information Contact Event"""
+    
+    nik = models.CharField(
+                _("Nomor Induk Kependudukan Nasional"), 
+                max_length=255, db_index=True)
     
     pic = models.CharField(
                 _("PIC Event Name"), 
@@ -142,7 +161,7 @@ class PICEvent(TimeStampedModel):
         app_label = 'masters'
         verbose_name = u"PICEvent"
         verbose_name_plural = u"002003 PIC Event"
-        unique_together = (("pic", "event"),)
+        unique_together = (("nik", "event"),)
 
     def __init__(self, *args, **kwargs):
         super(PICEvent, self).__init__(*args, **kwargs)

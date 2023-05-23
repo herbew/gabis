@@ -57,6 +57,9 @@ class GuestBook(TimeStampedModel):
                 verbose_name=_("Lingkungan"),
                 db_index=True, null=True, blank=True)
     
+    nik = models.CharField(
+                _("Nomor Induk Kependudukan Nasional"), 
+                max_length=255, db_index=True)
     
     name = models.CharField(
                 _("Name"), 
@@ -92,7 +95,7 @@ class GuestBook(TimeStampedModel):
         verbose_name = u"GuestBook"
         verbose_name_plural = u"002001 Guest Book"
         
-        unique_together = (("booking_time_event", "keuskupan", "paroki", "wilayah", "lingkungan", "name", "mobile"),)
+        unique_together = (("booking_time_event", "nik"),)
 
     def __init__(self, *args, **kwargs):
         super(BookingTimeEvent, self).__init__(*args, **kwargs)
