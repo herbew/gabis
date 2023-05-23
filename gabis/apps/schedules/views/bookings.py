@@ -29,7 +29,7 @@ class TimeEventListView(ListView):
     model = TimeEvent
     template_name = "schedules/bookings/list.html"
     paginator_class = SafePaginator
-    paginate_by = 8
+    paginate_by = 100
     process = "booking"
      
     # From 16/07/2023 - 22/07/2023
