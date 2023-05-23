@@ -74,10 +74,12 @@ class TimeEvent(TimeStampedModel):
     end_time = models.DateTimeField(null=True, blank=True)
     
     ordered =  models.IntegerField( 
-            _("Ordered"))
+            _("Ordered"),
+             help_text = _("Displaying event in ordered."))
     
-    max_guest =  models.IntegerField(default=80, 
-            _("Maximum Guests"))
+    max_guest =  models.IntegerField( 
+            _("Maximum Guests"),
+            default=80,)
     
     booked = models.BooleanField(default=False)
     
