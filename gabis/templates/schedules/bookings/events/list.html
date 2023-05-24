@@ -14,6 +14,7 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js'></script>
     <script type="text/javascript">
+
     /* Document Event Listener */
     document.addEventListener('DOMContentLoaded', function() {
         var language_code = '{{LANGUAGE_CODE}}';
@@ -94,7 +95,7 @@
               		{% for no, object in object_list %}
               			{
               				id: "{{ object.id }}",
-              				title: "{{ object.group }}\n, "+"{% trans "Available: " %}"+"{{object.available}}",
+              				title: "{{ object.group }}\n, "+"{% trans "Avail: " %}"+"{{object.available}}",
               				start:"{{ object.calendar_start_time_string }}",
                       		end:"{{ object.calendar_end_time_string }}",
                       		color:'{{ object.color }}'
@@ -125,6 +126,12 @@
 {% block add_new_button %}{% endblock add_new_button %}
 
 {% block content %}
+    <style>
+       
+        .fc-event {
+          padding: 2px
+        }
+    </style>
 	<div class="row">
          <div class="col-sm-12">
              <div class="card">
