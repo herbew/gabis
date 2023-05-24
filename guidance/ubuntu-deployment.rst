@@ -171,6 +171,14 @@ ____________________________________________________________________________
  python3 ./manage.py shell -c "from gabis.apps.users.models import User; User.objects.create_superuser('herbew', 'herbew@gmail.com', 'password')"
  python3 ./manage.py shell -c "from gabis.apps.users.models import User; user = User.objects.get(username='herbew'); user.types='001'; user.save()"
  
+ python3 ./manage.py loaddata 00001_masters_keuskupan
+ python3 ./manage.py loaddata 00002_masters_paroki
+ python3 ./manage.py loaddata 00003_masters_wilayah
+ python3 ./manage.py loaddata 00004_masters_lingkungan
+ python3 ./manage.py loaddata 00005_masters_event
+ python3 ./manage.py loaddata 00006_masters_timeevent
+ 
+ 
 #Redis
  sudo apt install redis-server redis
  
