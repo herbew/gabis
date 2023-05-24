@@ -97,7 +97,7 @@
               				title: "{{ object.group }}",
               				start:"{{ object.calendar_start_time_string }}",
                       		end:"{{ object.calendar_end_time_string }}",
-                      		color:'green'
+                      		color:'{{ object.color }}'
               			}{% if not forloop.last %},{% endif %}
               		{% endfor %}
               	]

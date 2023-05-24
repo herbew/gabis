@@ -113,13 +113,33 @@ class TimeEvent(TimeStampedModel):
     @property
     def calendar_end_time_string(self):
         return datetime.strftime(self.end_time, "%Y-%m-%dT%H:%M:%S")
+    
+    @property
+    def total_guest_book(self):
+        from gabis.apps.schedules.models.guestbooks import GuestBook
+        gb = GuestBook.objects.filter(time_event=self)
+        return len(gb)
+    
+    @property
+    def color(self):
+        
+        d_now = datetime.now()
+        
+        if self.total_guest_book >= 80:
+            return "gray"
+        
+        if self.end_time < d_now:
+            return "gray"
+        
+        return "green"
+            
         
     def get_user_update(self):
         return self._user_update
 
     def set_user_update(self, new_user):
         self._user_update = new_user
-
+        
     user_updated = property(get_user_update, set_user_update, None, "user_updated")
 
     def save(self, *args, **kwargs):
