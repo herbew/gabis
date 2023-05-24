@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from django.db import models
 
 from django.utils.translation import gettext_lazy as _
-from django.utils.html import format_html
+
 from django.db.models.signals import pre_save, post_save, pre_delete, post_delete
 
 from django_extensions.db.models import TimeStampedModel
@@ -107,8 +107,7 @@ class TimeEvent(TimeStampedModel):
     
     @property
     def group(self):
-        return format_html("%s %s<br>%s(%s)" % (
-            _("Kloter"), self.ordered, _("Available"), 80-self.total_guest_book))
+        return "%s %s" % (_("Kloter"), self.ordered)
     
     @property
     def calendar_start_time_string(self):
@@ -136,7 +135,10 @@ class TimeEvent(TimeStampedModel):
             return "gray"
         
         return "green"
-            
+    
+    @property
+    def available(self):
+        return (80 - self.total_guest_book)
         
     def get_user_update(self):
         return self._user_update

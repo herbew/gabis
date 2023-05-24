@@ -94,7 +94,7 @@
               		{% for no, object in object_list %}
               			{
               				id: "{{ object.id }}",
-              				title: "{{ object.group }}",
+              				title: "{{ object.group }}\n"+"{% trans "Available: " %}"+"{{object.available}}",
               				start:"{{ object.calendar_start_time_string }}",
                       		end:"{{ object.calendar_end_time_string }}",
                       		color:'{{ object.color }}'
