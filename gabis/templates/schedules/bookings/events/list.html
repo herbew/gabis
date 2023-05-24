@@ -38,7 +38,7 @@
               	editable: true,
               	height: 'auto',
               	now: '{{ datef.ts_string }}', 
-              	timeZone: 'local',
+              	timeZone: '{{ TIME_ZONE }}',
               	nowIndicator: true,
               	firstDay: 7, // first days from monday,
               	allDaySlot:false,
@@ -116,21 +116,20 @@
 {% block title_filter %}{% endblock title_filter %}
 
 {% block breadcrumb %}
-	<span class="breadcrumb-item active text-right">
-		<a class="breadcrumb-item" href="" >{% trans "Booking Room Schedule" %}</a>
-	    <span class="breadcrumb-item active">{% trans "Meeting Schedule" %}</span>
-	</span>
+	
 {% endblock breadcrumb %}
 
 {% block page_title %}
-	<b>{{ biostar_room.room.name.upper }}</b>, <small id="biostar_room_ts"></small> <b>{{ biostar_room.room.abbreviation }}</b> 
-	{% if biostar_room.room.gmt_offset_hour_display %}<small>[{{ biostar_room.room.gmt_offset_hour_display }}]</small> {% endif %} 
+	
 {% endblock page_title %}
 
 {% block add_new_button %}{% endblock add_new_button %}
 
 {% block content %}
 	<div class="row">
+		{% for no, object in object_list %}
+  			{{no}} <br>
+  		{% endfor %}
          <div class="col-sm-12">
              <div class="card">
                 <section class="col-sm-12" id="calender-room-wrapper">
