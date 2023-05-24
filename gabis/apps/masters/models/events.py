@@ -2,6 +2,8 @@
 from __future__ import unicode_literals, absolute_import
 
 import logging
+import pytz
+
 from datetime import datetime, timedelta
 from django.db import models
 
@@ -122,8 +124,8 @@ class TimeEvent(TimeStampedModel):
     
     @property
     def color(self):
-        
-        d_now = datetime.now()
+        tz = pytz.timezone("Asia/Jakarta")
+        d_now = tz.localize(datetime.now())
         
         if self.total_guest_book >= 80:
             return "gray"
