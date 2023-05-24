@@ -20,7 +20,7 @@ from gabis.apps.masters.models.events import (Event, TimeEvent, PICEvent)
 
 log = logging.getLogger(__name__)
 
-class TimeEventListView(ListView):
+class TimeEventZiarahListView(ListView):
     """
         - Level 1
         - Booking with User is self.requests.user
@@ -31,6 +31,7 @@ class TimeEventListView(ListView):
     paginator_class = SafePaginator
     paginate_by = 100
     process = "booking"
+    filter = "Ziarah Kain Kafan Yesus 2023"
      
     # From 16/07/2023 - 22/07/2023
     date_events = ("16/07/2023","17/07/2023","18/07/2023",
@@ -97,7 +98,7 @@ class TimeEventListView(ListView):
         
         
         try:
-            context = super(TimeEventListView, self).get_context_data(*args, **kwargs)
+            context = super(TimeEventZiarahListView, self).get_context_data(*args, **kwargs)
             object_list = [((index +((int(page)*int(self.paginate_by))
                 -int(self.paginate_by)))+1,q) for index, q in 
                 enumerate(context["object_list"],start=0)]
@@ -160,6 +161,6 @@ class TimeEventListView(ListView):
         # queryset = self.model.objects.filter(
         #     start_time__year=d.year, start_time__month=d.month, start_time__day=d.day).order_by("created")
             
-        queryset = self.model.objects.all().order_by("created")
+        queryset = self.model.objects.filter(event__name=self.filter).order_by("created")
         
         return queryset

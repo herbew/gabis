@@ -32,9 +32,9 @@ class GuestBook(TimeStampedModel):
         ('f',_('Female')),
     )
     
-    booking_time_event = models.ForeignKey(BookingTimeEvent,
+    time_event = models.ForeignKey(TimeEvent,
                 on_delete=models.CASCADE,
-                verbose_name=_("Booking Time Event"),
+                verbose_name=_("Time Event"),
                 db_index=True)
     
     keuskupan = models.ForeignKey(Keuskupan,
@@ -58,7 +58,8 @@ class GuestBook(TimeStampedModel):
                 db_index=True, null=True, blank=True)
     
     nik = models.CharField(
-                _("Nomor Induk Kependudukan Nasional"), 
+                _("No Identitas"), 
+                help_text='KTP/Nomor HP',
                 max_length=255, db_index=True)
     
     name = models.CharField(
@@ -95,14 +96,14 @@ class GuestBook(TimeStampedModel):
         verbose_name = u"GuestBook"
         verbose_name_plural = u"002001 Guest Book"
         
-        unique_together = (("booking_time_event", "nik"),)
+        unique_together = (("time_event", "nik"),)
 
     def __init__(self, *args, **kwargs):
         super(BookingTimeEvent, self).__init__(*args, **kwargs)
         self._user_update = None
 
     def __str__(self):
-        return "%s %s:%s-%s" % (self.booking_time_event, self.wilayah, self.lingkungan, self.name)
+        return "%s %s:%s-%s" % (self.time_event, self.wilayah, self.lingkungan, self.nik)
     
         
     def get_user_update(self):

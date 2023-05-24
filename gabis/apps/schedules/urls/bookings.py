@@ -5,8 +5,8 @@ from django.urls import include, path
 from gabis.apps.schedules.views import bookings 
 
 urlpatterns = [
-        path("time/event/list/", 
-        view=bookings.TimeEventListView.as_view(),
-        name="time_event_list"),
+        path("time/event/ziarah/list/", 
+        view=bookings.TimeEventZiarahListView.as_view(),
+        name="time_event_ziarah_list"),
         
         ]

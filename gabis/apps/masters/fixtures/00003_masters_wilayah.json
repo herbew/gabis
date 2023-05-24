@@ -1,0 +1,365 @@
+[
+  {
+    "pk": 1, 
+    "model": "masters.wilayah", 
+    "fields": {
+            "paroki_id": 1,
+            "name": "I",
+            "name_en_us": "I",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:56:05.37878+00:00",
+            "modified": "2023-05-18T20:56:05.378826+00:00"
+        }
+        
+  },
+
+  {
+    "pk": 2, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "II",
+            "name_en_us": "II",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:56:13.138743+00:00",
+            "modified": "2023-05-18T20:56:13.138757+00:00"
+          }
+  },
+
+  {
+    "pk": 3, 
+    "model": "masters.wilayah", 
+    "fields":      
+        {
+        "paroki_id": 1,
+        "name": "III",
+        "name_en_us": "III",
+        "name_ja": null,
+        "name_ar": null,
+        "name_ko": null,
+        "name_hi": null,
+        "name_es": null,
+        "name_id": null,
+        "user_update": "herbew",
+        "created": "2023-05-18T20:56:19.469215+00:00",
+        "modified": "2023-05-18T20:56:19.469242+00:00"
+        
+      }
+  },
+  
+  {
+    "pk": 4, 
+    "model": "masters.wilayah", 
+    "fields": 
+          {
+            "paroki_id": 1,
+            "name": "IV",
+            "name_en_us": "IV",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:56:26.3856+00:00",
+            "modified": "2023-05-18T20:56:26.385613+00:00"
+          }
+  },
+
+   {
+    "pk": 5, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            ,
+            "name": "V",
+            "name_en_us": "V",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:56:31.534719+00:00",
+            "modified": "2023-05-18T20:56:31.534735+00:00"
+          }
+   },
+   
+   {
+    "pk": 6, 
+    "model": "masters.wilayah", 
+    "fields":
+           {
+            "paroki_id": 1,
+            "name": "VI",
+            "name_en_us": "VI",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:56:38.439056+00:00",
+            "modified": "2023-05-18T20:56:38.43907+00:00"
+          }
+    },
+ 
+    {
+    "pk": 7, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "VII",
+            "name_en_us": "VII",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:56:46.261171+00:00",
+            "modified": "2023-05-18T20:56:46.261244+00:00"
+          }
+    },
+
+    {
+    "pk": 8, 
+    "model": "masters.wilayah", 
+    "fields":
+            {
+            "paroki_id": 1,
+            "name": "VIII",
+            "name_en_us": "VIII",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:56:53.438354+00:00",
+            "modified": "2023-05-18T20:56:53.438435+00:00"
+        }
+    },
+
+    {
+    "pk": 9, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "IX",
+            "name_en_us": "IX",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:56:59.528927+00:00",
+            "modified": "2023-05-18T20:56:59.528998+00:00"
+         }
+    },
+
+    {
+    "pk": 10, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "X",
+            "name_en_us": "X",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:57:05.595846+00:00",
+            "modified": "2023-05-18T20:57:05.595874+00:00"
+          }
+    },
+
+    {
+    "pk": 11, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "XI",
+            "name_en_us": "XI",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:57:12.715894+00:00",
+            "modified": "2023-05-18T20:57:12.715907+00:00"
+           }
+    },
+
+
+  {
+    "pk": 12, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "XII",
+            "name_en_us": "XII",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:57:21.140438+00:00",
+            "modified": "2023-05-18T20:57:21.140507+00:00"
+            }
+    },
+  
+  {
+    "pk": 13, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "XIII",
+            "name_en_us": "XIII",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:57:28.643694+00:00",
+            "modified": "2023-05-18T20:57:28.643785+00:00"
+            }
+    },
+
+   {
+    "pk": 14, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "XIV",
+            "name_en_us": "XIV",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:57:54.161641+00:00",
+            "modified": "2023-05-18T20:57:54.161658+00:00"
+           }
+    },
+
+  {
+    "pk": 15, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "XV",
+            "name_en_us": "XV",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:58:00.833308+00:00",
+            "modified": "2023-05-18T20:58:00.833385+00:00"
+             }
+    },
+
+
+  {
+    "pk": 16, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "XVI",
+            "name_en_us": "XVI",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:58:08.848444+00:00",
+            "modified": "2023-05-18T20:58:08.848467+00:00"
+          }
+  },
+
+  {
+    "pk": 17, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "XVII",
+            "name_en_us": "XVII",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:58:18.113331+00:00",
+            "modified": "2023-05-18T20:58:18.113389+00:00"
+           }
+  },
+
+  {
+    "pk": 18, 
+    "model": "masters.wilayah", 
+    "fields":
+          {
+            "paroki_id": 1,
+            "name": "XVIII",
+            "name_en_us": "XVIII",
+            "name_ja": null,
+            "name_ar": null,
+            "name_ko": null,
+            "name_hi": null,
+            "name_es": null,
+            "name_id": null,
+            "user_update": "herbew",
+            "created": "2023-05-18T20:58:26.892793+00:00",
+            "modified": "2023-05-18T20:58:26.892818+00:00"
+         }
+  },
+]

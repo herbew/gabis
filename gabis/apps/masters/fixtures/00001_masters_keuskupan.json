@@ -1,0 +1,21 @@
+[
+    {
+        "pk": 1, 
+        "model": "masters.keuskupan", 
+        "fields": {
+          "name": "Keuskupan Agung Jakarta",
+          "name_en_us": "Keuskupan Agung Jakarta",
+          "name_ja": null,
+          "name_ar": null,
+          "name_ko": null,
+          "name_hi": null,
+          "name_es": null,
+          "name_id": null,
+          "user_update": "herbew",
+          "created": "2023-05-18T20:51:31.459223+00:00",
+          "modified": "2023-05-18T20:51:31.459236+00:00"
+        }
+        
+    }
+
+]
