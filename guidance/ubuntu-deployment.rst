@@ -21,6 +21,9 @@ sudo -u postgres psql db_gabis -c "GRANT ALL ON ALL TABLES IN SCHEMA public to u
 sudo -u postgres psql db_gabis -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to ugabis;"
 sudo -u postgres psql db_gabis -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to ugabis;"
 
+IF need drop db
+sudo -u postgres psql -c "DROP DATABASE db_gabis;"
+
 INSTALL MONGODB
 --------------------
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
@@ -155,9 +158,9 @@ IP_REDIS=localhost
 	
 ____________________________________________________________________________
 
-
- python3 ./manage.py migrate sites
  python3 ./manage.py makemigrations users
+ python3 ./manage.py migrate sites
+ 
  python3 ./manage.py makemigrations masters
  python3 ./manage.py makemigrations schedules
 

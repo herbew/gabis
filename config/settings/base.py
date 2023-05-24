@@ -463,14 +463,14 @@ DEFAULT_MALE_URL = 'gabis/images/default-avatar-men.png'
 DEFAULT_FEMALE_URL = 'gabis/images/default-avatar-women.png'
 
 # https://django-modeltranslation.readthedocs.io/_/downloads/en/latest/pdf/
-MODELTRANSLATION_DEFAULT_LANGUAGE = "en_us" #"en_us"
-MODELTRANSLATION_LANGUAGES = ('en_us','ja', 'ar', 'ko', 'hi',  'es')
+MODELTRANSLATION_DEFAULT_LANGUAGE = "id" #"en_us"
+MODELTRANSLATION_LANGUAGES = ('en_us','ja', 'ar', 'ko', 'hi',  'es', 'id')
 
 MODELTRANSLATION_FALLBACK_LANGUAGES = dict(
     default=MODELTRANSLATION_LANGUAGES,
     )
  
-MODELTRANSLATION_PREPOPULATE_LANGUAGE = "en_us"
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = "id"
 
 MODELTRANSLATION_TRANSLATION_FILES = (
     'gabis.apps.users.translation',
