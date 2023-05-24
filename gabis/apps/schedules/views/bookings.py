@@ -27,7 +27,7 @@ class TimeEventZiarahListView(ListView):
         - Booking with Room with params kwargs pk_datef
     """
     model = TimeEvent
-    template_name = "schedules/bookings/list.html"
+    template_name = "schedules/bookings/events/list.html"
     paginator_class = SafePaginator
     paginate_by = 100
     process = "booking"
