@@ -82,7 +82,12 @@ class TimeEventZiarahListView(ListView):
                          )
         
         # Set to 08:00 AM
-        d = datetime.strptime(d, "%d/%m/%Y") + timedelta(hours=8+7)
+        n = (datetime.strptime(d, "%d/%m/%Y") + 
+             timedelta(hours=datetime.now().time().hour) + 
+             timedelta(hours=datetime.now().time().minute) + 
+             timedelta(hours=datetime.now().time().second))
+        
+        d = datetime.strptime(d, "%d/%m/%Y") + timedelta(hours=8)
         
         datef.update(ts_dict=dict(
                     year=d.year, 
@@ -94,7 +99,7 @@ class TimeEventZiarahListView(ListView):
                     )
             )
         
-        datef.update(ts_string=datetime.strftime(d, "%Y-%m-%dT%H:%M:%S"))
+        datef.update(ts_string=datetime.strftime(n, "%Y-%m-%dT%H:%M:%S"))
         
         
         try:
