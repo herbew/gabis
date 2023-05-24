@@ -31,7 +31,7 @@ class TimeEventZiarahListView(ListView):
     paginator_class = SafePaginator
     paginate_by = 100
     process = "booking"
-    filter = "Ziarah Kain Kafan Yesus 2023"
+    event_filter = "Ziarah Kain Kafan Yesus 2023"
      
     # From 16/07/2023 - 22/07/2023
     date_events = ("16/07/2023","17/07/2023","18/07/2023",
@@ -161,6 +161,6 @@ class TimeEventZiarahListView(ListView):
         # queryset = self.model.objects.filter(
         #     start_time__year=d.year, start_time__month=d.month, start_time__day=d.day).order_by("created")
             
-        queryset = self.model.objects.filter(event__name=self.filter).order_by("created")
+        queryset = self.model.objects.filter(event__name=self.event_filter).order_by("created")
         
         return queryset
