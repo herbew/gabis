@@ -38,9 +38,12 @@ class TimeEventZiarahListView(ListView):
                    "19/07/2023","20/07/2023","21/07/2023",
                    "22/07/2023")
     
-    def date2int(self, dstring):
+    def date2int(self, dstring, dnow):
         """format dstring %d/%m/%Y"""
         d = datetime.strptime(dstring, "%d/%m/%Y").date()
+        if d < dnow.date():
+            d = dnow.date()
+            
         return 10000*d.year + 100*d.month + d.day
 
     def int2date(self, i):
@@ -73,21 +76,32 @@ class TimeEventZiarahListView(ListView):
         else:
             d = datetime.strftime(self.int2date(datef),"%d/%m/%Y")
         
+        d_now = datetime.now()
+        
+        dn = datetime.strptime(d, "%d/%m/%Y").date()
+        if dn < d_now.date():
+            dn = d_now.date()
         
         datef = dict(
-                    dint=self.date2int(d),
-                    date=datetime.strptime(d, "%d/%m/%Y").date(),
-                    dstr=datetime.strftime(datetime.strptime(d, 
-                        "%d/%m/%Y").date(),"%d %h %Y")
+                    dint=self.date2int(d, d_now),
+                    date=dn,
+                    dstr=datetime.strftime(dn,"%d %h %Y")
                          )
         
         # Set to 08:00 AM
         n = (datetime.strptime(d, "%d/%m/%Y") + 
-             timedelta(hours=datetime.now().time().hour) + 
-             timedelta(minutes=datetime.now().time().minute) + 
-             timedelta(seconds=datetime.now().time().second))
+             timedelta(hours=d_now.time().hour) + 
+             timedelta(minutes=d_now.time().minute) + 
+             timedelta(seconds=d_now.time().second))
+        
+        # Display datetime compare with now
+        if n < d_now:
+            n = d_now
         
         d = datetime.strptime(d, "%d/%m/%Y") + timedelta(hours=8)
+        
+        if d < d_now:
+            d = d_now
         
         datef.update(ts_dict=dict(
                     year=d.year, 
