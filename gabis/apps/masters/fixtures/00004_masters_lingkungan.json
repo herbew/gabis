@@ -3,7 +3,7 @@
         "pk": 1, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_id": 1,
+                "wilayah_ind": 1,
                 "name": "St. Andreas",
                 "name_en_us": "St. Andreas",
                 "name_ja": null,
@@ -11,7 +11,7 @@
                 "name_ko": null,
                 "name_hi": null,
                 "name_es": null,
-                "name_id": null,
+                "name_ind": null,
                 "user_update": "herbew",
                 "created": "2023-05-18T20:59:10.002865+00:00",
                 "modified": "2023-05-18T20:59:10.002879+00:00"
@@ -22,7 +22,7 @@
         "pk": 2, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_id": 1,
+                "wilayah_ind": 1,
                 "name": "St. Bartolomeus",
                 "name_en_us": "St. Bartolomeus",
                 "name_ja": null,
@@ -30,7 +30,7 @@
                 "name_ko": null,
                 "name_hi": null,
                 "name_es": null,
-                "name_id": null,
+                "name_ind": null,
                 "user_update": "herbew",
                 "created": "2023-05-18T20:59:24.077314+00:00",
                 "modified": "2023-05-18T20:59:24.077328+00:00"
@@ -41,7 +41,7 @@
         "pk": 3, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_id": 1,
+                "wilayah_ind": 1,
                 "name": "St. Fransiskus Asisi",
                 "name_en_us": "St. Fransiskus Asisi",
                 "name_ja": null,
@@ -49,7 +49,7 @@
                 "name_ko": null,
                 "name_hi": null,
                 "name_es": null,
-                "name_id": null,
+                "name_ind": null,
                 "user_update": "herbew",
                 "created": "2023-05-18T20:59:42.089566+00:00",
                 "modified": "2023-05-18T20:59:42.089582+00:00"
@@ -60,7 +60,7 @@
         "pk": 4, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_id": 1,
+                "wilayah_ind": 1,
                 "name": "St. Kornelius",
                 "name_en_us": "St. Kornelius",
                 "name_ja": null,
@@ -68,7 +68,7 @@
                 "name_ko": null,
                 "name_hi": null,
                 "name_es": null,
-                "name_id": null,
+                "name_ind": null,
                 "user_update": "herbew",
                 "created": "2023-05-18T20:59:56.229099+00:00",
                 "modified": "2023-05-18T20:59:56.229114+00:00"
@@ -79,7 +79,7 @@
         "pk": 4, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_id": 1,
+                "wilayah_ind": 1,
                 "name": "St. Kristoforus",
                 "name_en_us": "St. Kristoforus",
                 "name_ja": null,
@@ -87,7 +87,7 @@
                 "name_ko": null,
                 "name_hi": null,
                 "name_es": null,
-                "name_id": null,
+                "name_ind": null,
                 "user_update": "herbew",
                 "created": "2023-05-18T21:00:08.450366+00:00",
                 "modified": "2023-05-18T21:00:08.450379+00:00"

@@ -3,7 +3,7 @@
         "pk": 1, 
         "model": "masters.paroki", 
         "fields": {
-          "keuskupan_id": 1,
+          "keuskupan_ind": 1,
           "name": "St Gabriel Pulo Gebang",
           "name_en_us": "St Gabriel Pulo Gebang",
           "name_ja": null,
@@ -11,7 +11,7 @@
           "name_ko": null,
           "name_hi": null,
           "name_es": null,
-          "name_id": null,
+          "name_ind": null,
           "user_update": "herbew",
           "created": "2023-05-18T20:52:07.880688+00:00",
           "modified": "2023-05-18T20:52:07.8807+00:00"
