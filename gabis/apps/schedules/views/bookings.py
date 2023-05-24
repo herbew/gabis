@@ -84,8 +84,8 @@ class TimeEventZiarahListView(ListView):
         # Set to 08:00 AM
         n = (datetime.strptime(d, "%d/%m/%Y") + 
              timedelta(hours=datetime.now().time().hour) + 
-             timedelta(hours=datetime.now().time().minute) + 
-             timedelta(hours=datetime.now().time().second))
+             timedelta(minutes=datetime.now().time().minute) + 
+             timedelta(seconds=datetime.now().time().second))
         
         d = datetime.strptime(d, "%d/%m/%Y") + timedelta(hours=8)
         
