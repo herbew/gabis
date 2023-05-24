@@ -3,7 +3,7 @@
         "pk": 1, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_ind": 1,
+                "wilayah_id": 1,
                 "name": "St. Andreas",
                 "name_en_us": "St. Andreas",
                 "name_ja": null,
@@ -22,7 +22,7 @@
         "pk": 2, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_ind": 1,
+                "wilayah_id": 1,
                 "name": "St. Bartolomeus",
                 "name_en_us": "St. Bartolomeus",
                 "name_ja": null,
@@ -41,7 +41,7 @@
         "pk": 3, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_ind": 1,
+                "wilayah_id": 1,
                 "name": "St. Fransiskus Asisi",
                 "name_en_us": "St. Fransiskus Asisi",
                 "name_ja": null,
@@ -60,7 +60,7 @@
         "pk": 4, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_ind": 1,
+                "wilayah_id": 1,
                 "name": "St. Kornelius",
                 "name_en_us": "St. Kornelius",
                 "name_ja": null,
@@ -79,7 +79,7 @@
         "pk": 4, 
         "model": "masters.lingkungan", 
         "fields": {
-                "wilayah_ind": 1,
+                "wilayah_id": 1,
                 "name": "St. Kristoforus",
                 "name_en_us": "St. Kristoforus",
                 "name_ja": null,

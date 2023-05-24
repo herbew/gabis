@@ -3,7 +3,7 @@
     "pk": 1, 
     "model": "masters.wilayah", 
     "fields": {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "I",
             "name_en_us": "I",
             "name_ja": null,
@@ -24,7 +24,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "II",
             "name_en_us": "II",
             "name_ja": null,
@@ -44,7 +44,7 @@
     "model": "masters.wilayah", 
     "fields":      
         {
-        "paroki_ind": 1,
+        "paroki_id": 1,
         "name": "III",
         "name_en_us": "III",
         "name_ja": null,
@@ -65,7 +65,7 @@
     "model": "masters.wilayah", 
     "fields": 
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "IV",
             "name_en_us": "IV",
             "name_ja": null,
@@ -85,7 +85,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             ,
             "name": "V",
             "name_en_us": "V",
@@ -106,7 +106,7 @@
     "model": "masters.wilayah", 
     "fields":
            {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "VI",
             "name_en_us": "VI",
             "name_ja": null,
@@ -126,7 +126,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "VII",
             "name_en_us": "VII",
             "name_ja": null,
@@ -146,7 +146,7 @@
     "model": "masters.wilayah", 
     "fields":
             {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "VIII",
             "name_en_us": "VIII",
             "name_ja": null,
@@ -166,7 +166,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "IX",
             "name_en_us": "IX",
             "name_ja": null,
@@ -186,7 +186,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "X",
             "name_en_us": "X",
             "name_ja": null,
@@ -206,7 +206,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "XI",
             "name_en_us": "XI",
             "name_ja": null,
@@ -227,7 +227,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "XII",
             "name_en_us": "XII",
             "name_ja": null,
@@ -247,7 +247,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "XIII",
             "name_en_us": "XIII",
             "name_ja": null,
@@ -267,7 +267,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "XIV",
             "name_en_us": "XIV",
             "name_ja": null,
@@ -287,7 +287,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "XV",
             "name_en_us": "XV",
             "name_ja": null,
@@ -308,7 +308,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "XVI",
             "name_en_us": "XVI",
             "name_ja": null,
@@ -328,7 +328,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "XVII",
             "name_en_us": "XVII",
             "name_ja": null,
@@ -348,7 +348,7 @@
     "model": "masters.wilayah", 
     "fields":
           {
-            "paroki_ind": 1,
+            "paroki_id": 1,
             "name": "XVIII",
             "name_en_us": "XVIII",
             "name_ja": null,

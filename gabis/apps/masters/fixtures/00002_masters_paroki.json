@@ -3,7 +3,7 @@
         "pk": 1, 
         "model": "masters.paroki", 
         "fields": {
-          "keuskupan_ind": 1,
+          "keuskupan_id": 1,
           "name": "St Gabriel Pulo Gebang",
           "name_en_us": "St Gabriel Pulo Gebang",
           "name_ja": null,
