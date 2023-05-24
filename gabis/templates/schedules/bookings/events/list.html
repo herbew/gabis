@@ -32,7 +32,6 @@
 				locale: language_code,
               	header: {
                   left: "title",
-                  right: "prev,next today agendaWeek, agendaDay, listWeek"
 
               	},
               	editable: true,
@@ -49,12 +48,12 @@
           		buttonIcons: false, // show the prev/next text
                 initialDate: "{{ datef.date|date:'Y-m-d' }}",
               
-              	defaultView: "{% if 'search_availability/' in request.META.PATH_INFO %}agendaDay{% else %}agendaWeek{% endif %}",
+              	defaultView: "agendaDay",
 
 	            headerToolbar: {
-	                    left: 'prev,next today',
-	                    center: 'title',
-	                    right: 'timeGridWeek,timeGridDay',
+	                    left: 'title',
+                        center: '',
+                        right: ''
 		
 	              },
 	            
@@ -156,7 +155,6 @@
 	
 	</script> -->
 {% endblock %}
-
 
 
 

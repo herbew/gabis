@@ -82,7 +82,7 @@ class TimeEventZiarahListView(ListView):
                          )
         
         # Set to 08:00 AM
-        d = datetime.strptime(d, "%d/%m/%Y") + timedelta(hours=8)
+        d = datetime.strptime(d, "%d/%m/%Y") + timedelta(hours=8+7)
         
         datef.update(ts_dict=dict(
                     year=d.year, 
