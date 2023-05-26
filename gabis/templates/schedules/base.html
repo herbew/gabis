@@ -48,6 +48,18 @@
       </ul>
     </div>
     -->
+    	<div class="row page-titles">
+            <div class="col-md-6 align-self-center">
+                <h5 class="text-themecolor text-uppercase text-bold">{% block page_title %}{% endblock page_title %}</h5>
+            </div>
+            <div class="col-md-6 align-self-center text-right">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb text-uppercase">{% block breadcrumb %}{% endblock %}</ol>&nbsp;&nbsp;
+                    {% block add_new_button %}{% endblock add_new_button %}
+                </div>
+             </div>
+        </div>
+                
 	    {% block content %}
 	    {% endblock %}
     {% endblock %}
