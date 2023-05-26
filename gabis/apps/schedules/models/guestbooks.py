@@ -51,10 +51,10 @@ class GuestBook(TimeStampedModel):
                 verbose_name=_("Lingkungan"),
                 db_index=True, null=True, blank=True)
     
-    nik = models.PositiveIntegerField(
+    nik = models.CharField(
                 _("No Identitas"), 
                 help_text='KTP/Nomor HP',
-                db_index=True)
+                max_length=255, db_index=True)
     
     name = models.CharField(
                 _("Name"), 
