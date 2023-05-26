@@ -29,7 +29,7 @@
 	            	id="id_form"
 	            	class="form-horizontal" 
 	            	method="post" 
-	            	action="{% url 'schedules:guestbook_create' time_event.pk %}?page={{page}}&{{params_filter}}"
+	            	action="{% url 'schedules:guestbook_create' %}?pk_time_event={{ time_event.pk }}"
 	            	enctype="multipart/form-data">{% csrf_token %}
 	                {{ form.as_p }}
 	                <div class="text-right">
