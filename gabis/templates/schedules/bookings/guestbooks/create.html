@@ -81,4 +81,26 @@
 
 {% block extra_js %}
 	{% include "schedules/bookings/guestbooks/guestbooks.js" %}
+	
+	<script>
+	    $("#id_mobile").intlTelInput({
+	        //allowExtensions: true,
+	        //autoFormat: false,
+	        //autoHideDialCode: false,
+	        //autoPlaceholder: false,
+	        //defaultCountry: "auto",
+	        // geoIpLookup: function(callback) {
+	        //   $.get('http://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+	        //     var countryCode = (resp && resp.country) ? resp.country : "";
+	        //     callback(countryCode);
+	        //   });
+	        // },
+	        //nationalMode: false,
+	        //numberType: "MOBILE",
+	        //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+	        preferredCountries: ['id','cn', 'jp'],
+	        utilsScript: '{% static "telephone/libphonenumber/build/utils.js" %}'
+	      });
+	 </script>
+	 
 {% endblock extra_js %}
