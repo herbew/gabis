@@ -121,13 +121,14 @@ def save_guest_book(sender, instance, created, *args, **kwargs):
        return
     
     if created:
-        # Create a group
-        r = get_random()
-        while GuestBook.objects.filter(pin=r):
-            r = get_random()
-        
-        instance.pin = r
-        instance.save()
+        # # Create a group
+        # r = get_random()
+        # while GuestBook.objects.filter(pin=r):
+        #     r = get_random()
+        #
+        # instance.pin = r
+        # instance.save()
+        pass
     
 post_save.connect(save_guest_book, sender=GuestBook)
 
