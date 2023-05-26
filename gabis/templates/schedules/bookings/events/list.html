@@ -170,7 +170,9 @@
 {% endblock page_title %}
 
 {% block breadcrumb %}
-	{% trans "Event" %} <small>{{event_title}}</small>
+	<nav class="breadcrumb text-right">
+	    <span class="breadcrumb-item active">{% trans "Event" %} <small>{{event_title}}</small></span>
+	</nav>
 {% endblock breadcrumb %}
 
 {% block add_new_button %}{% endblock add_new_button %}
