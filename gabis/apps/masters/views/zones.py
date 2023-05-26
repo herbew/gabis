@@ -95,7 +95,7 @@ class AjaxPostWilayahView(View):
             
         wilayah = Wilayah.objects.filter(
             paroki__id=pk_paroki
-            ).order_by("paroki__name", "name")
+            ).order_by("paroki__name", "-name")
         
         
         
