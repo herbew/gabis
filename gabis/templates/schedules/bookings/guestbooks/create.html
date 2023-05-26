@@ -6,6 +6,10 @@
 	<link href="{% static 'select2-4.0.13/css/select2.css' %}" rel="stylesheet"/>
 {% endblock extra_head %}
 
+{% block css_telephone %}
+	<link href="{% static 'telephone/css/intlTelInput.css' %}" rel="stylesheet"/>
+{% endblock css_telephone %}
+
 {% block page_title %}
 	{% trans "New registration" %} <small>{{ time_event.event.name }}</small>
 {% endblock page_title %}
@@ -69,6 +73,11 @@
 {% block js_plugin %}
 	<script src="{% static 'select2-4.0.13/js/select2.full.min.js' %}"></script>
 {% endblock js_plugin %}
+
+{% block js_telephone %}
+	<script src="{% static 'telephone/js/jquery.min.js' %}"></script>
+	<script src="{% static 'telephone/js/intlTelInput.js' %}"></script>
+{% endblock js_telephone %}
 
 {% block extra_js %}
 	{% include "schedules/bookings/guestbooks/guestbooks.js" %}
