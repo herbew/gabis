@@ -24,13 +24,15 @@ class GuestBookForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(GuestBookForm, self).__init__(*args, **kwargs)
         
-        self.fields[field].widget.attrs.update({'class':'form-control text-muted'})
-            
-        try:
-            self.fields[field].widget.attrs.update(
-            {'maxlength':'%s' % (self.fields[field].max_length,)})
-        except:
-            continue
+        for field in self.Meta.fields:
+        
+            self.fields[field].widget.attrs.update({'class':'form-control text-muted'})
+                
+            try:
+                self.fields[field].widget.attrs.update(
+                {'maxlength':'%s' % (self.fields[field].max_length,)})
+            except:
+                continue
         
         self.fields["keuskupan"].label = _("Keuskupan")
         self.fields["keuskupan"].label =  mark_safe(
