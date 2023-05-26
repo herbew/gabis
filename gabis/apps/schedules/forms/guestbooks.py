@@ -65,7 +65,6 @@ class GuestBookForm(forms.ModelForm):
                         self.fields['nik'].label)
         self.fields["nik"].help_text = _("NIK or NIS or Mobile Phone Number!")
         self.fields["nik"].widget.attrs.update({'onkeypress':'return isNumberKey(event)'})
-        self.fields["nik"].widget.attrs.update({'type':'number'})
         
         
         self.fields["name"].label = _("Name")
