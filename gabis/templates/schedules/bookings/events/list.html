@@ -165,13 +165,13 @@
    
 {% block title_filter %}{% endblock title_filter %}
 
-{% block breadcrumb %}
-	
-{% endblock breadcrumb %}
-
 {% block page_title %}
-	
+	{% trans "Event" %} <small>{{event_title}}</small>
 {% endblock page_title %}
+
+{% block breadcrumb %}
+	{% trans "Event" %} <small>{{event_title}}</small>
+{% endblock breadcrumb %}
 
 {% block add_new_button %}{% endblock add_new_button %}
 
