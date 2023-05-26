@@ -10,6 +10,8 @@ from django.forms.widgets import Select, TextInput
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import filesizeformat
 
+from django.forms.widgets import NumberInput
+
 from gabis.apps.schedules.models.guestbooks import GuestBook
 
 log = logging.getLogger(__name__)
@@ -64,8 +66,11 @@ class GuestBookForm(forms.ModelForm):
                         "%s <font color=red size=4.5em>*</font>" % 
                         self.fields['nik'].label)
         self.fields["nik"].help_text = _("NIK or NIS or Mobile Phone Number!")
-        self.fields["nik"].widget.attrs.update({'onkeypress':'return isNumberKey(event)'})
-        
+        self.fields["nik"].widget = NumberInput(attrs={
+            'class':"form-control text-muted",
+            'type': 'number',
+            'onkeypress':'return isNumberKey(event)',
+            'required':''})
         
         self.fields["name"].label = _("Name")
         self.fields["name"].label =  mark_safe(
