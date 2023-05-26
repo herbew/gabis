@@ -25,21 +25,21 @@
      });
 	
 	 //====================================================================
-	 // Get City when university changed
-	 // Input Params ID University selected
-	 // Target $('#id_level')
+	 // Get Paroki when Keuskupan changed
+	 // Input Params ID Keuskupan selected
+	 // Target $('#id_paroki')
 	 // ====================================================================
-	 function university_on_changed(){
-		 var pk_university = '{{university.pk}}'; //$('#id_university').val();
+	 function paroki_on_changed(){
+		 var pk_keuskupan = $('#id_keuskupan').val();
 		
 		 var data = new FormData();
          data.append("csrfmiddlewaretoken", '{{ csrf_token }}');
-         data.append("pk_university", pk_university);
-         data.append("is_filter", true);
-         data.append("obj_name", "level");
+         data.append("pk_keuskupan", pk_keuskupan);
+         data.append("is_filter", false);
+         data.append("obj_name", "paroki");
         
          $.ajax({
-            url: "{% url 'masters:ajax_level_university_on_changed' %}",
+            url: "{% url 'masters:ajax_post_paroki_change' %}",
             cache: false,
             contentType: false,
             processData: false,
@@ -47,14 +47,14 @@
             type: "POST",
             success: function(data) {
             	// Get ID LEVEL
-            	var id_level_selected = $('#id_level').val();
+            	var id_paroki_selected = $('#id_paroki').val();
             	
             	// Replace Level
-	    		$('#id_level').replaceWith(data.level_field);
+	    		$('#id_paroki').replaceWith(data.paroki_field);
 	    		
 	    		// Set if any selected before
-	    		$('#id_level').val(id_level_selected);
-	    		$("#id_level").select2({ width: '100%' });
+	    		$('#id_paroki').val(id_paroki_selected);
+	    		$("#id_paroki").select2({ width: '100%' });
             	  
             },
             error: function(data) {
@@ -63,9 +63,9 @@
         });
 	 }
 	
-	 university_on_changed();
+	 paroki_on_changed();
 	
 	 // select2
-	 $("#id_level").select2({ width: '100%' });
+	 $("#id_paroki").select2({ width: '100%' });
 	 
 </script>
