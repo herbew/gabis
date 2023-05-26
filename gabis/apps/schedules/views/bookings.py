@@ -167,6 +167,7 @@ class TimeEventZiarahListView(ListView):
                     params_filter=params_filter,
                     page=page,
                     process=self.process, 
+                    event_title=self.event_filter
                    ) 
     
     def get_queryset(self):
