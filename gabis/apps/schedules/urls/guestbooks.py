@@ -6,7 +6,7 @@ from gabis.apps.schedules.views import guestbooks
 
 urlpatterns = [
     
-    path("guestbook/<int:pk_time_event>/create/", 
+    path("guestbook/create/", 
         view=guestbooks.GuestBookCreateView.as_view(),
         name="guestbook_create"),
     

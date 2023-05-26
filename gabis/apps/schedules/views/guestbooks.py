@@ -200,7 +200,7 @@ class GuestBookCreateView(FormMessagesMixin,
         return reverse_lazy('schedules:time_event_ziarah_list')
     
     def get_time_event(self):
-        pk_time_event = self.kwargs.get('pk_time_event','')
+        pk_time_event = self.request.GET.get('pk_time_event','')
         time_event = get_object_or_404(TimeEvent, pk=pk_time_event)
         return time_event
     
@@ -209,7 +209,7 @@ class GuestBookCreateView(FormMessagesMixin,
         p0 = self.request.GET.get('p0',1)
         p1 = self.request.GET.get('p1','page-0')
         
-        pk_time_event = self.kwargs.get('pk_time_event','')
+        pk_time_event = self.request.GET.get('pk_time_event','')
         
         try:
             self.page = int(p0)
