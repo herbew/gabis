@@ -102,6 +102,10 @@ class Wilayah(TimeStampedModel):
     name = models.CharField(
         _("Name"), max_length=255, db_index=True)
     
+    ordered = models.IntegerField( 
+            _("Ordered"), default=0,
+            help_text = _("Displaying genre in ordered."))
+    
     user_update = models.CharField(
             max_length=30,
             blank=True, null=True,
