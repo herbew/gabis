@@ -78,17 +78,20 @@
     <script src="{% static 'gabis/js/gabis.js' %}"></script>
     <!--Custom JavaScript -->
     
-    <script type="text/javascript">
-       {% if messages %}
-               {% for message in messages %}
-                   toast_alert('{{message.tags}}', '{{ message }}', '{{message.tags}}');
-               {% endfor %}
-       {% endif %}
-       
-       {% block extra_js %}
-       {% endblock extra_js %}
-    </script>
+    {% block js_telephone %}
+	{% endblock js_telephone %}
     
+    {% block extra_jquery %}
+    {% endblock extra_jquery %}
+    
+    {% block js_datepicker %}
+    {% endblock js_datepicker %}
+    
+    {% block js_plugin %}
+    {% endblock js_plugin %}
+    
+    {% block extra_js %}
+    {% endblock extra_js %}
   </body>
  
     
