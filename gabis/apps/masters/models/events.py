@@ -18,6 +18,8 @@ from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkun
 
 log = logging.getLogger(__name__)
 
+WEEKDAY = (_("Sunday"), _("Monday"),  _("Tuesday"),  _("Wednesday"),
+            _("Thursday"), _("Friday"),  _("Saturday"));
 
 class Event(TimeStampedModel):
     """Event"""
@@ -108,6 +110,19 @@ class TimeEvent(TimeStampedModel):
         return "%s %s - %s" % (self.event, self.start_time, self.end_time)
     
     @property
+    def start_time_string(self):
+        return datetime.strftime(self.start_time,"%H:%M")
+    
+    @property
+    def end_time_string(self):
+        return datetime.strftime(self.end_time,"%H:%M")
+    
+    @property
+    def weekday(self):
+        return WEEKDAY[self.start_time.weekday()]
+        
+        
+    @property
     def group(self):
         return "%s %s" % (_("Kloter"), self.ordered)
     
@@ -130,7 +145,7 @@ class TimeEvent(TimeStampedModel):
         tz = pytz.timezone("Asia/Jakarta")
         d_now = tz.localize(datetime.now())
         
-        if self.total_guest_book >= 80:
+        if self.total_guest_book >= self.max_guest:
             return "gray"
         
         if self.end_time < d_now:
@@ -140,7 +155,7 @@ class TimeEvent(TimeStampedModel):
     
     @property
     def available(self):
-        return (80 - self.total_guest_book)
+        return (self.max_guest - self.total_guest_book)
         
     def get_user_update(self):
         return self._user_update

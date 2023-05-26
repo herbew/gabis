@@ -11,7 +11,8 @@
 {% endblock css_telephone %}
 
 {% block page_title %}
-	{% trans "New registration" %} <small>{{ time_event.event.name }}</small>
+	{% trans "New registration" %} <small>{{ time_event.event.name }}</small><br>
+	{{ time_event.group }}
 {% endblock page_title %}
 
 {% block title_filter %}{% endblock title_filter %}
