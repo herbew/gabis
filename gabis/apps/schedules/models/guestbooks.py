@@ -93,7 +93,7 @@ class GuestBook(TimeStampedModel):
         unique_together = (("time_event", "nik"),)
 
     def __init__(self, *args, **kwargs):
-        super(GuestBookt, self).__init__(*args, **kwargs)
+        super(GuestBook, self).__init__(*args, **kwargs)
         self._user_update = None
 
     def __str__(self):
