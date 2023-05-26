@@ -114,6 +114,7 @@
 	                      buttonsStyling: false
 	                    }).then(function (result) {
 	                    		//here
+	                    		window.location.href='{% url "schedules:guestbook_create" '+ e.event.id +' %}';
 	                    	}
 	                    );
               	},

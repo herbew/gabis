@@ -1,0 +1,75 @@
+{% extends "schedules/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_head %}
+	<link href="{% static 'select2-4.0.13/css/select2.css' %}" rel="stylesheet"/>
+{% endblock extra_head %}
+
+{% block page_title %}
+	{% trans "New registration" %} <small>{{ time_event.event.name }}</small>
+{% endblock page_title %}
+
+{% block title_filter %}{% endblock title_filter %}
+
+{% block add_new_button %}{% endblock add_new_button %}
+
+{% block breadcrumb %}
+	<nav class="breadcrumb text-right">
+	 	<a class="breadcrumb-item" href="{% url 'schedules:time_event_ziarah_list' %}" >{% trans "Event Ziarah List" %}</a>
+	    <span class="breadcrumb-item active">{% trans "New registration" %} <small>{{ time_event.event.name }}</small></span>
+	</nav>
+{% endblock breadcrumb %}
+
+{% block content %}
+	<div class="row">
+	    <div class="card col-md-12">
+	        <div class="card-body">
+	            <form class="form-material form-horizontal" 
+	            	id="id_form"
+	            	class="form-horizontal" 
+	            	method="post" 
+	            	action="{% url 'schedules:guestbook_create' time_event.pk %}?page={{page}}&{{params_filter}}"
+	            	enctype="multipart/form-data">{% csrf_token %}
+	                {{ form.as_p }}
+	                <div class="text-right">
+	                	<button 
+					    	type="button" 
+					    	class="btn waves-effect waves-light btn-warning"
+					    	data-toggle="tooltip" 
+					    	data-placement="bottom"
+					    	onclick='redirect_url_with_params("{% url 'schedules:time_event_ziarah_list' %}")'
+					    	title="{% trans 'Cancel the process registration ..' %}" 
+		              		data-original-title="{% trans 'Cancel the process registration ..' %}"
+					    	>
+					    	<i class="icon-action-undo"></i>
+		                 	{% trans 'Cancel' %}
+					    </button>
+					    
+					    <button 
+					    	type="submit" 
+					    	class="btn waves-effect waves-light btn-success"
+					    	data-toggle="tooltip" 
+					    	data-placement="bottom"
+					    	title="{% trans 'Registration event ..' %}" 
+		              		data-original-title="{% trans 'Registration event ..' %}"
+					    	>
+					    	<i class="icon-cloud-upload"></i>
+		                    {% trans "&nbsp;Save&nbsp;" %}
+					    </button>
+	                </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
+{% endblock content %}
+
+{% block extra_jquery %}{% endblock extra_jquery %}
+
+{% block js_plugin %}
+	<script src="{% static 'select2-4.0.13/js/select2.full.min.js' %}"></script>
+{% endblock js_plugin %}
+
+{% block extra_js %}
+	{% include "schedules/bookings/guestbooks/guestbooks.js" %}
+{% endblock extra_js %}

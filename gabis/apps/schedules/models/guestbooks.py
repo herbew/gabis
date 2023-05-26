@@ -18,12 +18,6 @@ from gabis.apps.schedules.models.bookings import BookingTimeEvent
 
 log = logging.getLogger(__name__)
 
-def get_random():
-        import random
-        r = random.randrange(000000,999999,1)
-        
-        return "%s" % (r,)
-
 class GuestBook(TimeStampedModel):
     """GuestBook"""
     
@@ -35,7 +29,7 @@ class GuestBook(TimeStampedModel):
     time_event = models.ForeignKey(TimeEvent,
                 on_delete=models.CASCADE,
                 verbose_name=_("Time Event"),
-                db_index=True)
+                db_index=True, null=True, blank=True)
     
     keuskupan = models.ForeignKey(Keuskupan,
                 on_delete=models.CASCADE,

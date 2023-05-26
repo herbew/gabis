@@ -34,6 +34,8 @@ class Event(TimeStampedModel):
     name = models.CharField(
         _("Name"), max_length=100, db_index=True)
     
+    active = models.BooleanField(default=False)
+    
     user_update = models.CharField(
             max_length=30,
             blank=True, null=True,
