@@ -18,7 +18,7 @@ class GuestBookForm(forms.ModelForm):
 
     class Meta:
         model = GuestBook
-        fields = ('keuskupan','paroki','wilayah','lingkungan'
+        fields = ('keuskupan','paroki','wilayah','lingkungan',
                   'nik','name','gender','age','mobile','email')
     
     def __init__(self, *args, **kwargs):
