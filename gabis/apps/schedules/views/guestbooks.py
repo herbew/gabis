@@ -26,7 +26,7 @@ from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkun
 from gabis.apps.masters.models.events import (Event, TimeEvent, PICEvent)
 from gabis.apps.schedules.models.bookings import BookingTimeEvent
 from gabis.apps.schedules.models.guestbooks import GuestBook
-
+from gabis.apps.schedules.forms.guestbooks import GuestBookForm
 
 
 log = logging.getLogger(__name__)
