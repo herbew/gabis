@@ -40,7 +40,7 @@ class GuestBookForm(forms.ModelForm):
                         self.fields['keuskupan'].label)
         self.fields['keuskupan'].empty_label = _("Select Keuskupan ---")
         self.fields['keuskupan'].widget.attrs.update(
-                {'onchange':'paroki_on_change()'})
+                {'onchange':'paroki_on_changed()'})
         
         self.fields["paroki"].label = _("Paroki")
         self.fields["paroki"].label =  mark_safe(

@@ -58,7 +58,7 @@ class AjaxPostParokiView(View):
             required=required,
             widget=forms.Select(attrs={
                 'class':'form-control text-muted', 'id':obj_id, 'name':obj_name,
-                'onchange':'wilayah_on_change()'
+                'onchange':'wilayah_on_changed()'
                 })
             ).widget
         
@@ -112,7 +112,7 @@ class AjaxPostWilayahView(View):
             required=required,
             widget=forms.Select(attrs={
                 'class':'form-control text-muted', 'id':obj_id, 'name':obj_name,
-                'onchange':'lingkungan_on_change()'
+                'onchange':'lingkungan_on_changed()'
                 })
             ).widget
         
