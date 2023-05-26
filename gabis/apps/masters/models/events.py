@@ -18,8 +18,8 @@ from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkun
 
 log = logging.getLogger(__name__)
 
-WEEKDAY = (_("Sunday"), _("Monday"),  _("Tuesday"),  _("Wednesday"),
-            _("Thursday"), _("Friday"),  _("Saturday"));
+WEEKDAY = (_("Monday"),  _("Tuesday"),  _("Wednesday"),
+            _("Thursday"), _("Friday"),  _("Saturday"), _("Sunday"));
 
 class Event(TimeStampedModel):
     """Event"""

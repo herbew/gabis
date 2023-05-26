@@ -64,6 +64,88 @@
 	 }
 	
 	 paroki_on_changed();
+	 
+	 //====================================================================
+	 // Get Wilayah when Paroki changed
+	 // Input Params ID Paroki selected
+	 // Target $('#id_wilayah')
+	 // ====================================================================
+	 function wilayah_on_changed(){
+		 var pk_paroki = $('#id_paroki').val();
+		
+		 var data = new FormData();
+         data.append("csrfmiddlewaretoken", '{{ csrf_token }}');
+         data.append("pk_paroki", pk_paroki);
+         data.append("is_filter", false);
+         data.append("obj_name", "wilayah");
+        
+         $.ajax({
+            url: "{% url 'masters:ajax_post_wilayah_change' %}",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: data,
+            type: "POST",
+            success: function(data) {
+            	// Get ID LEVEL
+            	var id_wilayah_selected = $('#id_wilayah').val();
+            	
+            	// Replace Level
+	    		$('#id_wilayah').replaceWith(data.wilayah_field);
+	    		
+	    		// Set if any selected before
+	    		$('#id_wilayah').val(id_wilayah_selected);
+	    		$("#id_wilayah").select2({ width: '100%' });
+            	  
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+	 }
+	
+	 wilayah_on_changed();
+	 
+	 //====================================================================
+	 // Get Lingkungan when Wilayah changed
+	 // Input Params ID Wilayah selected
+	 // Target $('#id_lingkungan')
+	 // ====================================================================
+	 function lingkungan_on_changed(){
+		 var pk_wilayah = $('#id_wilayah').val();
+		
+		 var data = new FormData();
+         data.append("csrfmiddlewaretoken", '{{ csrf_token }}');
+         data.append("pk_wilayah", pk_wilayah);
+         data.append("is_filter", false);
+         data.append("obj_name", "lingkungan");
+        
+         $.ajax({
+            url: "{% url 'masters:ajax_post_lingkungan_change' %}",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: data,
+            type: "POST",
+            success: function(data) {
+            	// Get ID LEVEL
+            	var id_lingkungan_selected = $('#id_lingkungan').val();
+            	
+            	// Replace Level
+	    		$('#id_lingkungan').replaceWith(data.lingkungan_field);
+	    		
+	    		// Set if any selected before
+	    		$('#id_lingkungan').val(id_lingkungan_selected);
+	    		$("#id_lingkungan").select2({ width: '100%' });
+            	  
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+	 }
+	
+	 lingkungan_on_changed();
 	
 	 // select2
 	 $("#id_keuskupan").select2({ width: '100%' });

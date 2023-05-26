@@ -12,7 +12,8 @@
 
 {% block page_title %}
 	{% trans "New registration" %} <small>{{ time_event.event.name }}</small><br>
-	{{ time_event.group }}
+	{{ time_event.group }} <small>{{ time_event.weekday }}, {{ time_event.start_time_string }}-{{ time_event.end_time_string }} WIB</small><br>
+    <small>{% trans "Available" %} : {{ time_event.available }} </small>
 {% endblock page_title %}
 
 {% block title_filter %}{% endblock title_filter %}
