@@ -40,7 +40,7 @@ class AjaxPostParokiView(View):
             pk_keuskupan = 0
             
         paroki = Paroki.objects.filter(
-            keuskupan__id=pk_keuskupan, enabled=True
+            keuskupan__id=pk_keuskupan
             ).order_by("keuskupan__name", "name")
         
         
@@ -94,7 +94,7 @@ class AjaxPostWilayahView(View):
             pk_paroki = 0
             
         wilayah = Wilayah.objects.filter(
-            paroki__id=pk_paroki, enabled=True
+            paroki__id=pk_paroki
             ).order_by("paroki__name", "name")
         
         
@@ -149,7 +149,7 @@ class AjaxPostLingkunganView(View):
             pk_wilayah = 0
             
         lingkungan = Lingkungan.objects.filter(
-            wilayah__id=pk_wilayah, enabled=True
+            wilayah__id=pk_wilayah
             ).order_by("wilayah__name", "name")
         
         

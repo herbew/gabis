@@ -66,6 +66,10 @@
 	 paroki_on_changed();
 	
 	 // select2
+	 $("#id_keuskupan").select2({ width: '100%' });
 	 $("#id_paroki").select2({ width: '100%' });
+	 $("#id_wilayah").select2({ width: '100%' });
+	 $("#id_lingkungan").select2({ width: '100%' });
+	 $("#id_gender").select2({ width: '100%' });
 	 
 </script>
