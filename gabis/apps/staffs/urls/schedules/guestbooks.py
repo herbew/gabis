@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 from django.urls import include, path
 
-from gabis.apps.staffs.schedules.views import guestbooks
+from gabis.apps.staffs.views.schedules import guestbooks
 
 urlpatterns = [
     
