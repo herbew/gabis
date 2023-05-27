@@ -1,0 +1,122 @@
+{% extends "staffs/schedules/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_head %}
+    <link href="{% static 'sweetalert2/css/sweetalert2.css' %}" rel="stylesheet"/>
+    <link href="{% static 'sweetalert2/css/sweetalert2.min.css' %}" rel="stylesheet"/>
+{% endblock extra_head %}
+
+{% block css_telephone %}
+{% endblock css_telephone %}
+
+{% block page_title %}
+	{% if guest_book %}
+		<h1>{{ guest_book.name }}</h1> {{ guest_book.pik }}<br>
+		{% trans "Lingkungan" %} {{ guest_book.lingkungan.name }} <small>{% trans "Wilayah" %} {{guest_book.wilayah.name}}</small><br>
+		<small>{% trans "Paroki" %} {{guest_book.paroki.name}}</small>, <small>{{guest_book.keuskupan.name}}</small>
+    {% else %}
+        <div class="row">
+             <div class="col-md-12">
+                <form class="form-material form-horizontal" method="get" action="">
+	             {{ form_filter.as_p }}
+	             <div class="text-right">
+	                 <button 
+	                 	class="btn btn-success" 
+	                 	type="submit"
+	                 	aria-pressed="false"
+	                 	data-toggle="tooltip" data-placement="bottom"
+	              		title="{% trans 'Validation Guess Book ..' %}" 
+	              		data-original-title="{% trans 'Validation Guess Book ..' %}"
+	                 	>
+	                     <i class="icon-magnifier" aria-hidden="true"></i>
+	                     <span class="text">{% trans "Validate" %}</span>
+	                 </button>
+	             </div>
+	         </form>
+             </d>
+        </div>
+	{% endif %}
+{% endblock page_title %}
+
+{% block title_filter %}{% endblock title_filter %}
+
+{% block add_new_button %}{% endblock add_new_button %}
+
+{% block breadcrumb %}
+	
+{% endblock breadcrumb %}
+
+{% block content %}
+	<div class="row">
+		<div class="card col-md-12">
+	        <div class="card text-center">
+                <div class="card-body text-center">
+                    {% if guest_book %}
+                        <div class="ibox">
+                        	<div class="ibox-title">
+                        		<b><h3>{% trans "Congratulation" %}</h3></b><br>
+                        		<small>{% trans "You have been successfully registered for event" %} {{guest_book.time_event.event.name}}</small>
+                        	</div>
+                        	<div class="ibox-content">
+                        		{% trans "Please save and remember your TOKEN number" %}
+                        		<h1 style="color:red;">{{ guest_book.pin }}</h1>
+                                <small>{% trans "If any question please contact" %}<br><b>Ibu Betty +62 815-6751-412</b></small>
+                                <br><br>
+                                <div class="col-md-12 text-left">
+                                {% trans "The list of your schedules:" %}<br><br>
+                                <div class="table-responsive">
+                                     <table id="mytable" class="table table-striped">
+                                         <thead>
+                                             <tr>
+                                             	 <th style="width:100%;"># {% trans "Event" %}</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                                {% if object_list %}
+                             		                {% for no, object in object_list %}
+                                                        <tr>
+                                                            <td>
+                                                            	{{ no }}. {{ object.time_event.event.name }}<br>
+                                                            	&nbsp;&nbsp;<small>{{ object.time_event.group }}</small><br>
+                                                                &nbsp;&nbsp;<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small><br>
+                                                                &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> 
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% endif %}
+                                         </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                        	</div>	
+                        </div>
+                    {% else %}
+                        <div class="ibox">
+                            <div class="ibox-title">
+                        		<b><h3>{% trans "You haven't registered yet" %}</h3></b><br>
+                        		<small>{% trans "Please Click" %} <a href="{% url 'schedules:time_event_ziarah_list' %}"}>{% trans "Registration" %}</a></small>
+                        	</div>
+                        </div>
+                    {% endif %}
+                </div>
+             </div>
+        </div>
+	</div>
+{% endblock content %}
+
+{% block extra_jquery %}{% endblock extra_jquery %}
+
+{% block js_plugin %}
+    <script src="{% static 'sweetalert2/js/sweetalert2.all.js' %}"></script>
+    <script src="{% static 'sweetalert2/js/sweetalert2.all.min.js' %}"></script>
+    <!--<script src="{% static 'sweetalert2/js/sweetalert2.common.js' %}"></script> -->
+    <script src="{% static 'sweetalert2/js/sweetalert2.js' %}"></script>
+    <script src="{% static 'sweetalert2/js/sweetalert2.min.js' %}"></script>
+{% endblock js_plugin %}
+
+{% block js_telephone %}
+{% endblock js_telephone %}
+
+{% block extra_js %}
+{% endblock extra_js %}

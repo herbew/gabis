@@ -87,6 +87,7 @@ LOCAL_APPS = [
     'gabis.apps.users.apps.UsersAppConfig',
     'gabis.apps.masters.apps.MastersAppConfig',
     'gabis.apps.schedules.apps.SchedulesAppConfig',
+    'gabis.apps.schedules.apps.StaffsAppConfig',
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
