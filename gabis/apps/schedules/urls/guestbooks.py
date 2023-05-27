@@ -9,7 +9,9 @@ urlpatterns = [
     path("guestbook/create/", 
         view=guestbooks.GuestBookCreateView.as_view(),
         name="guestbook_create"),
-    
+    path("guestbook/detail/", 
+        view=guestbooks.GuestBookDetailListView.as_view(),
+        name="guestbook_detail"),
     
     
     ]

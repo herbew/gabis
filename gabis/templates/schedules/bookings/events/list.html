@@ -83,42 +83,46 @@
               	
               	/* IF click */
               	eventClick: function(e) {
-                    const weekday = ['{% trans "Sunday" %}',
-                                    '{% trans "Monday" %}',
-                                    '{% trans "Tuesday" %}',
-                                    '{% trans "Wednesday" %}',
-                                    '{% trans "Thursday" %}',
-                                    '{% trans "Friday" %}',
-                                    '{% trans "Saturday" %}'];
+                    var ds_now = new Date();
+                    if (e.event.title.split("Avail: ")[1] > 0 && e.event.end > ds_now){
 
-                    var group = e.event.title.split(",")[0];
-                    var available = "{% trans 'Available : ' %} " + e.event.title.split("Avail: ")[1];
-                    var start = e.event.start.toISOString().split("T")[1].split(":")[0]+":"+e.event.start.toISOString().split("T")[1].split(":")[1];
-                    var end = e.event.end.toISOString().split("T")[1].split(":")[0]+":"+e.event.end.toISOString().split("T")[1].split(":")[1];
-                	swal({
-	                      title: group,
-	                      html: '<div>' + 
-                                    '<h3>' + weekday[e.event.start.getDay()] + 
-                                    ', '+ start +"-"+ end + " WIB.<br>" +
-                                    available + "</h3> <br>" +
-                                    '{% trans "Are you sure to continue the registration process" %}?'+                              
-                                '</div>',
-	                      type:'info',
-	                      showCancelButton:true,
-	                      confirmButtonColor:'#3085d6',
-	                      cancelButtonColor:'#d33',
-	                      confirmButtonText:'{% trans "Yes, process it" %}',
-	                      cancelButtonText:'{% trans "No, cancel it" %}',
-	                      confirmButtonClass:'btn btn-success',
-	                      cancelButtonClass:'btn btn-default',
-	                      buttonsStyling: false
-	                    }).then(function (result) {
-	                    		//here
-	                    		if (result.dismiss !== 'cancel'){
-	                    			window.location.href='{% url "schedules:guestbook_create" %}?pk_time_event='+e.event.id;
-	                    		}
-	                    	}
-	                    );
+                        const weekday = ['{% trans "Sunday" %}',
+                                        '{% trans "Monday" %}',
+                                        '{% trans "Tuesday" %}',
+                                        '{% trans "Wednesday" %}',
+                                        '{% trans "Thursday" %}',
+                                        '{% trans "Friday" %}',
+                                        '{% trans "Saturday" %}'];
+
+                        var group = e.event.title.split(",")[0];
+                        var available = "{% trans 'Available : ' %} " + e.event.title.split("Avail: ")[1];
+                        var start = e.event.start.toISOString().split("T")[1].split(":")[0]+":"+e.event.start.toISOString().split("T")[1].split(":")[1];
+                        var end = e.event.end.toISOString().split("T")[1].split(":")[0]+":"+e.event.end.toISOString().split("T")[1].split(":")[1];
+                    	swal({
+	                          title: group,
+	                          html: '<div>' + 
+                                        '<h3>' + weekday[e.event.start.getDay()] + 
+                                        ', '+ start +"-"+ end + " WIB.<br>" +
+                                        available + "</h3> <br>" +
+                                        '{% trans "Are you sure to continue the registration process" %}?'+                              
+                                    '</div>',
+	                          type:'info',
+	                          showCancelButton:true,
+	                          confirmButtonColor:'#3085d6',
+	                          cancelButtonColor:'#d33',
+	                          confirmButtonText:'{% trans "Yes, process it" %}',
+	                          cancelButtonText:'{% trans "No, cancel it" %}',
+	                          confirmButtonClass:'btn btn-success',
+	                          cancelButtonClass:'btn btn-default',
+	                          buttonsStyling: false
+	                        }).then(function (result) {
+	                        		//here
+	                        		if (result.dismiss !== 'cancel'){
+	                        			window.location.href='{% url "schedules:guestbook_create" %}?pk_time_event='+e.event.id;
+	                        		}
+	                        	}
+	                        );
+                    }
               	},
               	/* end IF click */
               	
@@ -204,7 +208,6 @@
 {% block extra_js %}
 	
 {% endblock %}
-
 
 
 

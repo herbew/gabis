@@ -177,7 +177,6 @@ class GuestBookListView(LoginRequiredMixin,
             query_set = query_set.filter(name__icontains=bf_name)
         
         return query_set 
-    
 
 class GuestBookCreateView(FormMessagesMixin, 
                        CreateView):
@@ -197,7 +196,8 @@ class GuestBookCreateView(FormMessagesMixin,
     page = 1
     
     def get_success_url(self):
-        return reverse_lazy('schedules:time_event_ziarah_list')
+        return "%s?params=%d" % (
+            reverse_lazy('schedules:guestbook_detail'), self.object.id)
     
     def get_time_event(self):
         pk_time_event = self.request.GET.get('pk_time_event','')
@@ -296,3 +296,129 @@ class GuestBookCreateView(FormMessagesMixin,
         return HttpResponseRedirect(
                 self.get_success_url()
                 )
+        
+
+class GuestBookDetailListView(ListView):
+    """
+        Display Detail GuestBook LEVEL 0
+    """
+    
+    model = GuestBook
+    template_name = "schedules/bookings/guestbooks/detail.html"
+    paginator_class = SafePaginator
+    
+    process = "schedules_guest_book" 
+    
+    def get_guest_book(self):
+        pk_guest_book = self.kwargs.get('params','')
+        guest_book = self.model.filter(pk=pk_guest_book)
+        if guest_book:
+            guest_book = guest_book[0]
+            
+        return guest_book
+        
+    def get_context_data(self, *args, **kwargs):
+        # Page level 0
+        params = self.request.GET.get('params','')
+        
+        
+        # Filter Notice 
+        filter_in = []
+            
+        if params:
+            filter_in.append("%s" % (_("Token or NIK or NIS or Mobile Phone Number")))
+            
+            
+        if filter_in:
+            filter_in = "%s %s" % (_("FILTER IN"), ", ".join(filter_in))
+        else:
+            filter_in = "" 
+        
+            
+        data_filter = dict(params=params,)
+        
+        # History FIlter
+        history_filter = "params=%s" % (params,)
+        history_filter=history_filter.replace('None','')
+        
+        
+        # Param FIlter
+        params_filter = "params=%s" % (params,)
+        
+        params_filter = params_filter.replace('None','')
+        
+    
+        try:
+            context = super(GuestBookDetailListVie, self).get_context_data(*args, **kwargs)
+            object_list = [((index +((int(page)*int(self.paginate_by))
+                -int(self.paginate_by)))+1,q) for index, q in 
+                enumerate(context["object_list"],start=0)]
+            
+            context.update(
+                dict(
+                    object_list=object_list,
+                    form_filter=GuestBookFilterForm(initial=data_filter),
+                    history_filter=history_filter.replace('%20',''),
+                    params_filter=params_filter.replace('%20',''),
+                    process=self.process, 
+                    guest_book=self.get_guest_book(),
+                    filter_in=filter_in
+                   ) 
+                )
+    
+            return context
+    
+        except:
+            page = 1
+                
+            paginator = self.get_paginator(
+                self.get_queryset(), self.paginate_by, orphans=self.get_paginate_orphans(),
+                allow_empty_first_page=self.get_allow_empty())
+            
+            try:
+                self.object_list = paginator.page(page)
+            except PageNotAnInteger:
+                self.object_list = paginator.page(1)
+            except EmptyPage:
+                self.object_list = paginator.page(paginator.num_pages)
+                
+            object_list = [((index +((page*int(self.paginate_by))
+                -int(self.paginate_by)))+1,q) for index, q in 
+                enumerate(self.object_list,start=0)]
+            
+            p = dict(paginator=paginator,
+                     has_previous=self.object_list.has_previous,
+                     number=self.object_list.number,
+                     has_next=self.object_list.has_next)
+            
+            return  dict(
+                    page_obj=p,
+                    object_list=object_list,
+                    form_filter=GuestBookFilterForm(initial=data_filter),
+                    history_filter=history_filter.replace('%20',''),
+                    params_filter=params_filter.replace('%20',''),
+                    process=self.process, 
+                    guest_book=self.get_guest_book(),
+                    filter_in=filter_in
+                   ) 
+            
+    
+    def get_queryset(self):
+        
+        guest_book = self.get_guest_book()
+        params = self.request.GET.get('params','')
+        
+        if guest_book:
+            query_set = self.model.objects.filter(
+                 Q(time_event__event__active=True, nik=guest_book.nik)|
+                 Q(time_event__event__active=True, nik=guest_book.pin)
+                ).order_by("created")
+        else:
+            query_set = self.model.objects.filter(
+                 Q(time_event__event__active=True, nik__icontains=params)|
+                 Q(time_event__event__active=True, pin__icontains=params)|
+                 Q(time_event__event__active=True, mobile__icontains=params)
+                ).order_by("created")
+        
+        return query_set 
+ 

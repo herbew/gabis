@@ -16,6 +16,7 @@ from gabis.apps.schedules.models.guestbooks import GuestBook
 
 log = logging.getLogger(__name__)
 
+
 class GuestBookForm(forms.ModelForm):
 
     class Meta:
@@ -114,7 +115,19 @@ class GuestBookForm(forms.ModelForm):
         return data
 
         
+class GuestBookFilterForm(forms.Form):
+    
+    params = forms.CharField(
+        widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255})
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(GuestBookFilterForm, self).__init__(*args, **kwargs)
         
+        self.fields['params'].label = _("Searching Params")
+        self.fields['params'].required = False
+        
+        self.fields["params"].help_text = _("Input Your Token or NIK or NIS or Mobile Phone Number!")
         
         
         

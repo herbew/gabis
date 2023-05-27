@@ -1,0 +1,77 @@
+{% extends "schedules/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block css_telephone %}
+{% endblock css_telephone %}
+
+{% block page_title %}
+	{% if guest_book %}
+		<h1>{{ guest_book.name }}</h1> {{ guest_book.pik }}<br>
+		{% trans "Lingkungan" %} {{ guest_book.lingkungan.name }} <small>{% trans "Wilayah" %} {{guest_book.wilayah.name}}</small><br>
+		<small>{% trans "Paroki" %} {{guest_book.paroki.name}}</small>, <small>{{guest_book.keuskupan.name}}</small>
+	{% endif %}
+{% endblock page_title %}
+
+{% block title_filter %}{% endblock title_filter %}
+
+{% block add_new_button %}{% endblock add_new_button %}
+
+{% block breadcrumb %}
+	
+{% endblock breadcrumb %}
+
+{% block content %}
+	<div class="row">
+	    <div class="card text-center">
+            <div class="card-body text-center">
+                <div class="ibox">
+                	<div class="ibox-title">
+                		<h1>{% trans "Confirm E-mail Address" %}</h1>
+                	</div>
+                	<div class="ibox-content">
+                		{% if confirmation %}
+
+							{% user_display confirmation.email_address.user as user_display %}
+							
+							<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+							
+							<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+							{% csrf_token %}
+								<button class="btn btn-success" type="submit">{% trans "Confirm" %}</button>
+							</form>
+						
+						{% else %}
+						
+							<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+							<p>{% trans "Back to" %} <a href="">{% trans "sign in" %}</a> {% trans "page." %}</p>
+						{% endif %}
+					    
+                	</div>
+                	{% load utility_tags %}
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+							2021 {{ ""|year_content }} &copy; <font color="green"><strong>{% trans "Biomeet" %}</strong></font>
+						</div>
+					</div>
+
+                </div>
+            </div>
+         </div>
+	</div>
+{% endblock content %}
+
+{% block extra_jquery %}{% endblock extra_jquery %}
+
+{% block js_plugin %}
+{% endblock js_plugin %}
+
+{% block js_telephone %}
+{% endblock js_telephone %}
+
+{% block extra_js %}
+	{% include "schedules/bookings/guestbooks/guestbooks.js" %}
+{% endblock extra_js %}
