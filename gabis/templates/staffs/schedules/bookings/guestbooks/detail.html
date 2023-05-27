@@ -80,7 +80,20 @@
                                                             	{{ no }}. {{ object.time_event.event.name }}<br>
                                                             	&nbsp;&nbsp;<small>{{ object.time_event.group }}</small><br>
                                                                 &nbsp;&nbsp;<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small><br>
-                                                                &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> 
+                                                                &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> <br>
+                                                                <button 
+						                                     		class="btn btn-outline-success waves-effect waves-light"
+						                                     		data-toggle="tooltip" 
+					    											data-placement="bottom" 
+					    											title="{% trans 'Attend' %} {{ object.name }}" 
+					    											data-original-title="{% trans 'Attend' %} {{ object.name }}"
+						                                     		type="button"
+						                                     		onclick=''
+						                                     		>
+						                                     		<span class="btn-label">
+						                                     			<i class="icon-pencil"></i>
+						                                     		</span> 
+						                                     	</button>
                                                             </td>
                                                         </tr>
                                                     {% endfor %}
