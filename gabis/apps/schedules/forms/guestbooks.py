@@ -96,11 +96,11 @@ class GuestBookForm(forms.ModelForm):
                         "%s <font color=red size=4.5em>*</font>" % 
                         self.fields['mobile'].label)
         
-        # self.fields["mobile"].widget = NumberInput(attrs={
-        #     'class':"form-control text-muted",
-        #     'type': 'number',
-        #     'onkeypress':'return isNumberKey(event)',
-        #     'required':''})
+        self.fields["mobile"].widget = NumberInput(attrs={
+            'class':"form-control text-muted",
+            'type': 'number',
+            'onkeypress':'return isNumberKey(event)',
+            'required':''})
         
     def clean_email(self):
         data = self.cleaned_data['email']
