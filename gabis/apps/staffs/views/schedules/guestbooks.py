@@ -4,7 +4,7 @@ import logging
 
 from django.urls import reverse, reverse_lazy
 
-from chandbook33.apps.users.viewmixins.roles import AdminMixin
+from gabis.apps.users.viewmixins.roles import AdminMixin
 
 from gabis.apps.schedules.views.guestbooks import (
     GuestBookDetailListView as MasterGuestBookDetailListView
