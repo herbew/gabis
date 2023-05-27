@@ -104,11 +104,12 @@ class GuestBookForm(forms.ModelForm):
         
     def clean_email(self):
         data = self.cleaned_data['email']
-        try:
-            validate_email(data)
-        except:
-            raise forms.ValidationError(
-                _("Enter a valid email address."))
+        if data:
+            try:
+                validate_email(data)
+            except:
+                raise forms.ValidationError(
+                    _("Enter a valid email address."))
         
         return data
 
