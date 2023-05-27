@@ -80,6 +80,8 @@ class GuestBook(TimeStampedModel):
         _("PIN of Guest"), max_length=64, 
         null=True, blank=True)
     
+    attended = models.BooleanField(default=False)
+    
     user_update = models.CharField(
             max_length=30,
             blank=True, null=True,
