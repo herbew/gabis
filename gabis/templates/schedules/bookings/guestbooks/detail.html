@@ -3,6 +3,8 @@
 {% load i18n %}
 
 {% block extra_head %}
+    <link href="{% static 'sweetalert2/css/sweetalert2.css' %}" rel="stylesheet"/>
+    <link href="{% static 'sweetalert2/css/sweetalert2.min.css' %}" rel="stylesheet"/>
 {% endblock extra_head %}
 
 {% block css_telephone %}
@@ -13,6 +15,27 @@
 		<h1>{{ guest_book.name }}</h1> {{ guest_book.pik }}<br>
 		{% trans "Lingkungan" %} {{ guest_book.lingkungan.name }} <small>{% trans "Wilayah" %} {{guest_book.wilayah.name}}</small><br>
 		<small>{% trans "Paroki" %} {{guest_book.paroki.name}}</small>, <small>{{guest_book.keuskupan.name}}</small>
+    {% else %}
+        <div class="row">
+             <div class="col-md-12">
+                <form class="form-material form-horizontal" method="get" action="">
+	             {{ form_filter.as_p }}
+	             <div class="text-right">
+	                 <button 
+	                 	class="btn btn-success" 
+	                 	type="submit"
+	                 	aria-pressed="false"
+	                 	data-toggle="tooltip" data-placement="bottom"
+	              		title="{% trans 'Validation Guess Book ..' %}" 
+	              		data-original-title="{% trans 'Validation Guess Book ..' %}"
+	                 	>
+	                     <i class="icon-magnifier" aria-hidden="true"></i>
+	                     <span class="text">{% trans "Validate" %}</span>
+	                 </button>
+	             </div>
+	         </form>
+             </d>
+        </div>
 	{% endif %}
 {% endblock page_title %}
 
@@ -26,52 +49,80 @@
 
 {% block content %}
 	<div class="row">
-	    <div class="card text-center">
-            <div class="card-body text-center">
-                <div class="ibox">
-                	<div class="ibox-title">
-                		<h1>{% trans "Confirm E-mail Address" %}</h1>
-                	</div>
-                	<div class="ibox-content">
-                		{% if confirmation %}
-
-							{% user_display confirmation.email_address.user as user_display %}
-							
-							<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
-							
-							<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-							{% csrf_token %}
-								<button class="btn btn-success" type="submit">{% trans "Confirm" %}</button>
-							</form>
-						
-						{% else %}
-						
-							<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-							<p>{% trans "Back to" %} <a href="">{% trans "sign in" %}</a> {% trans "page." %}</p>
-						{% endif %}
-					    
-                	</div>
-                	{% load utility_tags %}
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-							2021 {{ ""|year_content }} &copy; <font color="green"><strong>{% trans "Biomeet" %}</strong></font>
-						</div>
-					</div>
-
+		<div class="card col-md-12">
+	        <div class="card text-center">
+                <div class="card-body text-center">
+                    {% if guest_book %}
+                        <div class="ibox">
+                        	<div class="ibox-title">
+                        		<b><h3>{% trans "Congratulation" %}</h3></b><br>
+                        		<small>{% trans "You have been successfully registered for event" %} {{guest_book.time_event.event.name}}</small>
+                        	</div>
+                        	<div class="ibox-content">
+                        		{% trans "Please save and remember your TOKEN number" %}
+                        		<h1 style="color:red;">{{ guest_book.pin }}</h1>
+                                <small>{% trans "If any question please contact" %}<br><b>Ibu Betty +62 815-6751-412</b></small>
+                                <br><br>
+                                <div class="col-md-12 text-left">
+                                {% trans "The list of your schedules:" %}<br><br>
+                                <div class="table-responsive">
+                                     <table id="mytable" class="table table-striped">
+                                         <thead>
+                                             <tr>
+                                             	 <th style="width:8%;">#</th>
+                                                 <th style="width:92%;">{% trans "Event" %}</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                                {% if object_list %}
+                             		                {% for no, object in object_list %}
+                                                        <tr>
+                                                            <td>
+                                                                <a class="btn btn-light" onClick='data_info("{{ no }}. {{object.name}}","{% trans 'CREATED ON' %} {{object.created|date:'D, d M Y H:m'}}","{% trans 'MODIFIED ON' %} {{object.modified|date:'D, d M Y H:m'}}","{% trans 'BY' %} {{object.user_update}}")'>
+					                             			 		{{ no }}
+					                             			 	</a>
+                                                            </td>
+                                                            <td>
+                                                            	{{ object.time_event.event.name }}<br>
+                                                            	<small>{{ object.time_event.group }}</small><br>
+                                                                <small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small> 
+                                                            	
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% endif %}
+                                         </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                        	</div>	
+                        </div>
+                    {% else %}
+                        <div class="ibox">
+                            <div class="ibox-title">
+                        		<b><h3>{% trans "You haven't registered yet" %}</h3></b><br>
+                        		<small>{% trans "Please Click" %} <a href="{% url 'schedules:time_event_ziarah_list' %}"}>{% trans "Registration" %}</a></small>
+                        	</div>
+                        </div>
+                    {% endif %}
                 </div>
-            </div>
-         </div>
+             </div>
+        </div>
 	</div>
 {% endblock content %}
 
 {% block extra_jquery %}{% endblock extra_jquery %}
 
 {% block js_plugin %}
+    <script src="{% static 'sweetalert2/js/sweetalert2.all.js' %}"></script>
+    <script src="{% static 'sweetalert2/js/sweetalert2.all.min.js' %}"></script>
+    <!--<script src="{% static 'sweetalert2/js/sweetalert2.common.js' %}"></script> -->
+    <script src="{% static 'sweetalert2/js/sweetalert2.js' %}"></script>
+    <script src="{% static 'sweetalert2/js/sweetalert2.min.js' %}"></script>
 {% endblock js_plugin %}
 
 {% block js_telephone %}
 {% endblock js_telephone %}
 
 {% block extra_js %}
-	{% include "schedules/bookings/guestbooks/guestbooks.js" %}
 {% endblock extra_js %}

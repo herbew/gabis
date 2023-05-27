@@ -117,17 +117,17 @@ class GuestBookForm(forms.ModelForm):
         
 class GuestBookFilterForm(forms.Form):
     
-    params = forms.CharField(
+    token = forms.CharField(
         widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255})
         )
 
     def __init__(self, *args, **kwargs):
         super(GuestBookFilterForm, self).__init__(*args, **kwargs)
         
-        self.fields['params'].label = _("Searching Parameters")
-        self.fields['params'].required = False
+        self.fields['token'].label = _("Token")
+        self.fields['token'].required = False
         
-        self.fields["params"].help_text = _("Input Your Token or NIK or NIS or Mobile Phone Number!")
+        self.fields["token"].help_text = _("Input Your Token!")
         
         
         

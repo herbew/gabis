@@ -118,6 +118,10 @@ class TimeEvent(TimeStampedModel):
         return datetime.strftime(self.end_time,"%H:%M")
     
     @property
+    def date_string(self):
+        return datetime.strftime(self.start_time, "%d %B %Y")
+    
+    @property
     def weekday(self):
         return WEEKDAY[self.start_time.weekday()]
         

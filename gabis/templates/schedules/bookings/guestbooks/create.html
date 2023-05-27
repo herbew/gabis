@@ -4,6 +4,15 @@
 
 {% block extra_head %}
 	<link href="{% static 'select2-4.0.13/css/select2.css' %}" rel="stylesheet"/>
+    <style>
+        .errorlist {
+            color:red;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+            
+    </style>
 {% endblock extra_head %}
 
 {% block css_telephone %}
@@ -31,6 +40,14 @@
 	<div class="row">
 	    <div class="card col-md-12">
 	        <div class="card-body">
+                {% if messages %}
+                        <div class="alert alert-danger">
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                {% endif %}
+                
 	            <form class="form-material form-horizontal" 
 	            	id="id_form"
 	            	class="form-horizontal" 
