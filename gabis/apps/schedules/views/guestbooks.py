@@ -269,6 +269,16 @@ class GuestBookCreateView(FormMessagesMixin,
         # Searching TypeGuestBook
         time_event = self.get_time_event()
         
+        # Check nik
+        if form.cleaned_data['nik']:
+            nik = form.cleaned_data['nik']
+            
+        try:
+            self.model.objects.get(nik=nik, time_event=time_event)
+            form.add_error('nik', _('Identity Number have been exists!'))
+            self.form_invalid(form)
+        except:
+            pass
         
         # Initial form     
         self.object = form.save(commit=False)

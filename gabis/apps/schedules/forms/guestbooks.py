@@ -124,7 +124,7 @@ class GuestBookFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(GuestBookFilterForm, self).__init__(*args, **kwargs)
         
-        self.fields['params'].label = _("Searching Params")
+        self.fields['params'].label = _("Searching Parameters")
         self.fields['params'].required = False
         
         self.fields["params"].help_text = _("Input Your Token or NIK or NIS or Mobile Phone Number!")
