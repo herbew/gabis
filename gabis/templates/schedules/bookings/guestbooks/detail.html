@@ -69,8 +69,7 @@
                                      <table id="mytable" class="table table-striped">
                                          <thead>
                                              <tr>
-                                             	 <th style="width:8%;">#</th>
-                                                 <th style="width:92%;">{% trans "Event" %}</th>
+                                             	 <th style="width:100%;"># {% trans "Event" %}</th>
                                              </tr>
                                          </thead>
                                          <tbody>
@@ -78,15 +77,10 @@
                              		                {% for no, object in object_list %}
                                                         <tr>
                                                             <td>
-                                                                <a class="btn btn-light" onClick='data_info("{{ no }}. {{object.name}}","{% trans 'CREATED ON' %} {{object.created|date:'D, d M Y H:m'}}","{% trans 'MODIFIED ON' %} {{object.modified|date:'D, d M Y H:m'}}","{% trans 'BY' %} {{object.user_update}}")'>
-					                             			 		{{ no }}
-					                             			 	</a>
-                                                            </td>
-                                                            <td>
-                                                            	{{ object.time_event.event.name }}<br>
-                                                            	<small>{{ object.time_event.group }}</small><br>
-                                                                <small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small> 
-                                                            	
+                                                            	{{ no }}. {{ object.time_event.event.name }}<br>
+                                                            	&nbsp;&nbsp;<small>{{ object.time_event.group }}</small><br>
+                                                                &nbsp;&nbsp;<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small><br>
+                                                                &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> 
                                                             </td>
                                                         </tr>
                                                     {% endfor %}
