@@ -20,5 +20,5 @@ class AttendGuestView(AdminMixin, MasterAttendGuestView):
         
         obj = self.get_object()
         
-        url = reverse_lazy("staff:guestbook_detail")
+        url = reverse_lazy("staffs:guestbook_detail")
         return dict(status=200, url="%s?params=%s" % (url, obj.id))
