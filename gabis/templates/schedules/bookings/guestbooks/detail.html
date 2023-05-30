@@ -12,7 +12,7 @@
 
 {% block page_title %}
 	{% if guest_book %}
-		<h1>{{ guest_book.name }}</h1> {{ guest_book.pik }}<br>
+		<h3>{{ guest_book.name }}</h3> {{ guest_book.pik }}<br>
 		{% trans "Lingkungan" %} {{ guest_book.lingkungan.name }} <small>{% trans "Wilayah" %} {{guest_book.wilayah.name}}</small><br>
 		<small>{% trans "Paroki" %} {{guest_book.paroki.name}}</small>, <small>{{guest_book.keuskupan.name}}</small>
     {% else %}
@@ -61,6 +61,22 @@
                         	<div class="ibox-content">
                         		{% trans "Please save and remember your TOKEN number" %}
                         		<h1 style="color:red;">{{ guest_book.pin }}</h1>
+                        		{% if guest_book.seminar_available %}
+                        			<b><h3>{% trans 'You have the opportunity to attend the seminar' %}</h3></b><br>
+                        			{% trans "on Sunday, July 23, 2023 11:00 - 16:00 WIB." %} <br>
+                        			{% trans "Seat available" %} {{ guest_book.total_seminar_available }}<br>
+                        			<button 
+                                 		class="btn btn-outline-success waves-effect waves-light"
+                                 		data-toggle="tooltip" 
+										data-placement="bottom" 
+										title="{% trans 'Register Seminar Kain Kafan Yesus 2023' %}" 
+										data-original-title="{% trans 'Register Seminar Kain Kafan Yesus 2023' %}"
+                                 		type="button"
+                                 		onclick='update_guestbook_attended("{{ object.name.upper }}","{% url 'staffs:guestbook_attended' 1 %}")'
+                                 		>
+                                 		{% trans "Register Seminar" %}
+                                 	</button><br><br>
+                        		{% endif %}
                                 <small>{% trans "If any question please contact" %}<br><b>Ibu Betty +62 815-6751-412</b></small>
                                 <br><br>
                                 <div class="col-md-12 text-left">
