@@ -447,8 +447,8 @@ class GuestBookDetailListView(ListView):
     
         if self.guest_book:
             query_set = self.model.objects.filter(
-                 Q(time_event__event__active=True, nik=guest_book.nik)|
-                 Q(time_event__event__active=True, nik=guest_book.pin)
+                 Q(time_event__event__active=True, nik=self.guest_book.nik)|
+                 Q(time_event__event__active=True, nik=self.guest_book.pin)
                 ).order_by("created")
         elif params:
             query_set = self.model.objects.filter(
