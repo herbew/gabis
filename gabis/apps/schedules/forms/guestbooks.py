@@ -115,19 +115,34 @@ class GuestBookForm(forms.ModelForm):
         return data
 
         
-class GuestBookFilterForm(forms.Form):
+class TokenFilterForm(forms.Form):
     
     token = forms.CharField(
         widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255})
         )
 
     def __init__(self, *args, **kwargs):
-        super(GuestBookFilterForm, self).__init__(*args, **kwargs)
+        super(TokenFilterForm, self).__init__(*args, **kwargs)
         
         self.fields['token'].label = _("Token")
         self.fields['token'].required = False
         
         self.fields["token"].help_text = _("Input Your Token!")
+        
+
+class GuestBookFilterForm(forms.Form):
+    
+    params = forms.CharField(
+        widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255})
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(GuestBookFilterForm, self).__init__(*args, **kwargs)
+        
+        self.fields['params'].label = _("No Identitas")
+        self.fields['params'].required = False
+        
+        self.fields["params"].help_text = _("Input Your NIK/NIS/HP Number!")
         
         
         

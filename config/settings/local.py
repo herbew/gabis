@@ -9,12 +9,13 @@ DEBUG = True
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 IP_DEVELOPMENT = ["192.168.0.%s" % i for i in range(1, 256)]
+HP_DEVELOPMENT = ["192.168.43.%s" % i for i in range(1, 256)]
 ALLOWED_HOSTS = [
     "localhost",
     "0.0.0.0",
     "127.0.0.1",
     ".vercel.app",
-] + IP_DEVELOPMENT 
+] + IP_DEVELOPMENT + HP_DEVELOPMENT
 
 # CACHES
 # ------------------------------------------------------------------------------

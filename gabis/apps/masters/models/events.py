@@ -145,6 +145,28 @@ class TimeEvent(TimeStampedModel):
         return len(gb)
     
     @property
+    def total_guest_book_gabriel(self):
+        from gabis.apps.schedules.models.guestbooks import GuestBook
+        gb = GuestBook.objects.filter(time_event=self,
+                                      paroki__name="St Gabriel Pulo Gebang")
+        return len(gb)
+    
+    @property
+    def total_guest_book_others(self):
+        from gabis.apps.schedules.models.guestbooks import GuestBook
+        gb = GuestBook.objects.filter(time_event=self).exclude(
+                                      paroki__name="St Gabriel Pulo Gebang")
+        return len(gb)
+    
+    @property
+    def available_guest_book_gabriel(self):
+        return (450 - self.total_guest_book_gabriel)
+    
+    @property
+    def available_guest_book_others(self):
+        return (50 - self.total_guest_book_others)
+    
+    @property
     def color(self):
         tz = pytz.timezone("Asia/Jakarta")
         d_now = tz.localize(datetime.now())

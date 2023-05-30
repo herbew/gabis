@@ -26,7 +26,9 @@ from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkun
 from gabis.apps.masters.models.events import (Event, TimeEvent, PICEvent)
 from gabis.apps.schedules.models.bookings import BookingTimeEvent
 from gabis.apps.schedules.models.guestbooks import GuestBook
-from gabis.apps.schedules.forms.guestbooks import GuestBookForm, GuestBookFilterForm
+from gabis.apps.schedules.forms.guestbooks import (GuestBookForm, 
+                                                   GuestBookFilterForm,
+                                                   TokenBookFilterForm)
 
 
 log = logging.getLogger(__name__)
@@ -55,7 +57,7 @@ class GuestBookListView(LoginRequiredMixin,
         # Active page
         page = self.request.GET.get('page',1)
         
-        # History token filter    
+        # History params filter    
         name_university = self.get_faculty().university.name
         faculty_level = self.request.GET.get('faculty_level','')
         faculty_name = self.request.GET.get('faculty_name','')
@@ -98,10 +100,10 @@ class GuestBookListView(LoginRequiredMixin,
         
         
         # Param FIlter
-        token_filter = "p0=%s&p1=%s&name_university=%s&faculty_level=%s&faculty_name=%s&bf_name=%s" % (
+        params_filter = "p0=%s&p1=%s&name_university=%s&faculty_level=%s&faculty_name=%s&bf_name=%s" % (
             p0, page, name_university, faculty_level, faculty_name, bf_name)
         
-        token_filter = token_filter.replace('None','')
+        params_filter = params_filter.replace('None','')
         
     
         try:
@@ -115,7 +117,7 @@ class GuestBookListView(LoginRequiredMixin,
                     object_list=object_list,
                     form_filter=GuestBookFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
-                    token_filter=token_filter.replace('%20',''),
+                    params_filter=params_filter.replace('%20',''),
                     page=page,
                     process=self.process, 
                     faculty=self.get_faculty(),
@@ -153,7 +155,7 @@ class GuestBookListView(LoginRequiredMixin,
                     object_list=object_list,
                     form_filter=GuestBookFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
-                    token_filter=token_filter.replace('%20',''),
+                    params_filter=params_filter.replace('%20',''),
                     page=page,
                     process=self.process, 
                     faculty=self.get_faculty(),
@@ -192,11 +194,11 @@ class GuestBookCreateView(FormMessagesMixin,
     form_valid_message = _('The registration of guest book has been stored.')
     
     process = "schedules_guest_book" 
-    token_filter = ""
+    params_filter = ""
     page = 1
     
     def get_success_url(self):
-        return "%s?token=%d" % (
+        return "%s?params=%d" % (
             reverse_lazy('schedules:guestbook_detail'), self.object.id)
     
     def get_time_event(self):
@@ -204,7 +206,7 @@ class GuestBookCreateView(FormMessagesMixin,
         time_event = get_object_or_404(TimeEvent, pk=pk_time_event)
         return time_event
     
-    def get_token_url(self):
+    def get_params_url(self):
         # History param filter
         p0 = self.request.GET.get('p0',1)
         p1 = self.request.GET.get('p1','page-0')
@@ -216,22 +218,22 @@ class GuestBookCreateView(FormMessagesMixin,
         except:
             self.page = 1
         
-        self.token_filter = "p0=%s&p1=%s&pk_time_event=%s" % (
+        self.params_filter = "p0=%s&p1=%s&pk_time_event=%s" % (
             p0, p1, pk_time_event)
         
-        self.token_filter = self.token_filter.replace('None','')
+        self.params_filter = self.params_filter.replace('None','')
         
         
     def get_context_data(self, *args, **kwargs):
         context = super(GuestBookCreateView, self).get_context_data(*args, **kwargs)
         
         # Get Params URL
-        self.get_token_url()
+        self.get_params_url()
             
         context.update(
             page=self.page,
             process=self.process,
-            token_filter=self.token_filter,
+            params_filter=self.params_filter,
             time_event=self.get_time_event()
             )
                 
@@ -241,7 +243,7 @@ class GuestBookCreateView(FormMessagesMixin,
     def post(self, request, *args, **kwargs):
         
         # Get Params URL
-        self.get_token_url()
+        self.get_params_url()
         
         self.object = self.model()
         
@@ -267,15 +269,15 @@ class GuestBookCreateView(FormMessagesMixin,
             r = "%s" % (r,)
             
             if len(r) == 5:
-                r = "0%s" % (r)
+                r = "0%d" % (r)
             elif len(r) == 4:
-                r = "00%s" % (r)
+                r = "00%d" % (r)
             elif len(r) == 3:
-                r = "000%s" % (r)
+                r = "000%d" % (r)
             elif len(r) == 2:
-                r = "0000%s" % (r)
+                r = "0000%d" % (r)
             elif len(r) == 1:
-                r = "00000%s" % (r)
+                r = "00000%d" % (r)
                 
             return r
     
@@ -312,7 +314,7 @@ class GuestBookCreateView(FormMessagesMixin,
                 pin = get_random()
                 
         self.object.pin = pin
-        self.object.user_updated = 'System'
+        self.object.user_updated = "System"
         
         self.object.save()
         
@@ -339,7 +341,7 @@ class GuestBookDetailListView(ListView):
     guest_book = None
 
     def get_guest_book(self):
-        pk_guest_book = self.request.GET.get('token',0)
+        pk_guest_book = self.request.GET.get('params',0)
         try:
             pk_guest_book = int(pk_guest_book)
         except:
@@ -353,14 +355,14 @@ class GuestBookDetailListView(ListView):
         
     def get_context_data(self, *args, **kwargs):
         # Page level 0
-        token = self.request.GET.get('token','')
+        params = self.request.GET.get('params','')
         
         
         # Filter Notice 
         filter_in = []
             
-        if token:
-            filter_in.append("%s" % (_("Token")))
+        if params:
+            filter_in.append("%s" % (_("Token or NIK or NIS or Mobile Phone Number")))
             
             
         if filter_in:
@@ -369,17 +371,17 @@ class GuestBookDetailListView(ListView):
             filter_in = "" 
         
             
-        data_filter = dict(token=token,)
+        data_filter = dict(params=params,)
         
         # History FIlter
-        history_filter = "token=%s" % (token,)
+        history_filter = "params=%s" % (params,)
         history_filter=history_filter.replace('None','')
         
         
         # Param FIlter
-        token_filter = "token=%s" % (token,)
+        params_filter = "params=%s" % (params,)
         
-        token_filter = token_filter.replace('None','')
+        params_filter = params_filter.replace('None','')
         
     
         try:
@@ -393,7 +395,7 @@ class GuestBookDetailListView(ListView):
                     object_list=object_list,
                     form_filter=GuestBookFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
-                    token_filter=token_filter.replace('%20',''),
+                    params_filter=params_filter.replace('%20',''),
                     process=self.process, 
                     guest_book=self.guest_book,
                     filter_in=filter_in
@@ -430,7 +432,7 @@ class GuestBookDetailListView(ListView):
                     object_list=object_list,
                     form_filter=GuestBookFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
-                    token_filter=token_filter.replace('%20',''),
+                    params_filter=params_filter.replace('%20',''),
                     process=self.process, 
                     guest_book=self.guest_book,
                     filter_in=filter_in
@@ -440,16 +442,19 @@ class GuestBookDetailListView(ListView):
     def get_queryset(self):
         
         self.guest_book = self.get_guest_book()
-        token = self.request.GET.get('token','')
+        params = self.request.GET.get('params','')
         
         query_set = []
     
         if self.guest_book:
             query_set = self.model.objects.filter(
-                 time_event__event__active=True, nik=self.guest_book.nik).order_by("created")
-        elif token:
+                 Q(time_event__event__active=True, nik=guest_book.nik)|
+                 Q(time_event__event__active=True, nik=guest_book.pin)
+                ).order_by("created")
+        elif params:
             query_set = self.model.objects.filter(
-                 time_event__event__active=True, pin=token).order_by("created")
+                 Q(time_event__event__active=True, nik=params)|
+                 Q(time_event__event__active=True, pin=params)).order_by("created")
                 
             if query_set:
                 self.guest_book = query_set[0]
