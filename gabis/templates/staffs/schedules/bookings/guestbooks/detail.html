@@ -80,20 +80,24 @@
                                                             	{{ no }}. {{ object.time_event.event.name }}<br>
                                                             	&nbsp;&nbsp;<small>{{ object.time_event.group }}</small><br>
                                                                 &nbsp;&nbsp;<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small><br>
-                                                                &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> <br>
-                                                                <button 
-						                                     		class="btn btn-outline-success waves-effect waves-light"
-						                                     		data-toggle="tooltip" 
-					    											data-placement="bottom" 
-					    											title="{% trans 'Attend' %} {{ object.name }}" 
-					    											data-original-title="{% trans 'Attend' %} {{ object.name }}"
-						                                     		type="button"
-						                                     		onclick=''
-						                                     		>
-						                                     		<span class="btn-label">
-						                                     			<i class="icon-pencil"></i>
-						                                     		</span> {% trans "Attend" %}
-						                                     	</button>
+                                                                &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> <br><br>
+                                                                {% if object.attended %}
+                                                                	{% trans "Have attended"%}
+                                                                {% else %}
+	                                                                <button 
+							                                     		class="btn btn-outline-success waves-effect waves-light"
+							                                     		data-toggle="tooltip" 
+						    											data-placement="bottom" 
+						    											title="{% trans 'Attend' %} {{ object.name }}" 
+						    											data-original-title="{% trans 'Attend' %} {{ object.name }}"
+							                                     		type="button"
+							                                     		onclick='update_guestbook_attended("{{ object.name.upper }}","{% url 'staff:guestbook_attended' object.pk %}")'
+							                                     		>
+							                                     		<span class="btn-label">
+							                                     			<i class="icon-pencil"></i>
+							                                     		</span> {% trans "Attend" %}
+							                                     	</button>
+							                                    {% endif %}
                                                             </td>
                                                         </tr>
                                                     {% endfor %}
@@ -132,4 +136,72 @@
 {% endblock js_telephone %}
 
 {% block extra_js %}
+	<script>
+		//======================================================================
+		//Update GuestBook Attended
+		//INPUT name, url
+		//OUTPUT redirect staff:guestbook_detail
+		//======================================================================
+		function update_guestbook_attended(name, url) {
+	        swal(
+	            {
+	              title:'{% trans "UPDATE GUESTBOOK ATTENDED" %}',
+	              text: '{% trans "Are you sure to update data" %} '+name+" ?",
+	              type:'warning',
+	              showCancelButton:true,
+	              confirmButtonColor:'#3085d6',
+	              cancelButtonColor:'#d33',
+	              confirmButtonText:'{% trans "Yes, update it" %}',
+	              cancelButtonText:'{% trans "No, cancel it" %}',
+	              confirmButtonClass:'btn btn-success',
+	              cancelButtonClass:'btn btn-default',
+	              buttonsStyling: false
+	            }).then(function (result) {
+	            if (result.value) {
+	            	var data = {
+                    	 	csrfmiddlewaretoken: '{{ csrf_token }}'
+                    	 	};
+	            	  
+	                swal({
+	                        title:'{% trans "UPDATED" %}',
+	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully update it!" %}.',
+	                        type:'success'
+	                        }).then(function (r){
+	                        	swal({
+	   	              		         position: 'top-end',
+	   	              		         type:'warning',
+	   	              		         html:'<div><div><h3>{% trans "UPDATE GUESTBOOK ATTENDED"%}</h3></div><div><label>{% trans "The updating data on progress .." %}</label></div></div>',
+	   	              		       });
+	                        	
+	                        	swal.showLoading();
+	                        	$.ajax({
+	                        		
+		                              url:url,
+		                              type:"POST",
+		                              data:data,
+		                              dataType: "json",
+		                              success: function(data) {
+		                            	  if (data.status==200){
+		                            		  window.location.href=data.url;
+		                            	  }
+		                            	  
+		                              },
+		                              error: function(data){
+		                                  console.log(data);
+		                              }
+		                          });
+	                        });
+	                        
+	              // result.dismiss can be 'cancel', 'overlay',
+	              // 'close', and 'timer'
+	              } else if (result.dismiss === 'cancel') {
+	                swal(
+	                  '{% trans "CANCEL" %}',
+	                  '{% trans "The update data" %} '+name+', {% trans "have been canceled!" %}.',
+	                  'error'
+	                )
+	              }
+	        });
+	    }
+	</script>
 {% endblock extra_js %}

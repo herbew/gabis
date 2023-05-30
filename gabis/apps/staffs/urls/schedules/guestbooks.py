@@ -9,6 +9,8 @@ urlpatterns = [
     path("guestbook/detail/", 
         view=guestbooks.GuestBookDetailListView.as_view(),
         name="guestbook_detail"),
-    
+    path("guestbook/<int:pk_guest_book>/attended/", 
+        view=guestbooks.AttendGuestView.as_view(),
+        name="guestbook_attended"),
     
     ]

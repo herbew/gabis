@@ -326,7 +326,6 @@ class GuestBookCreateView(FormMessagesMixin,
                 self.get_success_url()
                 )
         
-
 class GuestBookDetailListView(ListView):
     """
         Display Detail GuestBook LEVEL 0
@@ -460,4 +459,33 @@ class GuestBookDetailListView(ListView):
                 self.guest_book = query_set[0]
             
         return query_set 
- 
+
+class AttendGuestView(View):
+    model = GuestBook
+    process = "schedules_guest_book" 
+    
+    def get_success_url(self):
+        pass
+    
+    def get_params_url(self):
+        pass
+        
+    def set_params_url(self, semester):
+        pass
+        
+    def get_object(self):
+        pk_guest_book = self.kwargs.get('pk_guest_book',None)
+        
+        guest_book = get_object_or_404(self.model, pk=pk_guest_book)
+        
+        return guest_book
+    
+    def post(self, request, *args, **kwargs):
+        
+        # Get Params URL
+        obj = self.get_object()
+        obj.attended = True
+        obj.save()
+        messages.success(request, _("%r have been attended!." % obj))
+        
+        return JsonResponse(self.get_success_url()) 
