@@ -73,7 +73,7 @@
 										title="{% trans 'Register Seminar Kain Kafan Yesus 2023' %}" 
 										data-original-title="{% trans 'Register Seminar Kain Kafan Yesus 2023' %}"
                                  		type="button"
-                                 		onclick='update_guestbook_attended("{{ object.name.upper }}","{% url 'staffs:guestbook_attended' object.pk %}")'
+                                 		onclick='update_guestbook_attended("{{ object.name.upper }}","{% url 'staffs:guestbook_attended' 1 %}")'
                                  		>
                                  		<span class="btn-label">
                                  			<i class="icon-pencil"></i>
