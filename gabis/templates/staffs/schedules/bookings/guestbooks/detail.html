@@ -82,9 +82,9 @@
                                                                 &nbsp;&nbsp;<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small><br>
                                                                 &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> <br><br>
                                                                 {% if object.attended %}
-                                                                	{% trans "Have attended"%}
+                                                                	&nbsp;&nbsp;{% trans "Have attended"%}
                                                                 {% else %}
-	                                                                <button 
+	                                                                &nbsp;&nbsp;<button 
 							                                     		class="btn btn-outline-success waves-effect waves-light"
 							                                     		data-toggle="tooltip" 
 						    											data-placement="bottom" 
