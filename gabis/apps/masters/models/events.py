@@ -19,7 +19,10 @@ from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkun
 log = logging.getLogger(__name__)
 
 WEEKDAY = (_("Monday"),  _("Tuesday"),  _("Wednesday"),
-            _("Thursday"), _("Friday"),  _("Saturday"), _("Sunday"));
+            _("Thursday"), _("Friday"),  _("Saturday"), _("Sunday"))
+
+SEMINAR_EVENT = "Seminar Kain Kafan Yesus 2023"
+ZIARAH_ENVENT = "Ziarah Kain Kafan Yesus 2023"
 
 class Event(TimeStampedModel):
     """Event"""
@@ -145,26 +148,27 @@ class TimeEvent(TimeStampedModel):
         return len(gb)
     
     @property
-    def total_guest_book_gabriel(self):
+    def total_guest_book_seminar_gabriel(self):
         from gabis.apps.schedules.models.guestbooks import GuestBook
-        gb = GuestBook.objects.filter(time_event=self,
+        gb = GuestBook.objects.filter(time_event__event__name=SEMINAR_EVENT,
                                       paroki__name="St Gabriel Pulo Gebang")
         return len(gb)
     
     @property
-    def total_guest_book_others(self):
+    def total_guest_book_seminar_others(self):
         from gabis.apps.schedules.models.guestbooks import GuestBook
-        gb = GuestBook.objects.filter(time_event=self).exclude(
+        gb = GuestBook.objects.filter(time_event__event__name=SEMINAR_EVENT).exclude(
                                       paroki__name="St Gabriel Pulo Gebang")
         return len(gb)
     
     @property
-    def available_guest_book_gabriel(self):
-        return (450 - self.total_guest_book_gabriel)
+    def available_guest_book_seminar_gabriel(self):
+        return (450 - self.total_guest_book_seminar_gabriel)
     
     @property
-    def available_guest_book_others(self):
-        return (50 - self.total_guest_book_others)
+    def available_guest_book_seminar_others(self):
+        return (50 - self.total_guest_book_seminar_others)
+    
     
     @property
     def color(self):

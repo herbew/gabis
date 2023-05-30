@@ -2,6 +2,9 @@
 from __future__ import unicode_literals, absolute_import
 
 import logging
+import pytz
+
+from datetime import datetime, timedelta
 
 from django.db import models
 
@@ -17,6 +20,10 @@ from gabis.apps.masters.models.events import TimeEvent
 from gabis.apps.schedules.models.bookings import BookingTimeEvent
 
 log = logging.getLogger(__name__)
+
+SEMINAR_EVENT = "Seminar Kain Kafan Yesus 2023"
+ZIARAH_ENVENT = "Ziarah Kain Kafan Yesus 2023"
+
 
 class GuestBook(TimeStampedModel):
     """GuestBook"""
@@ -101,6 +108,43 @@ class GuestBook(TimeStampedModel):
     def __str__(self):
         return "%s %s:%s-%s" % (self.time_event, self.wilayah, self.lingkungan, self.nik)
     
+    @property
+    def object_attend_seminar(self):
+        try:
+            gb = GuestBook.objects.get(token=self.token, 
+                time_event__event__name=SEMINAR_EVENT)
+            return gb
+        except:
+            return None
+        
+    @property
+    def total_seminar_available(self):
+        if self.paroki.name in ("St Gabriel Pulo Gebang",):
+            return self.time_event.available_guest_book_seminar_gabriel
+        else:
+            return self.available_guest_book_seminar_others
+        
+    @property
+    def seminar_available(self):
+        if self.object_attend_seminar:
+            return False
+        
+        te = TimeEvent.objects.filter(event__name=SEMINAR_EVENT)
+        tz = pytz.timezone("Asia/Jakarta")
+        d_now = tz.localize(datetime.now())
+        
+        if te and te.end_time >= d_now:
+            return False
+        
+        if self.paroki.name in ("St Gabriel Pulo Gebang",):
+            if self.time_event.available_guest_book_seminar_gabriel <= 0:
+                return False
+        else:
+            if self.available_guest_book_seminar_others <= 0:
+                return False
+            
+        return True
+        
         
     def get_user_update(self):
         return self._user_update
