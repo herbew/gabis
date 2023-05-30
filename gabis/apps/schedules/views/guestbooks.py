@@ -28,7 +28,7 @@ from gabis.apps.schedules.models.bookings import BookingTimeEvent
 from gabis.apps.schedules.models.guestbooks import GuestBook
 from gabis.apps.schedules.forms.guestbooks import (GuestBookForm, 
                                                    GuestBookFilterForm,
-                                                   TokenBookFilterForm)
+                                                   TokenFilterForm)
 
 
 log = logging.getLogger(__name__)
