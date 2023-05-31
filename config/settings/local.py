@@ -15,7 +15,7 @@ ALLOWED_HOSTS = [
     "0.0.0.0",
     "127.0.0.1",
     ".vercel.app",
-] + IP_DEVELOPMENT + HP_DEVELOPMENT
+] + IP_DEVELOPMENT #+ HP_DEVELOPMENT
 
 # CACHES
 # ------------------------------------------------------------------------------

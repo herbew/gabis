@@ -87,6 +87,7 @@ class GuestBook(TimeStampedModel):
         _("PIN of Guest"), max_length=64, 
         null=True, blank=True)
     
+    paid = models.BooleanField(default=False)
     attended = models.BooleanField(default=False) #This for payment verification
     
     user_update = models.CharField(

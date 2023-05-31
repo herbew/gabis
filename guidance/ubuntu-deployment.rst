@@ -110,6 +110,7 @@ git clone https://herbew@bitbucket.org/8campus/static33.git static
 cp -Rf static gabis/gabis
 
 #sudo ln -s /home/herbew/gabis /opt/gabis
+sudo ln -s /root/gabis /opt/gabis
 python3 -m venv envgabis
   
 source envgabis/bin/activate
