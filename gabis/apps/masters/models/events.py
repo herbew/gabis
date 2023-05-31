@@ -135,11 +135,11 @@ class TimeEvent(TimeStampedModel):
     
     @property
     def calendar_start_time_string(self):
-        return datetime.strftime(self.start_time, "%Y-%m-%dT%H:%M:%S")
+        return datetime.strftime(self.start_time+7, "%Y-%m-%dT%H:%M:%S")
     
     @property
     def calendar_end_time_string(self):
-        return datetime.strftime(self.end_time, "%Y-%m-%dT%H:%M:%S")
+        return datetime.strftime(self.end_time+7, "%Y-%m-%dT%H:%M:%S")
     
     @property
     def total_guest_book(self):
