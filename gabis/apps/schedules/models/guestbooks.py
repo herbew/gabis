@@ -141,7 +141,7 @@ class GuestBook(TimeStampedModel):
             if self.time_event.available_guest_book_seminar_gabriel <= 0:
                 return False
         else:
-            if self.available_guest_book_seminar_others <= 0:
+            if self.time_event.available_guest_book_seminar_others <= 0:
                 return False
             
         return True
