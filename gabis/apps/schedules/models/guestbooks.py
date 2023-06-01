@@ -134,7 +134,7 @@ class GuestBook(TimeStampedModel):
         tz = pytz.timezone("Asia/Jakarta")
         d_now = tz.localize(datetime.now())
         
-        if te and te.end_time[0] >= d_now:
+        if te and te[0].end_time >= d_now:
             return False
         
         if self.paroki.name in ("St Gabriel Pulo Gebang",):
