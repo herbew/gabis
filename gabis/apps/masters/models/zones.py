@@ -83,7 +83,7 @@ class Paroki(TimeStampedModel):
         self._user_update = None
 
     def __str__(self):
-        return "%s:%s" % (self.name, self.keuskupan)
+        return "%s" % (self.name)
     
 
     def get_user_update(self):
@@ -130,7 +130,7 @@ class Wilayah(TimeStampedModel):
         self._user_update = None
 
     def __str__(self):
-        return "%s:%s" % (self.name, self.paroki)
+        return "%s" % (self.name)
     
 
     def get_user_update(self):
@@ -178,7 +178,7 @@ class Lingkungan(TimeStampedModel):
         self._user_update = None
 
     def __str__(self):
-        return "%s:%s" % (self.name, self.wilayah)
+        return "%s" % (self.name)
     
 
     def get_user_update(self):
