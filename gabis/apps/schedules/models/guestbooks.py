@@ -123,7 +123,7 @@ class GuestBook(TimeStampedModel):
         if self.paroki.name in ("St Gabriel Pulo Gebang",):
             return self.time_event.available_guest_book_seminar_gabriel
         else:
-            return self.available_guest_book_seminar_others
+            return self.time_event.available_guest_book_seminar_others
         
     @property
     def seminar_available(self):
@@ -134,7 +134,7 @@ class GuestBook(TimeStampedModel):
         tz = pytz.timezone("Asia/Jakarta")
         d_now = tz.localize(datetime.now())
         
-        if te and te[0].end_time >= d_now:
+        if te and te[0].end_time <= d_now:
             return False
         
         if self.paroki.name in ("St Gabriel Pulo Gebang",):
