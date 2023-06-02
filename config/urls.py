@@ -20,7 +20,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path("accounts/", include("allauth.urls", namespace='accounts')),
+    path("accounts/", include("allauth.urls")),
      
      # Oh no, i did't know where is the setting path this url address.. dump
     path("accounts/login/None/", 
