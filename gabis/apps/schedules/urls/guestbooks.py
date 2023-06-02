@@ -13,5 +13,7 @@ urlpatterns = [
         view=guestbooks.GuestBookDetailListView.as_view(),
         name="guestbook_detail"),
     
-    
+    path("seminar/<int:pk_guest_book>/create/", 
+        view=guestbooks.SeminarGuestView.as_view(),
+        name="seminar_create"),
     ]

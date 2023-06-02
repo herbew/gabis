@@ -33,6 +33,8 @@ from gabis.apps.schedules.forms.guestbooks import (GuestBookForm,
 
 log = logging.getLogger(__name__)
 
+SEMINAR_EVENT = "Seminar Kain Kafan Yesus 2023"
+ZIARAH_ENVENT = "Ziarah Kain Kafan Yesus 2023"
 
 class GuestBookListView(LoginRequiredMixin,  
                      ListView):
@@ -489,3 +491,64 @@ class AttendGuestView(View):
         messages.success(request, _("%r have been attended!." % obj))
         
         return JsonResponse(self.get_success_url()) 
+
+class SeminarGuestView(View):
+    model = GuestBook
+    process = "schedules_guest_book" 
+    
+    def get_success_url(self):
+        obj = self.get_object()
+        return "%s?params=%d" % (
+            reverse_lazy('schedules:guestbook_detail'), obj.id)
+    
+    def get_params_url(self):
+        pass
+        
+    def set_params_url(self, semester):
+        pass
+        
+    def get_object(self):
+        pk_guest_book = self.kwargs.get('pk_guest_book',None)
+        
+        guest_book = get_object_or_404(self.model, pk=pk_guest_book)
+        
+        return guest_book
+    
+    def post(self, request, *args, **kwargs):
+        
+        # Get Params URL
+        obj = self.get_object()
+        
+        
+        seminar_te = TimeEvent.objects.filter(
+            event__name=SEMINAR_EVENT,
+            event__active=True)
+        
+        if seminar_te:
+            seminar_te = seminar_te[0]
+            
+            gb_seminar, created = GuestBook.objects.get_or_create(
+                time_event=seminar_te, nik=obj.nik,
+                defaults=dict(
+                    keuskupan=obj.keuskupan,
+                    paroki=obj.paroki,
+                    wilayah=obj.wilayah,
+                    lingkungan=obj.lingkungan,
+                    name=obj.name,
+                    gender=obj.gender,
+                    age=obj.age,
+                    email=obj.email,
+                    pin=obj.pin)
+                )
+            
+            gb_seminar.user_updated = "System"
+            gb_seminar.save()
+            messages.success(request, _("%r have been successfully registered!." % gb_seminar))
+        else:
+            messages.error(request, _("No Seminar Event, Please contact to Admin!."))
+        
+        return JsonResponse(self.get_success_url())     
+    
+    
+    
+    
