@@ -181,7 +181,7 @@
 {% block breadcrumb %}
 	<nav class="breadcrumb text-right">
 	    <span class="breadcrumb-item active">{% trans "Event" %} <small>{{event_title}}</small>
-	    </span> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{{ login_url }}">{% trans "Sign In" %}</a>
+	    </span> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{% url 'accounts:account_login' %}">{% trans "Sign In" %}</a>
 	    
 	</nav>
 {% endblock breadcrumb %}
