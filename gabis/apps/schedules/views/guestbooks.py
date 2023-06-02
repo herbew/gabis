@@ -547,7 +547,7 @@ class SeminarGuestView(View):
         else:
             messages.error(request, _("No Seminar Event, Please contact to Admin!."))
         
-        return JsonResponse(self.get_success_url())     
+        return JsonResponse(self.get_success_url(), safe=False)     
     
     
     
