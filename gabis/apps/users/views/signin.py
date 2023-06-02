@@ -43,7 +43,18 @@ class SignUpRedirectView(LoginRequiredMixin, RedirectView):
 signup_redirect = SignUpRedirectView.as_view()
 
 
+class UserSigninView(LoginRequiredMixin, RedirectView):
+    permanent = False
 
+    def get_redirect_url(self):
+        if self.request.user.types in ('001',):
+            # return reverse_lazy("staffs:master_company_list")
+            return
+        
+        logout(self.request)
+        return reverse_lazy("account_login")
+        
+login_redirect = UserSigninView.as_view()
 
 
 

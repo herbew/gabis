@@ -31,6 +31,9 @@ urlpatterns += i18n_patterns(
     path("accounts/profile/", signin.signup_redirect, name='signup_redirect' ),
     path("accounts/login/None/", 
         signin.redirect, name='redirect'),
+    path("accounts/login/", 
+        signin.login_redirect, name='login_redirect'),
+    
          
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
