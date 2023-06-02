@@ -6,6 +6,9 @@
 {% load avatar_tags %}
 {% load utility_tags %}
 {% load tz %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+{% load static %}
 
 {% block extra_head %}
 	{% get_current_language as LANGUAGE_CODE %}
@@ -178,7 +181,7 @@
 {% block breadcrumb %}
 	<nav class="breadcrumb text-right">
 	    <span class="breadcrumb-item active">{% trans "Event" %} <small>{{event_title}}</small>
-	    </span> | <a href="accounts/login/">{% trans "Sign In" %}</a>
+	    </span> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{{ login_url }}">{% trans "Sign In" %}</a>
 	    
 	</nav>
 {% endblock breadcrumb %}
