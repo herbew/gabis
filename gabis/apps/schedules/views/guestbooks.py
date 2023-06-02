@@ -488,7 +488,7 @@ class AttendGuestView(View):
         obj = self.get_object()
         obj.attended = True
         obj.save()
-        messages.success(request, _("%r have been attended!." % obj))
+        messages.success(request, _("%r have been attended!." % obj.name))
         
         return JsonResponse(self.get_success_url()) 
 
@@ -543,7 +543,7 @@ class SeminarGuestView(View):
             
             gb_seminar.user_updated = "System"
             gb_seminar.save()
-            messages.success(request, _("%r have been successfully registered!." % gb_seminar))
+            messages.success(request, _("%r have been successfully registered!." % gb_seminar.name))
         else:
             messages.error(request, _("No Seminar Event, Please contact to Admin!."))
         

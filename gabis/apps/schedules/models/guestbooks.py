@@ -112,7 +112,7 @@ class GuestBook(TimeStampedModel):
     @property
     def object_attend_seminar(self):
         try:
-            gb = GuestBook.objects.get(token=self.token, 
+            gb = GuestBook.objects.get(pin=self.pin, 
                 time_event__event__name=SEMINAR_EVENT)
             return gb
         except:

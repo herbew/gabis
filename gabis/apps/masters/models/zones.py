@@ -18,6 +18,10 @@ class Keuskupan(TimeStampedModel):
     name = models.CharField(
         _("Name"), unique=True, max_length=100, db_index=True)
     
+    ordered = models.IntegerField( 
+            _("Ordered"), default=0,
+            help_text = _("Displaying keuskupan in ordered."))
+    
     user_update = models.CharField(
             max_length=30,
             blank=True, null=True,
@@ -59,6 +63,10 @@ class Paroki(TimeStampedModel):
     name = models.CharField(
         _("Name"), max_length=255, db_index=True)
     
+    ordered = models.IntegerField( 
+            _("Ordered"), default=0,
+            help_text = _("Displaying paroki in ordered."))
+    
     user_update = models.CharField(
             max_length=30,
             blank=True, null=True,
@@ -75,7 +83,7 @@ class Paroki(TimeStampedModel):
         self._user_update = None
 
     def __str__(self):
-        return "%s" % (self.name)
+        return "%s:%s" % (self.name, self.keuskupan)
     
 
     def get_user_update(self):
@@ -104,7 +112,7 @@ class Wilayah(TimeStampedModel):
     
     ordered = models.IntegerField( 
             _("Ordered"), default=0,
-            help_text = _("Displaying genre in ordered."))
+            help_text = _("Displaying wilayah in ordered."))
     
     user_update = models.CharField(
             max_length=30,
@@ -122,7 +130,7 @@ class Wilayah(TimeStampedModel):
         self._user_update = None
 
     def __str__(self):
-        return "%s" % (self.name)
+        return "%s:%s" % (self.name, self.paroki)
     
 
     def get_user_update(self):
@@ -150,6 +158,10 @@ class Lingkungan(TimeStampedModel):
     name = models.CharField(
         _("Name"), max_length=255, db_index=True)
     
+    ordered = models.IntegerField( 
+            _("Ordered"), default=0,
+            help_text = _("Displaying lingkungan in ordered."))
+    
     user_update = models.CharField(
             max_length=30,
             blank=True, null=True,
@@ -166,7 +178,7 @@ class Lingkungan(TimeStampedModel):
         self._user_update = None
 
     def __str__(self):
-        return "%s" % (self.name)
+        return "%s:%s" % (self.name, self.wilayah)
     
 
     def get_user_update(self):
