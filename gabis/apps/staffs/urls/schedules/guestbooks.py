@@ -12,5 +12,9 @@ urlpatterns = [
     path("guestbook/<int:pk_guest_book>/attended/", 
         view=guestbooks.AttendGuestView.as_view(),
         name="guestbook_attended"),
+    path("guestbook/<int:pk_guest_book>/paid/", 
+        view=guestbooks.PayGuestView.as_view(),
+        name="guestbook_paid"),
+    
     
     ]

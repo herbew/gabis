@@ -101,9 +101,33 @@
                                                                 &nbsp;&nbsp;<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small><br>
                                                                 &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> <br><br>
                                                                 {% if object.attended %}
-                                                                	&nbsp;&nbsp;{% trans "Have attended"%}
+                                                                	&nbsp;&nbsp;
+                                                                	{% if object.paid %}
+                                                                		{% trans "Have paid and"%}&nbsp;
+                                                                	{% endif %}
+                                                                	{% trans "Have attended"%}
                                                                 {% else %}
-	                                                                &nbsp;&nbsp;<button 
+	                                                                &nbsp;&nbsp;
+	                                                                {% if object.object_attend_seminar %}
+	                                                                	{% if object.paid %}
+	                                                                	{% else %}
+		                                                                	<button 
+									                                     		class="btn btn-outline-primary waves-effect waves-light"
+									                                     		data-toggle="tooltip" 
+								    											data-placement="bottom" 
+								    											title="{% trans 'Payment' %} {{ object.name }}" 
+								    											data-original-title="{% trans 'Payment' %} {{ object.name }}"
+									                                     		type="button"
+									                                     		onclick='update_seminar_paid("{{ object.name.upper }}","{% url 'staffs:guestbook_paid' object.pk %}")'
+									                                     		>
+									                                     		<span class="btn-label">
+									                                     			<i class="icon-pencil"></i>
+									                                     		</span> {% trans "Payment" %}
+									                                     	</button>
+								                                     	{% endif %}
+	                                                                {% endif %}
+	                                                                
+	                                                                <button 
 							                                     		class="btn btn-outline-success waves-effect waves-light"
 							                                     		data-toggle="tooltip" 
 						    											data-placement="bottom" 
@@ -290,5 +314,74 @@
 	              }
 	        });
 	    }
+	    
+	    
+	    //======================================================================
+		//Update GuestBook Paid
+		//INPUT name, url
+		//OUTPUT redirect staffs:seminar_detail
+		//======================================================================
+		function update_seminar_paid(name, url) {
+	        swal(
+	            {
+	              title:'{% trans "UPDATE SEMINAR PAYMENT" %}',
+	              text: '{% trans "Are you sure to update data" %} '+name+" ?",
+	              type:'warning',
+	              showCancelButton:true,
+	              confirmButtonColor:'#3085d6',
+	              cancelButtonColor:'#d33',
+	              confirmButtonText:'{% trans "Yes, update it" %}',
+	              cancelButtonText:'{% trans "No, cancel it" %}',
+	              confirmButtonClass:'btn btn-success',
+	              cancelButtonClass:'btn btn-default',
+	              buttonsStyling: false
+	            }).then(function (result) {
+	            if (result.value) {
+	            	var data = {
+                    	 	csrfmiddlewaretoken: '{{ csrf_token }}'
+                    	 	};
+	            	  
+	                swal({
+	                        title:'{% trans "UPDATED" %}',
+	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully update it!" %}.',
+	                        type:'success'
+	                        }).then(function (r){
+	                        	swal({
+	   	              		         position: 'top-end',
+	   	              		         type:'warning',
+	   	              		         html:'<div><div><h3>{% trans "UPDATE SEMINAR PAID"%}</h3></div><div><label>{% trans "The updating data on progress .." %}</label></div></div>',
+	   	              		       });
+	                        	
+	                        	swal.showLoading();
+	                        	$.ajax({
+	                        		
+		                              url:url,
+		                              type:"POST",
+		                              data:data,
+		                              dataType: "json",
+		                              success: function(data) {
+		                            	  if (data.status==200){
+		                            		  window.location.href=data.url;
+		                            	  }
+		                            	  
+		                              },
+		                              error: function(data){
+		                                  console.log(data);
+		                              }
+		                          });
+	                        });
+	                        
+	              // result.dismiss can be 'cancel', 'overlay',
+	              // 'close', and 'timer'
+	              } else if (result.dismiss === 'cancel') {
+	                swal(
+	                  '{% trans "CANCEL" %}',
+	                  '{% trans "The update data" %} '+name+', {% trans "have been canceled!" %}.',
+	                  'error'
+	                )
+	              }
+	        });
+	    }
+	    
 	</script>
 {% endblock extra_js %}
