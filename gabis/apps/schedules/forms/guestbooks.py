@@ -12,6 +12,7 @@ from django.template.defaultfilters import filesizeformat
 
 from django.forms.widgets import NumberInput
 
+from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkungan)
 from gabis.apps.schedules.models.guestbooks import GuestBook
 
 log = logging.getLogger(__name__)
@@ -41,6 +42,7 @@ class GuestBookForm(forms.ModelForm):
         self.fields["keuskupan"].label =  mark_safe(
                         "%s <font color=red size=4.5em>*</font>" % 
                         self.fields['keuskupan'].label)
+        self.fields['keuskupan'].queryset = Keuskupan.objects.all().order_by("ordered")
         self.fields['keuskupan'].empty_label = _("Select Keuskupan ---")
         self.fields['keuskupan'].widget.attrs.update(
                 {'onchange':'paroki_on_changed()'})

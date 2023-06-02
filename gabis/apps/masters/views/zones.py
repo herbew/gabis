@@ -41,7 +41,7 @@ class AjaxPostParokiView(View):
             
         paroki = Paroki.objects.filter(
             keuskupan__id=pk_keuskupan
-            ).order_by("keuskupan__name", "name")
+            ).order_by("keuskupan__name", "ordered")
         
         
         
@@ -150,7 +150,7 @@ class AjaxPostLingkunganView(View):
             
         lingkungan = Lingkungan.objects.filter(
             wilayah__id=pk_wilayah
-            ).order_by("wilayah__name", "name")
+            ).order_by("wilayah__name", "ordered")
         
         
         
