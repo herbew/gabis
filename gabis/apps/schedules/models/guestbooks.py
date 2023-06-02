@@ -119,6 +119,12 @@ class GuestBook(TimeStampedModel):
             return None
         
     @property
+    def object_is_seminar(self):
+        if self.time_event.event.name == SEMINAR_EVENT:
+            return True
+        return False
+        
+    @property
     def total_seminar_available(self):
         if self.paroki.name in ("St Gabriel Pulo Gebang",):
             return self.time_event.available_guest_book_seminar_gabriel
