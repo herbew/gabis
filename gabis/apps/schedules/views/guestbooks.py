@@ -544,10 +544,14 @@ class SeminarGuestView(View):
             gb_seminar.user_updated = "System"
             gb_seminar.save()
             messages.success(request, _("%r have been successfully registered!." % gb_seminar.name))
+            url =  "%s?params=%d" % (
+            reverse_lazy('schedules:guestbook_detail'), gb_seminar.id)
         else:
             messages.error(request, _("No Seminar Event, Please contact to Admin!."))
-        
-        return JsonResponse(self.get_success_url(), safe=False)     
+            url =  "%s?params=%d" % (
+            reverse_lazy('schedules:guestbook_detail'), obj.id)
+            
+        return JsonResponse(url)     
     
     
 class PayGuestView(View):
