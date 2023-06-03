@@ -490,8 +490,8 @@ class AttendGuestView(View):
         obj.save()
         messages.success(request, _("%r have been attended!." % obj.name))
         
-        return JsonResponse(dict(status=200, url=self.get_success_url()))
-        #return JsonResponse(self.get_success_url()) 
+        #return JsonResponse(dict(status=200, url=self.get_success_url()))
+        return JsonResponse(self.get_success_url()) 
 
 class SeminarGuestView(View):
     model = GuestBook
@@ -592,8 +592,8 @@ class SeminarGuestView(View):
             url =  "%s?params=%d" % (
             reverse_lazy('schedules:guestbook_detail'), obj.id)
             
-        #return JsonResponse(url)   
-        return JsonResponse(dict(status=200, url=url))  
+        return JsonResponse(url)   
+        #return JsonResponse(dict(status=200, url=url))  
     
     
 class PayGuestView(View):
@@ -624,6 +624,6 @@ class PayGuestView(View):
         obj.save()
         messages.success(request, _("%r have been paid!." % obj.name))
         
-        return JsonResponse(dict(status=200, url=self.get_success_url()))
-        #return JsonResponse(self.get_success_url()) 
+        #return JsonResponse(dict(status=200, url=self.get_success_url()))
+        return JsonResponse(self.get_success_url()) 
     
