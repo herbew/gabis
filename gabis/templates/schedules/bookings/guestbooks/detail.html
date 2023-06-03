@@ -61,7 +61,7 @@
                         	</div>
                         	<div class="ibox-content">
                         		{% trans "Please save and remember your TOKEN number" %}<br>
-                                {% qr_from_text "{{guest_book.url_guestbook_staff}}" size="t" image_format="png" error_correction="t" %}<br>
+                                {% qr_from_text "{{ guest_book.url_guestbook_staff }}" size="t" image_format="png" error_correction="t" %}<br>
                                 <h3 style="color:red;">{{ guest_book.pin }}</h3>
                         		{% if guest_book.seminar_available %}
                         			<b><h3>{% trans 'You have the opportunity to attend the seminar' %}</h3></b><br>
