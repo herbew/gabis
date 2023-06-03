@@ -75,7 +75,7 @@
                                  		type="button"
                                  		onclick='add_guestbook_seminar("{{ guest_book.time_event.event.name.upper }}","{% url 'schedules:seminar_create' guest_book.id %}")'
                                  		>
-                                 		{% trans "Register Seminar" %}
+                                 		{% trans "Booking Seminar" %}
                                  	</button><br><br>
                         		{% endif %}
                                 <small>{% trans "If any question please contact" %}<br><b>Ibu Betty +62 815-6751-412</b></small>
@@ -145,8 +145,8 @@
 		function add_guestbook_seminar(name, url) {
 	        swal(
 	            {
-	              title:'{% trans "REGISTER SEMINAR" %}',
-	              text: '{% trans "Are you sure to register" %} '+name+" ?",
+	              title:'{% trans "BOOKING SEMINAR" %}',
+	              text: '{% trans "Are you sure to book" %} '+name+" ?",
 	              type:'warning',
 	              showCancelButton:true,
 	              confirmButtonColor:'#3085d6',
@@ -162,14 +162,14 @@
                     	 	csrfmiddlewaretoken: '{{ csrf_token }}'
                     	 	};
 	                swal({
-	                        title:'{% trans "REGISTERED" %}',
-	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully register it!" %}.',
+	                        title:'{% trans "BOOKED" %}',
+	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully book it!" %}.',
 	                        type:'success'
 	                        }).then(function (r){
 	                        	swal({
 	   	              		         position: 'top-end',
 	   	              		         type:'warning',
-	   	              		         html:'<div><div><h3>{% trans "REGISTER SEMINAR"%}</h3></div><div><label>{% trans "The registering data on progress .." %}</label></div></div>',
+	   	              		         html:'<div><div><h3>{% trans "BOOKING SEMINAR"%}</h3></div><div><label>{% trans "The registering data on progress .." %}</label></div></div>',
 	   	              		       });
 	                        	
 	                        	swal.showLoading();
@@ -196,7 +196,7 @@
 	              } else if (result.dismiss === 'cancel') {
 	                swal(
 	                  '{% trans "CANCEL" %}',
-	                  '{% trans "The register data" %} '+name+', {% trans "have been canceled!" %}.',
+	                  '{% trans "The booking data" %} '+name+', {% trans "have been canceled!" %}.',
 	                  'error'
 	                )
 	              }
