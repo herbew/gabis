@@ -1,6 +1,7 @@
 {% extends "staffs/schedules/base.html" %}
 {% load static %}
 {% load i18n %}
+{% load qr_code %}
 
 {% block extra_head %}
     <link href="{% static 'sweetalert2/css/sweetalert2.css' %}" rel="stylesheet"/>
@@ -59,7 +60,8 @@
                         		<small>{% trans "You have been successfully registered for event" %} {{guest_book.time_event.event.name}}</small>
                         	</div>
                         	<div class="ibox-content">
-                        		{% trans "Please save and remember your TOKEN number" %}
+                        		{% trans "Please save and remember your TOKEN number" %}<br>
+                        		{% qr_from_text "{{guest_book.url_guestbook_staff}}" size="t" image_format="png" error_correction="t" %}<br>
                         		<h1 style="color:red;">{{ guest_book.pin }}</h1>
                         		
                         		{% if guest_book.seminar_available %}
