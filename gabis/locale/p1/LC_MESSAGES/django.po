@@ -20,44 +20,44 @@ msgstr ""
 #: gabis/apps/masters/models/events.py:21
 #: gabis/templates/schedules/bookings/events/list.html:93
 msgid "Monday"
-msgstr ""
+msgstr "Senin"
 
 #: gabis/apps/masters/models/events.py:21
 #: gabis/templates/schedules/bookings/events/list.html:94
 msgid "Tuesday"
-msgstr ""
+msgstr "Selasa"
 
 #: gabis/apps/masters/models/events.py:21
 #: gabis/templates/schedules/bookings/events/list.html:95
 msgid "Wednesday"
-msgstr ""
+msgstr "Rabu"
 
 #: gabis/apps/masters/models/events.py:22
 #: gabis/templates/schedules/bookings/events/list.html:96
 msgid "Thursday"
-msgstr ""
+msgstr "Kamis"
 
 #: gabis/apps/masters/models/events.py:22
 #: gabis/templates/schedules/bookings/events/list.html:97
 msgid "Friday"
-msgstr ""
+msgstr "Jum'at"
 
 #: gabis/apps/masters/models/events.py:22
 #: gabis/templates/schedules/bookings/events/list.html:98
 msgid "Saturday"
-msgstr ""
+msgstr "Sabtu"
 
 #: gabis/apps/masters/models/events.py:22
 #: gabis/templates/schedules/bookings/events/list.html:92
 msgid "Sunday"
-msgstr ""
+msgstr "Minggu"
 
 #: gabis/apps/masters/models/events.py:31 gabis/apps/masters/models/zones.py:60
 #: gabis/apps/schedules/forms/guestbooks.py:41
 #: gabis/apps/schedules/models/bookings.py:31
 #: gabis/apps/schedules/models/guestbooks.py:44
 msgid "Keuskupan"
-msgstr ""
+msgstr "Keuskupan"
 
 #: gabis/apps/masters/models/events.py:36
 #: gabis/apps/masters/models/zones.py:107
@@ -67,7 +67,7 @@ msgstr ""
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:18
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:18
 msgid "Paroki"
-msgstr ""
+msgstr "Paroki"
 
 #: gabis/apps/masters/models/events.py:40 gabis/apps/masters/models/zones.py:19
 #: gabis/apps/masters/models/zones.py:64 gabis/apps/masters/models/zones.py:111
@@ -75,7 +75,7 @@ msgstr ""
 #: gabis/apps/schedules/forms/guestbooks.py:78
 #: gabis/apps/schedules/models/guestbooks.py:68 gabis/apps/users/forms.py:36
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 #: gabis/apps/masters/models/events.py:80
 #: gabis/apps/masters/models/events.py:216
@@ -84,62 +84,62 @@ msgstr ""
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:91
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:93
 msgid "Event"
-msgstr ""
+msgstr "Kegiatan"
 
 #: gabis/apps/masters/models/events.py:87 gabis/apps/masters/models/zones.py:22
 #: gabis/apps/masters/models/zones.py:67 gabis/apps/masters/models/zones.py:114
 #: gabis/apps/masters/models/zones.py:162
 msgid "Ordered"
-msgstr ""
+msgstr "Diurutkan"
 
 #: gabis/apps/masters/models/events.py:88
 msgid "Displaying event in ordered."
-msgstr ""
+msgstr "Menampilkan Kegiatan berurut"
 
 #: gabis/apps/masters/models/events.py:91
 msgid "Maximum Guests"
-msgstr ""
+msgstr "Tamu Maksimum"
 
 #: gabis/apps/masters/models/events.py:134
 msgid "Kloter"
-msgstr ""
+msgstr "Kloter"
 
 #: gabis/apps/masters/models/events.py:207
 msgid "Nomor Induk Kependudukan Nasional"
-msgstr ""
+msgstr "Nomor Induk Kependudukan Nasional"
 
 #: gabis/apps/masters/models/events.py:211
 msgid "PIC Event Name"
-msgstr ""
+msgstr "Nama PIC Kegiatan"
 
 #: gabis/apps/masters/models/events.py:220
 msgid "Position"
-msgstr ""
+msgstr "Posisi"
 
 #: gabis/apps/masters/models/events.py:224
 #: gabis/apps/schedules/models/bookings.py:58
 #: gabis/apps/schedules/models/guestbooks.py:81
 msgid "Email"
-msgstr ""
+msgstr "Surel"
 
 #: gabis/apps/masters/models/events.py:227
 #: gabis/apps/schedules/models/bookings.py:61
 #: gabis/apps/schedules/models/guestbooks.py:84
 #: gabis/apps/users/models/users.py:58
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 #: gabis/apps/masters/models/zones.py:23
 msgid "Displaying keuskupan in ordered."
-msgstr ""
+msgstr "Menampilkan keuskupan berurut"
 
 #: gabis/apps/masters/models/zones.py:68
 msgid "Displaying paroki in ordered."
-msgstr ""
+msgstr "Menampilkan paroki berurut"
 
 #: gabis/apps/masters/models/zones.py:115
 msgid "Displaying wilayah in ordered."
-msgstr ""
+msgstr "Menampilkan wilayah berurut"
 
 #: gabis/apps/masters/models/zones.py:155
 #: gabis/apps/schedules/forms/guestbooks.py:56
@@ -148,53 +148,53 @@ msgstr ""
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:17
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:17
 msgid "Wilayah"
-msgstr ""
+msgstr "Wilayah"
 
 #: gabis/apps/masters/models/zones.py:163
 msgid "Displaying lingkungan in ordered."
-msgstr ""
+msgstr "Menampilkan lingkungan berurut"
 
 #: gabis/apps/masters/views/zones.py:49
 #: gabis/apps/schedules/forms/guestbooks.py:54
 msgid "Select Paroki ---"
-msgstr ""
+msgstr "Memilih Paroki ---"
 
 #: gabis/apps/masters/views/zones.py:51
 msgid "All Paroki ---"
-msgstr ""
+msgstr "Semua Paroki ---"
 
 #: gabis/apps/masters/views/zones.py:53
 msgid "No Paroki !"
-msgstr ""
+msgstr "Tidak Ada Paroki !"
 
 #: gabis/apps/masters/views/zones.py:103
 #: gabis/apps/schedules/forms/guestbooks.py:60
 msgid "Select Wilayah ---"
-msgstr ""
+msgstr "Memilih Wilayah ---"
 
 #: gabis/apps/masters/views/zones.py:105
 msgid "All Wilayah ---"
-msgstr ""
+msgstr "Semua Wilayah ---"
 
 #: gabis/apps/masters/views/zones.py:107
 msgid "No Wilayah !"
-msgstr ""
+msgstr "Tidak Ada Wilayah !"
 
 #: gabis/apps/masters/views/zones.py:158
 msgid "Select Lingkungan ---"
-msgstr ""
+msgstr "Memilih Lingkungan ---"
 
 #: gabis/apps/masters/views/zones.py:160
 msgid "All Lingkungan ---"
-msgstr ""
+msgstr "Semua Lingkungan ---"
 
 #: gabis/apps/masters/views/zones.py:162
 msgid "No Lingkungan !"
-msgstr ""
+msgstr "Tidak Ada Lingkungan !"
 
 #: gabis/apps/schedules/forms/guestbooks.py:46
 msgid "Select Keuskupan ---"
-msgstr ""
+msgstr "Memilih Keuskupan ---"
 
 #: gabis/apps/schedules/forms/guestbooks.py:62
 #: gabis/apps/schedules/models/bookings.py:46
@@ -202,205 +202,206 @@ msgstr ""
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:17
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:17
 msgid "Lingkungan"
-msgstr ""
+msgstr "Lingkungan"
 
 #: gabis/apps/schedules/forms/guestbooks.py:67
 msgid "Identity Number"
-msgstr ""
+msgstr "Nomor Identitas"
 
 #: gabis/apps/schedules/forms/guestbooks.py:71
 msgid "NIK or NIS or Mobile Phone Number!"
-msgstr ""
+msgstr "NIK atau NIS atau Nomor HP!"
 
 #: gabis/apps/schedules/forms/guestbooks.py:83
 #: gabis/apps/schedules/models/guestbooks.py:72
 #: gabis/apps/users/models/users.py:48
 msgid "Gender"
-msgstr ""
+msgstr "Jenis Kelamin"
 
 #: gabis/apps/schedules/forms/guestbooks.py:88 gabis/apps/users/forms.py:39
 msgid "Select Gender ---"
-msgstr ""
+msgstr "Memilih Jenis Kelamin ---"
 
 #: gabis/apps/schedules/forms/guestbooks.py:91
 #: gabis/apps/schedules/models/guestbooks.py:78
 msgid "Age"
-msgstr ""
+msgstr "Umur"
 
 #: gabis/apps/schedules/forms/guestbooks.py:97
 msgid "Mobile Number"
-msgstr ""
+msgstr "Nomor HP"
 
 #: gabis/apps/schedules/forms/guestbooks.py:115
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Masukan alamat surel yang benar"
 
 #: gabis/apps/schedules/forms/guestbooks.py:129
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: gabis/apps/schedules/forms/guestbooks.py:132
 msgid "Input Your Token!"
-msgstr ""
+msgstr "Masukan Token Anda"
 
 #: gabis/apps/schedules/forms/guestbooks.py:144
 #: gabis/apps/schedules/models/guestbooks.py:63
 msgid "No Identitas"
-msgstr ""
+msgstr "No Identitas"
 
 #: gabis/apps/schedules/forms/guestbooks.py:147
 msgid "Input Your NIK/NIS/HP Number!"
-msgstr ""
+msgstr "Masukan NIK/NIS/Nomor HP!"
 
 #: gabis/apps/schedules/models/bookings.py:26
 #: gabis/apps/schedules/models/guestbooks.py:39
 msgid "Time Event"
-msgstr ""
+msgstr "Waktu Kegiatan"
 
 #: gabis/apps/schedules/models/bookings.py:50
 msgid "Name Group"
-msgstr ""
+msgstr "Nama Kelompok"
 
 #: gabis/apps/schedules/models/bookings.py:54
 msgid "PIC Group"
-msgstr ""
+msgstr "PIC Kelompok"
 
 #: gabis/apps/schedules/models/bookings.py:65
 msgid "Link Guest Book"
-msgstr ""
+msgstr "Tautan Buku Tamu"
 
 #: gabis/apps/schedules/models/guestbooks.py:33
 #: gabis/apps/users/models/users.py:24
 msgid "Male"
-msgstr ""
+msgstr "Pria"
 
 #: gabis/apps/schedules/models/guestbooks.py:34
 #: gabis/apps/users/models/users.py:25
 msgid "Female"
-msgstr ""
+msgstr "Wanita"
 
 #: gabis/apps/schedules/models/guestbooks.py:88
 msgid "PIN of Guest"
-msgstr ""
+msgstr "Token Tamu"
 
 #: gabis/apps/schedules/views/guestbooks.py:74
 msgid "GuestBook's Name"
-msgstr ""
+msgstr "Nama Buku Tamu"
 
 #: gabis/apps/schedules/views/guestbooks.py:78
 #: gabis/apps/schedules/views/guestbooks.py:370
 msgid "FILTER IN"
-msgstr ""
+msgstr "SARING DENGAN"
 
 #: gabis/apps/schedules/views/guestbooks.py:195
 msgid ""
 "We are unable to store the registration of guest book, see below for more "
 "detail."
-msgstr ""
+msgstr "Kami tidak dapat menyimpan proses pendaftaran buku tamu, silakan cek detilnye"
 
 #: gabis/apps/schedules/views/guestbooks.py:196
 msgid "The registration of guest book has been stored."
-msgstr ""
+msgstr "Proses pendaftaran buku tamu telah disimpan"
 
 #: gabis/apps/schedules/views/guestbooks.py:295
 msgid "Identity Number have been exists!"
-msgstr ""
+msgstr "Nomor Identitas telah ada!"
 
 #: gabis/apps/schedules/views/guestbooks.py:366
 msgid "Token or NIK or NIS or Mobile Phone Number"
-msgstr ""
+msgstr "Token atau NIK atau NIS atau Nomor HP"
 
 #: gabis/apps/schedules/views/guestbooks.py:491
 #, python-format
 msgid "%r have been attended!."
-msgstr ""
+msgstr "%r telah hadir!"
 
 #: gabis/apps/schedules/views/guestbooks.py:547
 #: gabis/apps/schedules/views/guestbooks.py:587
 #, python-format
 msgid "%r have been successfully registered!."
-msgstr ""
+msgstr ""%r telah berhasil didaftarkan!."
 
 #: gabis/apps/schedules/views/guestbooks.py:551
 #: gabis/apps/schedules/views/guestbooks.py:591
 msgid "No Seminar Event, Please contact to Admin!."
-msgstr ""
+msgstr "Tidak ada Kegiatan Seminar, Silakan hubungi Admin!"
 
 #: gabis/apps/schedules/views/guestbooks.py:625
 #, python-format
 msgid "%r have been paid!."
-msgstr ""
+msgstr "%r telah di bayar!"
 
 #: gabis/apps/users/admin.py:23
 msgid "Username Already Exists!"
-msgstr ""
+msgstr "Nama Pengguna telah ada!"
 
 #: gabis/apps/users/models/users.py:29
 msgid "Complete Name"
-msgstr ""
+msgstr "Nama Lengkap"
 
 #: gabis/apps/users/models/users.py:33
 msgid "Type"
-msgstr ""
+msgstr "Tipe"
 
 #: gabis/apps/users/models/users.py:39
 msgid "Birth City"
-msgstr ""
+msgstr "Kota Lahir"
 
 #: gabis/apps/users/models/users.py:44
 msgid "Birth Date"
-msgstr ""
+msgstr "Tanggal Lahir"
 
 #: gabis/apps/users/models/users.py:54
 msgid "Address"
-msgstr ""
+msgstr "Alamat"
 
 #: gabis/apps/users/models/users.py:63
 msgid "Create"
-msgstr ""
+msgstr "Dibuat"
 
 #: gabis/apps/users/models/users.py:67
 msgid "Modified"
-msgstr ""
+msgstr "Dimodifikasi"
 
 #: gabis/apps/users/views/profiles.py:33
 msgid "Your profile was successfully updated!"
-msgstr ""
+msgstr "Profil adan telah barhasil di perbaharui!"
 
 #: gabis/apps/users/views/profiles.py:37
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Silakan benarkan kesalahan berikut"
 
 #: gabis/apps/users/views/signin.py:37
 msgid "Have successfully registered."
-msgstr ""
+msgstr "Telah berhasil didaftarkan."
 
 #: gabis/apps/users/views/signup.py:38
 #, python-format
 msgid ""
 "Registration account %s have successfully. Please contact to Admin for "
 "activating account."
-msgstr ""
+msgstr "Pendaftaran akun %s telah berhasil. Silakan hubungin admin untuk "
+"aktivasi akun."
 
 #: gabis/core/choices.py:11
 msgid "Admin"
-msgstr ""
+msgstr "Pengelola"
 
 #: gabis/core/choices.py:12
 msgid "Staff"
-msgstr ""
+msgstr "Pegawai"
 
 #: gabis/core/choices.py:13
 msgid "Guest"
-msgstr ""
+msgstr "Tamu"
 
 #: gabis/libs/avatar/admin.py:26 gabis/libs/avatar/apps.py:6
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: gabis/libs/avatar/forms.py:24 gabis/templates/base.html:228
 msgid "Picture"
-msgstr ""
+msgstr "Gambar"
 
 #: gabis/libs/avatar/forms.py:37
 #, python-format
@@ -408,6 +409,8 @@ msgid ""
 "%(ext)s is an invalid file extension. Authorized extensions are : "
 "%(valid_exts_list)s"
 msgstr ""
+"%(ext)s adalah ekstensi file salah. Ekstensi yang benar adalah : "
+"%(valid_exts_list)s"
 
 #: gabis/libs/avatar/forms.py:44
 #, python-format
@@ -415,6 +418,8 @@ msgid ""
 "Your file is too big (%(size)s), the maximum allowed size is "
 "%(max_valid_size)s"
 msgstr ""
+"File Anda terlalu besar (%(size)s), ukuran maksimum adalah "
+"%(max_valid_size)s"
 
 #: gabis/libs/avatar/forms.py:54
 #, python-format
@@ -422,36 +427,38 @@ msgid ""
 "You already have %(nb_avatars)d avatars, and the maximum allowed is "
 "%(nb_max_avatars)d."
 msgstr ""
+"Anda telah memiliki %(nb_avatars)d avatars, dan maksimum yang dikuti adalah "
+"%(nb_max_avatars)d."
 
 #: gabis/libs/avatar/forms.py:71 gabis/libs/avatar/forms.py:84
 msgid "Choices"
-msgstr ""
+msgstr "Pilihan"
 
 #: gabis/libs/avatar/templates/avatar/add.html:5
 #: gabis/libs/avatar/templates/avatar/change.html:5
 msgid "Your current picture: "
-msgstr ""
+msgstr "Gambar Anda saat ini"
 
 #: gabis/libs/avatar/templates/avatar/add.html:8
 #: gabis/libs/avatar/templates/avatar/change.html:8
 msgid "You haven't uploaded a picture yet. Please upload one now."
-msgstr ""
+msgstr "Anda belum mengunggah gambar. Silakan di unggah sekarang."
 
 #: gabis/libs/avatar/templates/avatar/add.html:12
 #: gabis/libs/avatar/templates/avatar/change.html:19
 #: gabis/templates/avatar/add.html:27 gabis/templates/avatar/change.html:32
 msgid "Upload New Picture"
-msgstr ""
+msgstr "Unggah gambar baru"
 
 #: gabis/libs/avatar/templates/avatar/change.html:14
 #: gabis/templates/avatar/change.html:50
 msgid "Choose new Default"
-msgstr ""
+msgstr "Pilih awalan baru"
 
 #: gabis/libs/avatar/templates/avatar/confirm_delete.html:5
 #: gabis/templates/avatar/confirm_delete.html:16
 msgid "Please select the pictures that you would like to delete."
-msgstr ""
+msgstr "Silakan pilih gambar yang akan di hapus"
 
 #: gabis/libs/avatar/templates/avatar/confirm_delete.html:8
 #: gabis/templates/avatar/confirm_delete.html:19
@@ -460,11 +467,13 @@ msgid ""
 "You have no pictures to delete. Please <a href=\"%(avatar_change_url)s"
 "\">upload one</a> now."
 msgstr ""
+"Tidak ada gambar yang di hapus. Silakan <a href=\"%(avatar_change_url)s"
+"\">Unggah</a> sekarang."
 
 #: gabis/libs/avatar/templates/avatar/confirm_delete.html:14
 #: gabis/templates/avatar/confirm_delete.html:26
 msgid "Delete These"
-msgstr ""
+msgstr "Hapus ini"
 
 #: gabis/libs/avatar/templates/notification/avatar_friend_updated/full.txt:1
 #, python-format
@@ -473,6 +482,9 @@ msgid ""
 "\n"
 "http://%(current_site)s%(avatar_url)s\n"
 msgstr ""
+"%(avatar_creator)s tekah di ubah avatar nya %(avatar)s.\n"
+"\n"
+"http://%(current_site)s%(avatar_url)s\n"
 
 #: gabis/libs/avatar/templates/notification/avatar_friend_updated/notice.html:2
 #, python-format
@@ -488,27 +500,30 @@ msgid ""
 "\n"
 "http://%(current_site)s%(avatar_url)s\n"
 msgstr ""
+"Avatar anda telah diubah.  %(avatar)s\n"
+"\n"
+"http://%(current_site)s%(avatar_url)s\n"
 
 #: gabis/libs/avatar/templates/notification/avatar_updated/notice.html:2
 #, python-format
 msgid "You have updated your avatar <a href=\"%(avatar_url)s\">%(avatar)s</a>."
-msgstr ""
+msgstr "Anda telah mengubah avatar anda <a href=\"%(avatar_url)s\">%(avatar)s</a>."
 
 #: gabis/libs/avatar/templatetags/avatar_tags.py:56
 msgid "Default Avatar"
-msgstr ""
+msgstr "Avatar awal"
 
 #: gabis/libs/avatar/views.py:76
 msgid "Successfully uploaded a new avatar."
-msgstr ""
+msgstr "Berhasil mengunggah avatar baru."
 
 #: gabis/libs/avatar/views.py:112
 msgid "Successfully updated your avatar."
-msgstr ""
+msgstr "Berhasil mengubah avatar anda."
 
 #: gabis/libs/avatar/views.py:202
 msgid "Successfully deleted the requested avatars."
-msgstr ""
+msgstr "Berhasil menghapus avatar yang dipesan."
 
 #: gabis/libs/templated_docs/apps.py:6
 msgid "TemplatedDocs"
@@ -517,11 +532,11 @@ msgstr ""
 #: gabis/templates/account/account_inactive.html:5
 #: gabis/templates/account/account_inactive.html:8
 msgid "Account Inactive"
-msgstr ""
+msgstr "Akun tidak aktif"
 
 #: gabis/templates/account/account_inactive.html:10
 msgid "This account is inactive."
-msgstr ""
+msgstr "Akun ini tidak aktif"
 
 #: gabis/templates/account/account_inactive.html:14
 #: gabis/templates/account/email.html:60
@@ -538,71 +553,73 @@ msgstr ""
 #: gabis/templates/account/verified_email_required.html:25
 #: gabis/templates/base.html:350
 msgid "Gabis"
-msgstr ""
+msgstr "Gabis"
 
 #: gabis/templates/account/base.html:14
-msgid "Suprema|Gabis"
+msgid "Ziarah|Gabis"
 msgstr ""
 
 #: gabis/templates/account/email.html:5 gabis/templates/account/email.html:8
 msgid "E-mail Addresses"
-msgstr ""
+msgstr "Alamat Surel"
 
 #: gabis/templates/account/email.html:10
 msgid "The following e-mail addresses are associated with your account:"
-msgstr ""
+msgstr "Alamat emal yang tehubung dengan akun anda"
 
 #: gabis/templates/account/email.html:24
 msgid "Verified"
-msgstr ""
+msgstr "Terverifikasi"
 
 #: gabis/templates/account/email.html:26
 msgid "Unverified"
-msgstr ""
+msgstr "Tidak terverifikasi"
 
 #: gabis/templates/account/email.html:28
 msgid "Primary"
-msgstr ""
+msgstr "Utama"
 
 #: gabis/templates/account/email.html:34
 msgid "Make Primary"
-msgstr ""
+msgstr "Jadikan yang Utama"
 
 #: gabis/templates/account/email.html:35
 msgid "Re-send Verification"
-msgstr ""
+msgstr "Kirim ulang verifikasi"
 
 #: gabis/templates/account/email.html:36
 #: gabis/templates/socialaccount/connections.html:35
 msgid "Remove"
-msgstr ""
+msgstr "Hapus"
 
 #: gabis/templates/account/email.html:43
 msgid "Warning:"
-msgstr ""
+msgstr "Peringatan:"
 
 #: gabis/templates/account/email.html:43
 msgid ""
 "You currently do not have any e-mail address set up. You should really add "
 "an e-mail address so you can receive notifications, reset your password, etc."
 msgstr ""
+"Saat ini anda tidak memiliki alamat surel. Anda harus menambahkan "
+"alamat surel untuk menerima notifikasi, reset password anda, dsb."
 
 #: gabis/templates/account/email.html:48
 msgid "Add E-mail Address"
-msgstr ""
+msgstr "Menambahkan alamat surel"
 
 #: gabis/templates/account/email.html:53
 msgid "Add E-mail"
-msgstr ""
+msgstr "Menambah surel"
 
 #: gabis/templates/account/email.html:69
 msgid "Do you really want to remove the selected e-mail address?"
-msgstr ""
+msgstr "Apakah anda akan menghapus alamat surel terpilih"
 
 #: gabis/templates/account/email/base_message.txt:1
 #, python-format
 msgid "Hello from %(site_name)s!"
-msgstr ""
+msgstr "Hello dari %(site_name)s!"
 
 #: gabis/templates/account/email/base_message.txt:5
 #, python-format
@@ -610,6 +627,8 @@ msgid ""
 "Thank you for using %(site_name)s!\n"
 "%(site_domain)s"
 msgstr ""
+"Terima Kasih untuk %(site_name)s!\n"
+"%(site_domain)s"
 
 #: gabis/templates/account/email/email_confirmation_message.txt:5
 #, python-format
@@ -619,10 +638,14 @@ msgid ""
 "\n"
 "To confirm this is correct, go to %(activate_url)s"
 msgstr ""
+"Anda menerima sirel ini karena pengguna %(user_display)s yang telah diberikan "
+"alamat surel yang terdaftar pada akun %(site_domain)s.\n"
+"\n"
+"Untuk konfirmasi selanjutnya, Anda pergi ke %(activate_url)s"
 
 #: gabis/templates/account/email/email_confirmation_subject.txt:3
 msgid "Please Confirm Your E-mail Address"
-msgstr ""
+msgstr "Silakan konfirmasi alamat surel Anda"
 
 #: gabis/templates/account/email/password_reset_key_message.txt:4
 msgid ""
@@ -715,7 +738,7 @@ msgstr ""
 
 #: gabis/templates/account/login.html:48
 msgid "or"
-msgstr ""
+msgstr "Atau"
 
 #: gabis/templates/account/login.html:55
 #, python-format
@@ -723,32 +746,34 @@ msgid ""
 "If you have not created an account yet, then please\n"
 "\t\t\t\t\t<a href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
+"Jika sekarang anda belum memilik akun, maka silakan\n"
+"\t\t\t\t\t<a href=\"%(signup_url)s\">daftar</a> awal."
 
 #: gabis/templates/account/login.html:68
 msgid "Show Password"
-msgstr ""
+msgstr "Perlihatkan Password"
 
 #: gabis/templates/account/login.html:74
 msgid "Forgot pwd?"
-msgstr ""
+msgstr "Lupa pwd?"
 
 #: gabis/templates/account/login.html:82
 msgid "Log In"
-msgstr ""
+msgstr "Masuk"
 
 #: gabis/templates/account/logout.html:6 gabis/templates/account/logout.html:14
 #: gabis/templates/account/logout.html:32
 msgid "Sign Out"
-msgstr ""
+msgstr "Keluar"
 
 #: gabis/templates/account/logout.html:16
 msgid "Are you sure you want to sign out?"
-msgstr ""
+msgstr "Apakah anda akan keluar?"
 
 #: gabis/templates/account/logout.html:28
 #: gabis/templates/account/logout.html:29
 msgid "Sign Out .."
-msgstr ""
+msgstr "Keluar"
 
 #: gabis/templates/account/messages/cannot_delete_primary_email.txt:2
 #, python-format
@@ -975,52 +1000,52 @@ msgid "Paroki Pulo Gebang"
 msgstr ""
 
 #: gabis/templates/base.html:79
-msgid "u p r e m a"
-msgstr ""
+msgid "gabis"
+msgstr "gabis"
 
 #: gabis/templates/base.html:117
 msgid "You have"
-msgstr ""
+msgstr "Anda memiliki"
 
 #: gabis/templates/base.html:117
 msgid "new messages"
-msgstr ""
+msgstr "pesan baru"
 
 #: gabis/templates/base.html:130 gabis/templates/base.html:178
 msgid "WIB"
-msgstr ""
+msgstr "WIB"
 
 #: gabis/templates/base.html:140
 msgid "See all messages"
-msgstr ""
+msgstr "Tampilkan semua pesan"
 
 #: gabis/templates/base.html:144
 msgid "No new messages yet!"
-msgstr ""
+msgstr "Tidak ada pesan baru sekarang!"
 
 #: gabis/templates/base.html:185
 msgid "See All Tasks"
-msgstr ""
+msgstr "Lihat Semua Tugas"
 
 #: gabis/templates/base.html:189
 msgid "No new Task yet!"
-msgstr ""
+msgstr "Tidak ada tugas saat ini!"
 
 #: gabis/templates/base.html:206
 msgid "Searching data .."
-msgstr ""
+msgstr "Mencari data .."
 
 #: gabis/templates/base.html:209
 msgid "SEARCH"
-msgstr ""
+msgstr "CARI"
 
 #: gabis/templates/base.html:226
 msgid "My Profile"
-msgstr ""
+msgstr "Profil Saya"
 
 #: gabis/templates/base.html:236 gabis/templates/staffs/layout/menu.html:69
 msgid "Logout"
-msgstr ""
+msgstr "Keluar"
 
 #: gabis/templates/base.html:315
 msgid "With Light sidebar"
@@ -1088,17 +1113,17 @@ msgstr ""
 
 #: gabis/templates/schedules/bookings/events/list.html:101
 msgid "Available : "
-msgstr ""
+msgstr "Tersedia :"
 
 #: gabis/templates/schedules/bookings/events/list.html:110
 msgid "Are you sure to continue the registration process"
-msgstr ""
+msgstr "Apakah anda yakin akan melanjutkan proses pendaftaran"
 
 #: gabis/templates/schedules/bookings/events/list.html:116
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:156
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:268
 msgid "Yes, process it"
-msgstr ""
+msgstr "Ya, proses itu"
 
 #: gabis/templates/schedules/bookings/events/list.html:117
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:157
@@ -1106,171 +1131,171 @@ msgstr ""
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:269
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:337
 msgid "No, cancel it"
-msgstr ""
+msgstr "Tidak, batalkan itu"
 
 #: gabis/templates/schedules/bookings/events/list.html:157
 msgid "Avail: "
-msgstr ""
+msgstr "Sedia:"
 
 #: gabis/templates/schedules/bookings/guestbooks/create.html:23
 #: gabis/templates/schedules/bookings/guestbooks/create.html:35
 msgid "New registration"
-msgstr ""
+msgstr "Registrasi Baru"
 
 #: gabis/templates/schedules/bookings/guestbooks/create.html:25
 msgid "Available"
-msgstr ""
+msgstr "Tersedia"
 
 #: gabis/templates/schedules/bookings/guestbooks/create.html:34
 msgid "Event Ziarah List"
-msgstr ""
+msgstr "Daftar Kegiatan Ziarah"
 
 #: gabis/templates/schedules/bookings/guestbooks/create.html:65
 #: gabis/templates/schedules/bookings/guestbooks/create.html:66
 msgid "Cancel the process registration .."
-msgstr ""
+msgstr "Membatalkan proses registrasi .."
 
 #: gabis/templates/schedules/bookings/guestbooks/create.html:69
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 #: gabis/templates/schedules/bookings/guestbooks/create.html:77
 #: gabis/templates/schedules/bookings/guestbooks/create.html:78
 msgid "Registration event .."
-msgstr ""
+msgstr "Registrasi kegiaran .."
 
 #: gabis/templates/schedules/bookings/guestbooks/create.html:81
 msgid "&nbsp;Save&nbsp;"
-msgstr ""
+msgstr "&nbsp;Simpan&nbsp;"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:30
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:31
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:30
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:31
 msgid "Validation Guess Book .."
-msgstr ""
+msgstr "Validasi Buku Tamu .."
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:34
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:34
 msgid "Validate"
-msgstr ""
+msgstr "Validasi"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:59
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:59
 msgid "Congratulation"
-msgstr ""
+msgstr "Selamat"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:60
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:60
 msgid "You have been successfully registered for event"
-msgstr ""
+msgstr "Anda telah berhasil mendaftarkan untuk kegiatan"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:63
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:63
 msgid "Please save and remember your TOKEN number"
-msgstr ""
+msgstr "Silakan simpan dan ingat nomor TOKEN anda"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:67
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:68
 msgid "You have the opportunity to attend the seminar"
-msgstr ""
+msgstr "Anda berkesempatan menghadiri seminar"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:68
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:69
 msgid "on Sunday, July 23, 2023 11:00 - 16:00 WIB."
-msgstr ""
+msgstr "Pada hari Minggu, 23 July 2023 11:00 - 16:00 WIB"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:69
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:70
 msgid "Seat available"
-msgstr ""
+msgstr "Quota tersisa"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:70
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:71
 msgid "Only"
-msgstr ""
+msgstr "Hanya"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:80
-msgid "Register Seminar"
-msgstr ""
+msgid "Booking Seminar"
+msgstr "Pesan Seminar"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:83
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:85
 msgid "If any question please contact"
-msgstr ""
+msgstr "Jika ada pertanyaan silakan hubungi"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:86
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:88
 msgid "The list of your schedules:"
-msgstr ""
+msgstr "Daftar dari jadual anda:"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:116
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:160
 msgid "You haven't registered yet"
-msgstr ""
+msgstr "Anda belum terdaftar"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:117
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:161
 msgid "Please Click"
-msgstr ""
+msgstr "Silakan Klik"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:117
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:161
 msgid "Registration"
-msgstr ""
+msgstr "Registrasi"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:150
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:174
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:262
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:287
 msgid "BOOKING SEMINAR"
-msgstr ""
+msgstr "PESAN SEMINAR"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:151
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:263
 msgid "Are you sure to book"
-msgstr ""
+msgstr "Apakah anda yakin akan memesan"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:167
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:280
 msgid "BOOKED"
-msgstr ""
+msgstr "TERPESAN"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:168
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:213
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:281
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:349
 msgid "The data"
-msgstr ""
+msgstr "Data"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:168
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:281
 msgid "have been successfully book it!"
-msgstr ""
+msgstr "telah berhasil mendaftarkan"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:174
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:287
 msgid "The booking data on progress .."
-msgstr ""
+msgstr "Pemesanan data di dalam proses .."
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:200
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:245
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:313
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:381
 msgid "CANCEL"
-msgstr ""
+msgstr "BATAL"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:201
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:314
 msgid "The booking data"
-msgstr ""
+msgstr "Memesan data"
 
 #: gabis/templates/schedules/bookings/guestbooks/detail.html:201
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:246
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:314
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:382
 msgid "have been canceled!"
-msgstr ""
+msgstr "telah di batalkan!"
 
 #: gabis/templates/socialaccount/authentication_error.html:5
 #: gabis/templates/socialaccount/authentication_error.html:8
@@ -1416,74 +1441,74 @@ msgstr ""
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:81
 msgid "Booking Seminar"
-msgstr ""
+msgstr "Pesan Seminar"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:108
 msgid "Have paid and"
-msgstr ""
+msgstr "Telah dibayar dan"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:110
 msgid "Have attended"
-msgstr ""
+msgstr "Telah hadir"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:115
 msgid "Have paid"
-msgstr ""
+msgstr "Telah dibayar"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:121
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:122
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:128
 msgid "Payment"
-msgstr ""
+msgstr "Pembayaran"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:137
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:138
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:144
 msgid "Attend"
-msgstr ""
+msgstr "Menghadiri"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:194
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:219
 msgid "UPDATE GUESTBOOK ATTENDED"
-msgstr ""
+msgstr "UBAH KEHADIRAN BUKU TAMU"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:195
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:331
 msgid "Are you sure to update data"
-msgstr ""
+msgstr "Apakah anda yakin akan mengubah data"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:200
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:336
 msgid "Yes, update it"
-msgstr ""
+msgstr "Ya, ubah itu"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:212
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:348
 msgid "UPDATED"
-msgstr ""
+msgstr "UBAH"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:213
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:349
 msgid "have been successfully update it!"
-msgstr ""
+msgstr "anda telah berhasil mengubah itu!"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:219
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:355
 msgid "The updating data on progress .."
-msgstr ""
+msgstr "Perubahan data dalam proses .."
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:246
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:382
 msgid "The update data"
-msgstr ""
+msgstr "Ubah data"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:330
 msgid "UPDATE SEMINAR PAYMENT"
-msgstr ""
+msgstr "UBAH PEMBAYARAN SEMINAR"
 
 #: gabis/templates/staffs/schedules/bookings/guestbooks/detail.html:355
 msgid "UPDATE SEMINAR PAID"
-msgstr ""
+msgstr "UBAH SEMINAR TERBAYAR"
 
 #: gabis/templates/users/profile_change.html:21
 msgid "Update Profile"
