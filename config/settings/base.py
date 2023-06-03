@@ -103,7 +103,11 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
 LOCALE_PATHS = (
-    os.path.join(str(APPS_DIR), 'locale'),
+    os.path.join(str(APPS_DIR), 'apps/accounts/locale'),
+    os.path.join(str(APPS_DIR), 'apps/masters/locale'),
+    os.path.join(str(APPS_DIR), 'apps/schedules/locale'),
+    os.path.join(str(APPS_DIR), 'apps/users/locale'),
+    os.path.join(str(APPS_DIR), 'apps/staffs/locale'),
 
 )
 
