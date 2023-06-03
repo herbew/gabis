@@ -161,7 +161,6 @@
 	            	var data = {
                     	 	csrfmiddlewaretoken: '{{ csrf_token }}'
                     	 	};
-	            	  
 	                swal({
 	                        title:'{% trans "REGISTERED" %}',
 	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully register it!" %}.',
@@ -177,7 +176,7 @@
 	                        	$.ajax({
 	                        		
 		                              url:url,
-		                              type:"POST",
+		                              type:"GET",
 		                              data:data,
 		                              dataType: "json",
 		                              success: function(data) {

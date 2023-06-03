@@ -271,15 +271,15 @@ class GuestBookCreateView(FormMessagesMixin,
             r = "%s" % (r,)
             
             if len(r) == 5:
-                r = "0%d" % (r)
+                r = "0%s" % (r)
             elif len(r) == 4:
-                r = "00%d" % (r)
+                r = "00%s" % (r)
             elif len(r) == 3:
-                r = "000%d" % (r)
+                r = "000%s" % (r)
             elif len(r) == 2:
                 r = "0000%d" % (r)
             elif len(r) == 1:
-                r = "00000%d" % (r)
+                r = "00000%s" % (r)
                 
             return r
     
@@ -490,7 +490,8 @@ class AttendGuestView(View):
         obj.save()
         messages.success(request, _("%r have been attended!." % obj.name))
         
-        return JsonResponse(self.get_success_url()) 
+        return JsonResponse(dict(status=200, url=self.get_success_url()))
+        #return JsonResponse(self.get_success_url()) 
 
 class SeminarGuestView(View):
     model = GuestBook
@@ -513,6 +514,46 @@ class SeminarGuestView(View):
         guest_book = get_object_or_404(self.model, pk=pk_guest_book)
         
         return guest_book
+    
+    def get(self, request, *args, **kwargs):
+        
+        # Get Params URL
+        obj = self.get_object()
+        
+        
+        seminar_te = TimeEvent.objects.filter(
+            event__name=SEMINAR_EVENT,
+            event__active=True)
+        
+        if seminar_te:
+            seminar_te = seminar_te[0]
+            
+            gb_seminar, created = GuestBook.objects.get_or_create(
+                time_event=seminar_te, nik=obj.nik,
+                defaults=dict(
+                    keuskupan=obj.keuskupan,
+                    paroki=obj.paroki,
+                    wilayah=obj.wilayah,
+                    lingkungan=obj.lingkungan,
+                    name=obj.name,
+                    gender=obj.gender,
+                    age=obj.age,
+                    email=obj.email,
+                    pin=obj.pin)
+                )
+            
+            gb_seminar.user_updated = "System"
+            gb_seminar.save()
+            messages.success(request, _("%r have been successfully registered!." % gb_seminar.name))
+            url =  "%s?params=%d" % (
+            reverse_lazy('schedules:guestbook_detail'), gb_seminar.id)
+        else:
+            messages.error(request, _("No Seminar Event, Please contact to Admin!."))
+            url =  "%s?params=%d" % (
+            reverse_lazy('schedules:guestbook_detail'), obj.id)
+            
+        #return JsonResponse(url)   
+        return JsonResponse(dict(status=200, url=url))  
     
     def post(self, request, *args, **kwargs):
         
@@ -551,7 +592,8 @@ class SeminarGuestView(View):
             url =  "%s?params=%d" % (
             reverse_lazy('schedules:guestbook_detail'), obj.id)
             
-        return JsonResponse(url)     
+        #return JsonResponse(url)   
+        return JsonResponse(dict(status=200, url=url))  
     
     
 class PayGuestView(View):
@@ -582,5 +624,6 @@ class PayGuestView(View):
         obj.save()
         messages.success(request, _("%r have been paid!." % obj.name))
         
-        return JsonResponse(self.get_success_url()) 
+        return JsonResponse(dict(status=200, url=self.get_success_url()))
+        #return JsonResponse(self.get_success_url()) 
     
