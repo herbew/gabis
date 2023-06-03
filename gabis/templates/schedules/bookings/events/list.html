@@ -89,13 +89,13 @@
                     var ds_now = new Date();
                     if (e.event.title.split("Avail: ")[1] > 0 && e.event.end > ds_now){
 
-                        const weekday = ['{% trans "Sunday" %}',
-                                        '{% trans "Monday" %}',
-                                        '{% trans "Tuesday" %}',
-                                        '{% trans "Wednesday" %}',
-                                        '{% trans "Thursday" %}',
-                                        '{% trans "Friday" %}',
-                                        '{% trans "Saturday" %}'];
+                        const weekday = ["{% trans 'Sunday' %}",
+                                        "{% trans 'Monday' %}",
+                                        "{% trans 'Tuesday' %}",
+                                        "{% trans 'Wednesday' %}",
+                                        "{% trans 'Thursday' %}",
+                                        "{% trans 'Friday' %}",
+                                        "{% trans 'Saturday' %}"];
 
                         var group = e.event.title.split(",")[0];
                         var available = "{% trans 'Available : ' %} " + e.event.title.split("Avail: ")[1];
