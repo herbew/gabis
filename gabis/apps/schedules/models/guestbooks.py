@@ -155,7 +155,7 @@ class GuestBook(TimeStampedModel):
     
     @property
     def url_guestbook_staff(self):
-        return "%s?params=%d" % (
+        return "%s?params=%s" % (
             reverse_lazy('staffs:guestbook_detail'), self.pin) 
         
     def get_user_update(self):
