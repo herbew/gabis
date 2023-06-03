@@ -284,14 +284,14 @@
 	                        	swal({
 	   	              		         position: 'top-end',
 	   	              		         type:'warning',
-	   	              		         html:'<div><div><h3>{% trans "BOOKING SEMINAR"%}</h3></div><div><label>{% trans "The registering data on progress .." %}</label></div></div>',
+	   	              		         html:'<div><div><h3>{% trans "BOOKING SEMINAR"%}</h3></div><div><label>{% trans "The booking data on progress .." %}</label></div></div>',
 	   	              		       });
 	                        	
 	                        	swal.showLoading();
 	                        	$.ajax({
 	                        		
 		                              url:url,
-		                              type:"POST",
+		                              type:"GET",
 		                              data:data,
 		                              dataType: "json",
 		                              success: function(data) {
