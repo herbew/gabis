@@ -90,7 +90,11 @@ class GuestBook(TimeStampedModel):
     
     paid = models.BooleanField(default=False)
     attended = models.BooleanField(default=False) #This for payment verification
-    
+    user_paid = models.CharField(
+            max_length=30,
+            blank=True, null=True,
+            db_index=True)
+    paid_time = models.DateTimeField(null=True, blank=True) 
     user_update = models.CharField(
             max_length=30,
             blank=True, null=True,
@@ -152,6 +156,30 @@ class GuestBook(TimeStampedModel):
                 return False
             
         return True
+    
+    @property
+    def color(self):
+        tz = pytz.timezone("Asia/Jakarta")
+        d_now = tz.localize(datetime.now())
+        
+        if self.created >= (d_now - timedelta(hours=24)):
+            return "red"
+        
+        if self.created  >= (d_now - timedelta(hours=2)):
+            return "yellow"
+        
+        return ""
+    
+    @property
+    def active_event(self):
+        tz = pytz.timezone("Asia/Jakarta")
+        d_now = tz.localize(datetime.now())
+        
+        if (self.time_event.start_time <= d_now) and (
+            d_now <= self.time_event.end_time):
+            return True
+        
+        return False
     
     @property
     def url_guestbook_staff(self):

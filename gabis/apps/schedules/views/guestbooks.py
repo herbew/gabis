@@ -29,6 +29,7 @@ from gabis.apps.schedules.models.guestbooks import GuestBook
 from gabis.apps.schedules.forms.guestbooks import (GuestBookForm, 
                                                    GuestBookFilterForm,
                                                    TokenFilterForm)
+from _datetime import datetime
 
 
 log = logging.getLogger(__name__)
@@ -53,16 +54,20 @@ class GuestBookListView(LoginRequiredMixin,
     def get_context_data(self, *args, **kwargs):
         # Page level 1
         p0 = self.request.GET.get('p0',1)
-        p1 = self.request.GET.get('p1',1)
-        p2 = self.request.GET.get('p2','page-1')
+        p1 = self.request.GET.get('p1','page-1')
         
         # Active page
         page = self.request.GET.get('page',1)
         
         # History params filter    
-        name_university = self.get_faculty().university.name
-        faculty_level = self.request.GET.get('faculty_level','')
-        faculty_name = self.request.GET.get('faculty_name','')
+        keuskupan = self.request.GET.get('keuskupan','')
+        paroki = self.request.GET.get('paroki','')
+        wilayah = self.request.GET.get('wilayah','')
+        lingkungan = self.request.GET.get('lingkungan','')
+        params = self.request.GET.get('params','')
+        
+        pk_guest_book = self.kwargs.get('pk_guest_book',None)
+        
         
         # Current Filter
         bf_name = self.request.GET.get('bf_name','')
@@ -487,6 +492,7 @@ class AttendGuestView(View):
         # Get Params URL
         obj = self.get_object()
         obj.attended = True
+        obj.user_updated = request.user.username
         obj.save()
         messages.success(request, _("%r have been attended!." % obj.name))
         
@@ -621,6 +627,9 @@ class PayGuestView(View):
         # Get Params URL
         obj = self.get_object()
         obj.paid = True
+        obj.paid_time = datetime.now()
+        obj.user_updated = request.user.username
+        obj.user_paid = request.user.username
         obj.save()
         messages.success(request, _("%r have been paid!." % obj.name))
         

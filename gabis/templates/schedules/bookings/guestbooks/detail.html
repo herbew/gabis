@@ -98,6 +98,21 @@
                                                             	&nbsp;&nbsp;<small>{{ object.time_event.group }}</small><br>
                                                                 &nbsp;&nbsp;<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small><br>
                                                                 &nbsp;&nbsp;TOKEN : <b>{{ object.pin }}</b> 
+                                                                
+                                                                {% if object.time_event.event.name == 'Seminar Kain Kafan Yesus 2023' %}
+                                                                <br>
+                                                                <div class="ibox">
+                                                                	<div class="ibox-title">
+                                                                		Pembayaran dengan Transfer ke <b>BCA 419-301-0698 An. PGDP SANTO GABRIEL</b>
+                                                                	</div>
+                                                                	<div class="ibox-content">
+                                                                		Catatan:
+                                                                		<br>- Konfirmasi bukti pembayaran : 
+                                                                		<br>&nbsp;&nbsp;<a href="whatsapp://send?text=Konfirmasi pembayaran dari TOKEN {{ object.pin }} &phone=+628156751412"><i class=" fab fa-whatsapp" aria-hidden="true"></i> Ibu Beti +62 815-6751-412</a>
+                                                                		<br>- Batas akhir waktu pembayaran 24 jam dari pemesanan.
+                                                                	</div>
+                                                                </div>
+                                                                {% endif %}
                                                             </td>
                                                         </tr>
                                                     {% endfor %}
@@ -108,7 +123,7 @@
                                 </div>
                                 <b>{% trans "If any question please contact" %}:</b>
                                 <small>
-                                	<br><a href="whatsapp://send?text=Hallo Ibu Beti&phone=+6281567514121"><i class=" fab fa-whatsapp" aria-hidden="true"></i> Ibu Beti +62 815-6751-412</a>
+                                	<br><a href="whatsapp://send?text=Hallo Ibu Beti&phone=+628156751412"><i class=" fab fa-whatsapp" aria-hidden="true"></i> Ibu Beti +62 815-6751-412</a>
                                 	<br><a href="whatsapp://send?text=Hallo Kak Maria&phone=+6281112425380"><i class=" fab fa-whatsapp" aria-hidden="true"></i> Kak Maria +62 811-1242-5380</a>
                                 	<br><a href="whatsapp://send?text=Hallo Ibu Dominika&phone=+6281510809035"><i class=" fab fa-whatsapp" aria-hidden="true"></i> Ibu Dominika +62 815-1080-9035</a>
                                 	<br><a href="whatsapp://send?text=Hallo Ibu Rina&phone=+6287878796034"><i class=" fab fa-whatsapp" aria-hidden="true"></i> Ibu Rina +62 878-7879-6034</a>
