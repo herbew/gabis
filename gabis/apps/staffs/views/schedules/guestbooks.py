@@ -9,7 +9,8 @@ from gabis.apps.users.viewmixins.roles import AdminMixin
 from gabis.apps.schedules.views.guestbooks import (
     GuestBookDetailListView as MasterGuestBookDetailListView,
     AttendGuestView as MasterAttendGuestView,
-    PayGuestView as MasterPayGuestView
+    PayGuestView as MasterPayGuestView,
+    GuestBookListView as MasterGuestBookListView
     
     )
 
@@ -32,3 +33,7 @@ class PayGuestView(AdminMixin, MasterPayGuestView):
         
         url = reverse_lazy("staffs:guestbook_detail")
         return dict(status=200, url="%s?params=%s" % (url, obj.id))
+    
+    
+class GuestBookListView(AdminMixin, MasterGuestBookListView):
+    template_name = "staffs/schedules/bookings/guestbooks/detail.html"

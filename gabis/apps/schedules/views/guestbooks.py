@@ -37,8 +37,7 @@ log = logging.getLogger(__name__)
 SEMINAR_EVENT = "Seminar Kain Kafan Yesus 2023"
 ZIARAH_ENVENT = "Ziarah Kain Kafan Yesus 2023"
 
-class GuestBookListView(LoginRequiredMixin,  
-                     ListView):
+class GuestBookListView(ListView):
     """
         Display GuestBook LEVEL 1
     """
@@ -64,20 +63,37 @@ class GuestBookListView(LoginRequiredMixin,
         paroki = self.request.GET.get('paroki','')
         wilayah = self.request.GET.get('wilayah','')
         lingkungan = self.request.GET.get('lingkungan','')
+        paid = self.request.GET.get('paid','')
+        attended = self.request.GET.get('attended','')
         params = self.request.GET.get('params','')
         
-        pk_guest_book = self.kwargs.get('pk_guest_book',None)
         
+        filter_event = self.kwargs.get('filter_event', 1)
         
-        # Current Filter
-        bf_name = self.request.GET.get('bf_name','')
         
         # Filter Notice 
         filter_in = []
             
-        if bf_name:
-            filter_in.append("%s" % (_("GuestBook's Name")))
+        if keusukupan:
+            filter_in.append("%s" % (_("Keuskupan")))
             
+        if paroki:
+            filter_in.append("%s" % (_("Paroki")))
+        
+        if wilayah:
+            filter_in.append("%s" % (_("Wilayah")))
+            
+        if lingkungan:
+            filter_in.append("%s" % (_("Lingkungan")))
+            
+        if paid:
+            filter_in.append("%s" % (_("Pembayaran")))
+            
+        if attended:
+            filter_in.append("%s" % (_("Kedatangan")))
+            
+        if params:
+            filter_in.append("%s" % (_("Nama/NIK/No Hape dan lainnya")))
             
         if filter_in:
             filter_in = "%s %s" % (_("FILTER IN"), ", ".join(filter_in))
@@ -96,20 +112,24 @@ class GuestBookListView(LoginRequiredMixin,
             page = 1
             
         data_filter = dict(
-                bf_name=bf_name,
+                keuskupan=keuskupan,
+                paroki=paroki,
+                wilayah=wilayah,
+                lingkungan=lingkungan,
+                paid=paid,
+                attended=attended,
+                params=params
                 )
         
         # History FIlter
-        history_filter = "p0=%s&p1=%s&name_university=%s&faculty_level=%s&faculty_name=%s" % (
-            p0, page, name_university, faculty_level, faculty_name
-            )
+        history_filter = "p0=%s&p1=%s&keuskupan=%s&paroki=%s&wilayah=%s&lingkungan=%s&paid=%s&attended=%s&params=%s" % (
+            p0, page, keuskupan, paroki, wilayah,)
         history_filter=history_filter.replace('None','')
         
         
         # Param FIlter
-        params_filter = "p0=%s&p1=%s&name_university=%s&faculty_level=%s&faculty_name=%s&bf_name=%s" % (
-            p0, page, name_university, faculty_level, faculty_name, bf_name)
-        
+        params_filter = "p0=%s&p1=%s&keuskupan=%s&paroki=%s&wilayah=%s&lingkungan=%s&paid=%s&attended=%s&params=%s" % (
+            p0, page, keuskupan, paroki, wilayah,)
         params_filter = params_filter.replace('None','')
         
     
@@ -125,9 +145,9 @@ class GuestBookListView(LoginRequiredMixin,
                     form_filter=GuestBookFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
                     params_filter=params_filter.replace('%20',''),
+                    filter_event=filter_event,
                     page=page,
                     process=self.process, 
-                    faculty=self.get_faculty(),
                     filter_in=filter_in
                    ) 
                 )
@@ -163,28 +183,54 @@ class GuestBookListView(LoginRequiredMixin,
                     form_filter=GuestBookFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
                     params_filter=params_filter.replace('%20',''),
+                    filter_event=filter_event,
                     page=page,
                     process=self.process, 
-                    faculty=self.get_faculty(),
                     filter_in=filter_in
                    ) 
             
     
     def get_queryset(self):
         
-        bf_name = self.request.GET.get('bf_name','')
+        # History params filter    
+        keuskupan = self.request.GET.get('keuskupan','')
+        paroki = self.request.GET.get('paroki','')
+        wilayah = self.request.GET.get('wilayah','')
+        lingkungan = self.request.GET.get('lingkungan','')
+        paid = self.request.GET.get('paid','')
+        attended = self.request.GET.get('attended','')
+        params = self.request.GET.get('params','')
         
-        query_set = self.model.objects.filter(
-             Q(university=None, level=None, faculty=None, major=None)|
-             Q(university=faculty.university, level=None, faculty=None, major=None)|
-             Q(university=faculty.university, level=faculty.level, faculty=None, major=None)|
-             Q(university=faculty.university, level=faculty.level, faculty=faculty, major=None)
-            ).order_by("-university", "-level", "-faculty", "name")
+        filter_event = self.kwargs.get('filter_event', 1)
         
+        query_set = self.model.objects.filter(time_event__event__id=filter_event)
         
-        if bf_name:
-            query_set = query_set.filter(name__icontains=bf_name)
+        if keuskupan:
+            query_set = query_set.filter(keuskupan=keuskupan)
+            
+        if paroki:
+            query_set = query_set.filter(paroki=paroki)
+            
+        if wilayah:
+            query_set = query_set.filter(wilayah=wilayah)
+            
+        if lingkungan:
+            query_set = query_set.filter(lingkungan=lingkungan)
         
+        if paid:
+            query_set = query_set.filter(paid=paid)
+            
+        if attended:
+            query_set = query_set.filter(attended=attended)
+            
+        if params:
+            query_set = query_set.filter(
+                Q(name__icontains=params)|
+                Q(nik__icontains=params)|
+                Q(mobile__icontains=params)|
+                Q(pin__icontains=params)
+                )
+            
         return query_set 
 
 class GuestBookCreateView(FormMessagesMixin, 
