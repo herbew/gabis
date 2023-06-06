@@ -109,8 +109,8 @@ class GuestBookListView(ListView):
         
         
         # IF p12is "page-1", the template active is Level1
-        if p2 != "page-1":
-            page = p1
+        if p1 != "page-1":
+            page = p0
         
         try:
             page = int(page)
