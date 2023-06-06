@@ -16,5 +16,13 @@ urlpatterns = [
         view=guestbooks.PayGuestView.as_view(),
         name="guestbook_paid"),
     
+    path("guestbook/ziarah/list/", 
+        view=guestbooks.GuestBookZiarahListView.as_view(),
+        kwargs=dict(filter_event=1),
+        name="guestbook_ziarah_list"),
     
+    path("guestbook/seminar/list/", 
+        view=guestbooks.GuestBookZiarahListView.as_view(),
+        kwargs=dict(filter_event=2),
+        name="guestbook_ziarah_list"),
     ]

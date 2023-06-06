@@ -35,5 +35,12 @@ class PayGuestView(AdminMixin, MasterPayGuestView):
         return dict(status=200, url="%s?params=%s" % (url, obj.id))
     
     
-class GuestBookListView(AdminMixin, MasterGuestBookListView):
-    template_name = "staffs/schedules/bookings/guestbooks/detail.html"
+class GuestBookZiarahListView(AdminMixin, MasterGuestBookListView):
+    template_name = "staffs/schedules/bookings/guestbooks/ziarah_list.html"
+    
+class GuestBookSeminarListView(AdminMixin, MasterGuestBookListView):
+    template_name = "staffs/schedules/bookings/guestbooks/ziarah_list.html"
+    
+    
+    
+    

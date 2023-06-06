@@ -1,0 +1,262 @@
+{% extends "staffs/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load avatar_tags %}
+{% load utility_tags %}
+
+    
+{% block title_filter %}
+	<ul class="mega-dropdown-menu row">
+	    <li class="col-lg-2 col-xlg-2 m-b-30">
+	         <h1><i class="ti-light-bulb text-info"></i></h1>
+	         <h6 class="text-muted"> {% blocktrans %}To find data <b>Course</b> easily, please input the parameters in carefully!{% endblocktrans %}</h6>
+	     </li>
+	     <li class="col-lg-10 col-xlg-2 m-b-30">
+	        <form class="form-material form-horizontal" method="get" >
+	             {{ form_filter.as_p }}
+	             <div class="text-right">
+	                 <button 
+	                 	class="btn btn-secondary" 
+	                 	type='button'
+	                 	aria-pressed="false"
+	               		onclick='redirect_url_no_params("")'
+	               		data-toggle="tooltip" data-placement="bottom"
+	              		title="{% trans 'Reset params filter ..' %}" 
+	              		data-original-title="{% trans 'Reset params filter ..' %}"
+	                 	>
+	                     <span class="btn-label"><i class="icon-refresh "></i>
+	                     <span class="text">{% trans 'Refresh' %}</span>
+	                 </button> 
+	                 <button 
+	                 	class="btn btn-success" 
+	                 	type="button"
+	                 	aria-pressed="false"
+	                 	onclick='filter_click("")'
+	                 	data-toggle="tooltip" data-placement="bottom"
+	              		title="{% trans 'Searching the Course ..' %}" 
+	              		data-original-title="{% trans 'Searching the Course ..' %}"
+	                 	>
+	                     <i class="icon-magnifier" aria-hidden="true"></i>
+	                     <span class="text">{% trans "Search" %}</span>
+	                 </button>
+	             </div>
+	         </form>
+	     </li>
+	</ul>
+{% endblock title_filter %}
+
+{% block breadcrumb %}
+	<span class="breadcrumb-item active">
+		<span class="breadcrumb-item active">{% trans "Ziarah Kain Kafan Yesus 2023" %}</span>
+	</span>
+{% endblock breadcrumb %}
+
+{% block page_title %}
+	{% trans "Course IN Faculty" %} {{ faculty.name }}, {% trans "Program" %} {{faculty.get_level}} {{faculty.university.name.upper}} 
+{% endblock page_title %}
+
+{% block add_new_button %}
+    <a 
+    	class="btn waves-effect waves-light btn-success d-none d-lg-block m-l-15"
+    	data-toggle="tooltip" 
+    	data-placement="bottom"
+    	href="{% url 'schedule:time_event_ziarah_list %}?page={{page}}&{{params_filter}}"
+    	title="{% trans 'Add a new registration' %}" 
+    	data-original-title="{% trans 'Add a new registration' %}"
+    	>
+    	<i class="fa fa-plus-circle"></i>
+    	{% trans "Registration" %}
+    </a>
+{% endblock add_new_button %}
+
+{% block content %}
+	<div class="row">
+         <div class="col-sm-12">
+             <div class="card">
+                 <div class="card-body">
+                     <div class="row">
+                     	<div class="col-md-6 col-sm-12">
+                     		<h5 class="card-title">{% trans "Ziarah Details" %}</h5>
+                     	</div>
+                     	<div class="col-md-6 col-sm-12 text-right">
+                     		{% if filter_in %}
+                     			<span class="label label-primary">{{ filter_in }}</span>
+                     		{% else %}
+                     			<span class="label label-inverse">{% trans "NO FILTER" %}</span>
+                     		{% endif %}
+                     	</div>
+                     </div>
+                     <div class="table-responsive">
+                         <table id="mytable" class="table table-striped">
+                             <thead>
+                                 <tr>
+                                 	 <th style="width:8%;">#</th>
+                                 	 <th style="width:10%;">{% trans "Identification Number" %}</th>
+                                     <th style="width:70%;">{% trans "Name" %}</th>
+                                     <th style="width:12%;">{% trans "Process" %}</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                             	{% if object_list %}
+                             		{% for no, object in object_list %}
+                             		<tr>
+                             			 <td>
+                                     		<a class="btn btn-light" onClick='data_info("{{ no }}. {{object.name.upper}}","{% trans 'CREATED ON' %} {{object.created|date:'D, d M Y H:m'}}","{% trans 'MODIFIED ON' %} {{object.modified|date:'D, d M Y H:m'}}","{% trans 'BY' %} {{object.user_update}}")'>
+                             			 		{{ no }}
+                             			 	</a>
+                             			 </td>
+                             			 <td>{{ object.nik }}</td>
+                             			 <td>
+                             			 	{{ object.name }}
+                           			 		<small>
+                           			 			{% if object.level %}
+                           			 			{% else %}
+                           			 				<br>
+                           			 				[{% trans "General To All Programs, Faculties and Majors" %}]
+                           			 			{% endif %}
+                           			 		</small>
+                             			 </td>
+	                                     <td>
+	                                     	<button class="btn btn-outline-info waves-effect waves-light" 
+	                                     		data-toggle="tooltip" 
+    											data-placement="bottom"
+    											title="{% trans 'Update' %} {{ object.name }}" 
+    											data-original-title="{% trans 'Update' %} {{ object.name }}"
+	                                     		type="button"
+	                                     		onclick='redirect_url_with_params("")'
+	                                     		>
+	                                     		<span class="btn-label">
+	                                     			<i class="icon-pencil"></i>
+	                                     		</span>
+	                                     	</button>
+	                                     	<button 
+	                                     		class="btn btn-outline-primary waves-effect waves-light"
+	                                     		data-toggle="tooltip" 
+    											data-placement="bottom" 
+    											title="{% trans 'Delete' %} {{ object.name }}" 
+    											data-original-title="{% trans 'Delete' %} {{ object.name }}"
+	                                     		type="button"
+	                                     		onclick='delete_course("{{object.name}}","{% url '")'
+	                                     		>
+	                                     		<span class="btn-label">
+	                                     			<i class="ti-trash"></i>
+	                                     		</span> 
+	                                     	</button>
+	                                     </td>
+	                                     
+	                                </tr>
+	                                {% endfor %}
+                             	{% else %}
+                             		 <td colspan="4" class="text-center">{% trans "No data Ziarah" %}</td>
+                             	{% endif %}
+                             </tbody>
+                         </table>
+                     </div>
+                     {% if object_list %}
+					    <div class="card-footer bg-light">
+					          {% include 'staffs/layout/pagination.html' %}
+					    </div>
+					 {% endif %}
+                 </div>
+             </div>
+         </div>
+     </div>
+	
+{% endblock content %}
+
+{% block extra_jquery %}{% endblock extra_jquery %}
+
+
+{% block extra_js %}
+	<script>
+		//====================================================================
+		// Filter Click
+		// Input Params url
+		// ====================================================================
+		function filter_click(url){
+			
+			var cosp_typed = $('#id_cosp_typed').val();
+			var cosp_name = $('#id_cosp_name').val();
+			
+			var fields = "cosp_typed="+cosp_typed+"&cosp_name="+cosp_name; 
+			
+			window.location.href=url+'&'+fields;
+		}
+	
+		//======================================================================
+		//Delete Course
+		//INPUT name, url
+		//OUTPUT redirect list university
+		//======================================================================
+		function delete_course(name, url) {
+	        swal(
+	            {
+	              title:'{% trans "DELETE COURSE" %}',
+	              text: '{% trans "Are you sure to delete data" %} '+name+" ?",
+	              type:'warning',
+	              showCancelButton:true,
+	              confirmButtonColor:'#3085d6',
+	              cancelButtonColor:'#d33',
+	              confirmButtonText:'{% trans "Yes, delete it" %}',
+	              cancelButtonText:'{% trans "No, cancel it" %}',
+	              confirmButtonClass:'btn btn-success',
+	              cancelButtonClass:'btn btn-default',
+	              buttonsStyling: false
+	            }).then(function (result) {
+	            if (result.value) {
+	            	var data = {
+                    	 	csrfmiddlewaretoken: '{{ csrf_token }}'
+                    	 	};
+	            	  
+	                swal({
+	                        title:'{% trans "DELETED" %}',
+	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully delete it!" %}.',
+	                        type:'success'
+	                        }).then(function (r){
+	                        	swal({
+		              		         position: 'top-end',
+		              		         type:'warning',
+		              		         html:'<div><div><h3>{% trans "DELETE COURSE"%}</h3></div><div><label>{% trans "The deleting data on progress .." %}</label></div></div>',
+		              		       });
+	                        	swal.showLoading();
+	                        	$.ajax({
+	                        		
+		                              url:url,
+		                              type:"POST",
+		                              data:data,
+		                              dataType: "json",
+		                              success: function(data) {
+		                            	  if (data.status==200){
+		                            		  window.location.href=data.url;
+		                            	  }
+		                            	  
+		                              },
+		                              error: function(data){
+		                                  console.log(data);
+		                              }
+		                          });
+	                        });
+	                        
+	              // result.dismiss can be 'cancel', 'overlay',
+	              // 'close', and 'timer'
+	              } else if (result.dismiss === 'cancel') {
+	                swal(
+	                  '{% trans "CANCEL" %}',
+	                  '{% trans "The delete data" %} '+name+', {% trans "have been canceled!" %}.',
+	                  'error'
+	                )
+	              }
+	        });
+	    }
+		
+		// select2
+	</script>
+{% endblock %}
+
+
+
+
+
+
+

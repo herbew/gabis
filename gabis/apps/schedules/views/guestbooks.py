@@ -26,9 +26,12 @@ from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkun
 from gabis.apps.masters.models.events import (Event, TimeEvent, PICEvent)
 from gabis.apps.schedules.models.bookings import BookingTimeEvent
 from gabis.apps.schedules.models.guestbooks import GuestBook
-from gabis.apps.schedules.forms.guestbooks import (GuestBookForm, 
-                                                   GuestBookFilterForm,
-                                                   TokenFilterForm)
+from gabis.apps.schedules.forms.guestbooks import (
+        GuestBookForm, 
+        GuestBookFilterForm,
+        TokenFilterForm,
+        GuestBookEventFilterForm)
+
 from _datetime import datetime
 
 
@@ -47,7 +50,7 @@ class GuestBookListView(ListView):
     paginator_class = SafePaginator
     paginate_by = 27
     
-    process = "schedules_guest_book" 
+    process = "schedules_ziarah_guest_book" 
     
             
     def get_context_data(self, *args, **kwargs):
@@ -70,6 +73,9 @@ class GuestBookListView(ListView):
         
         filter_event = self.kwargs.get('filter_event', 1)
         
+        if filter_event == 2:
+            self.process = "schedules_seminar_guest_book" 
+        
         
         # Filter Notice 
         filter_in = []
@@ -88,7 +94,7 @@ class GuestBookListView(ListView):
             
         if paid:
             filter_in.append("%s" % (_("Pembayaran")))
-            
+        
         if attended:
             filter_in.append("%s" % (_("Kedatangan")))
             
@@ -142,7 +148,7 @@ class GuestBookListView(ListView):
             context.update(
                 dict(
                     object_list=object_list,
-                    form_filter=GuestBookFilterForm(initial=data_filter),
+                    form_filter=GuestBookEventFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
                     params_filter=params_filter.replace('%20',''),
                     filter_event=filter_event,
@@ -180,7 +186,7 @@ class GuestBookListView(ListView):
             return  dict(
                     page_obj=p,
                     object_list=object_list,
-                    form_filter=GuestBookFilterForm(initial=data_filter),
+                    form_filter=GuestBookEventFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
                     params_filter=params_filter.replace('%20',''),
                     filter_event=filter_event,

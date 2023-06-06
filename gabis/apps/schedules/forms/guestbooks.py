@@ -3,6 +3,8 @@ from __future__ import unicode_literals, absolute_import
 import logging
 import os
 from django import forms
+from django.forms.widgets import Select, TextInput, CheckboxInput
+
 from django.conf import settings
 from django.utils.safestring import mark_safe
 from django.core.validators import validate_email
@@ -120,7 +122,8 @@ class GuestBookForm(forms.ModelForm):
 class TokenFilterForm(forms.Form):
     
     token = forms.CharField(
-        widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255})
+        widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255}),
+        required=False
         )
 
     def __init__(self, *args, **kwargs):
@@ -135,11 +138,85 @@ class TokenFilterForm(forms.Form):
 class GuestBookFilterForm(forms.Form):
     
     params = forms.CharField(
-        widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255})
+        widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255}),
+        required=False
         )
 
     def __init__(self, *args, **kwargs):
         super(GuestBookFilterForm, self).__init__(*args, **kwargs)
+        
+        self.fields['params'].label = _("No Identitas")
+        self.fields['params'].required = False
+        
+        self.fields["params"].help_text = _("Input Your NIK/NIS/HP Number!")
+        
+class GuestBookEventFilterForm(forms.Form):
+    
+    
+    keuskupan = forms.ModelChoiceField(
+        label=_("Keuskupan"),
+        queryset=Keuskupan.objects.all().order_by("ordered"),
+        empty_label=_("All Keuskupan ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                'onchange':'paroki_on_changed()'}),
+        required=False,
+    )
+    
+    paroki = forms.ModelChoiceField(
+        label=_("Paroki"),
+        queryset=Paroki.objects.all().order_by("ordered"),
+        empty_label=_("All Paroki ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                'onchange':'wilayah_on_changed()'}),
+        required=False,
+    )
+    
+    wilayah = forms.ModelChoiceField(
+        label=_("Wilayah"),
+        queryset=Wilayah.objects.all().order_by("ordered"),
+        empty_label=_("All Wilayah ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                'onchange':'lingkungan_on_changed()'}),
+        required=False,
+    )
+    
+    lingkungan = forms.ModelChoiceField(
+        label=_("Lingkungan"),
+        queryset=Lingkungan.objects.all().order_by("ordered"),
+        empty_label=_("All Lingkungan ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                }),
+        required=False,
+    )
+    
+    
+    paid = forms.BooleanField(
+        label=_("Is Paid"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                }),
+        required=False,
+        )
+    
+    attended = forms.BooleanField(
+        label=_("Is Attended"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                }),
+        required=False,
+        )
+    
+    params = forms.CharField(
+        widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255}),
+        required=False
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(GuestBookEventFilterForm, self).__init__(*args, **kwargs)
         
         self.fields['params'].label = _("No Identitas")
         self.fields['params'].required = False

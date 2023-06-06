@@ -1,42 +1,42 @@
 {% load i18n %}
 
 
-<li {% if process in 'company, room'|slice:',' %} class="active" {% else %} class="" {% endif %}>
-	<a {% if process in process in 'company, room'|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
+<li {% if process in ''|slice:',' %} class="active" {% else %} class="" {% endif %}>
+	<a {% if process in process in ''|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
         href="">
         <i class="icons-Profile"></i>
         <span class="hide-menu">{% trans "MASTER" %}</span>
     </a>
-    <ul {% if process in 'company, room'|slice:',' %} class="nav nav-second-level collapse aria-expanded=true in" market="1" {% else %} class="nav nav-second-level collapse aria-expanded=false"{% endif%}>
-    	<li {% if process in 'company, room'|slice:',' %} class="active" marked="1" {% else %} class="" {% endif %}>
+    <ul {% if process in ''|slice:',' %} class="nav nav-second-level collapse aria-expanded=true in" market="1" {% else %} class="nav nav-second-level collapse aria-expanded=false"{% endif%}>
+    	<li {% if process in ''|slice:',' %} class="active" marked="1" {% else %} class="" {% endif %}>
 		   	
 		   	<li><a
-		   		class="waves-effect {% ifequal process 'company' %} active {% endifequal%}"  
-		   		href=""  marked="1">
-		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Company" %}</span></a></li>
+		   		class="waves-effect {% ifequal process '' %} active {% endifequal%}"  
+		   		href="https://handbook.thepucukan.com/id/admin/"  marked="1">
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Master" %}</span></a></li>
     		
-    		<li><a
-		   		class="waves-effect {% ifequal process 'room' %} active {% endifequal%}"  
-		   		href=""  marked="1">
-		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Room" %}</span></a></li>
-		   		
     	</li>
     </ul>
 </li>
 
-<li {% if process in 'booking'|slice:',' %} class="active" {% else %} class="" {% endif %}>
-	<a {% if process in process in 'booking'|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
+<li {% if process in 'schedules_ziarah_guest_book,schedules_seminar_guest_book,'|slice:',' %} class="active" {% else %} class="" {% endif %}>
+	<a {% if process in process in 'schedules_ziarah_guest_book,schedules_seminar_guest_book,'|slice:',' %} class="has-arrow waves-effect waves-dark active" {% else %} class="has-arrow waves-effect waves-dark" {% endif %}
         href="">
         <i class="icon-calender"></i>
         <span class="hide-menu">{% trans "SCHEDULE" %}</span>
     </a>
-    <ul {% if process in 'booking'|slice:',' %} class="nav nav-second-level collapse aria-expanded=true in" market="1" {% else %} class="nav nav-second-level collapse aria-expanded=false"{% endif%}>
-    	<li {% if process in 'booking'|slice:',' %} class="active" marked="1" {% else %} class="" {% endif %}>
+    <ul {% if process in 'schedules_ziarah_guest_book,schedules_seminar_guest_book,'|slice:',' %} class="nav nav-second-level collapse aria-expanded=true in" market="1" {% else %} class="nav nav-second-level collapse aria-expanded=false"{% endif%}>
+    	<li {% if process in 'schedules_ziarah_guest_book,schedules_seminar_guest_book,'|slice:',' %} class="active" marked="1" {% else %} class="" {% endif %}>
 		   	
 		   	<li><a
-		   		class="waves-effect {% ifequal process 'booking' %} active {% endifequal%}"  
-		   		href=""  marked="1">
-		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Booking" %}</span></a></li>
+		   		class="waves-effect {% ifequal process 'schedules_ziarah_guest_book,' %} active {% endifequal%}"  
+		   		href="{% url 'staffs:guestbook_ziarah_list' %}"  marked="1">
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Ziarah" %}</span></a></li>
+		   		
+		   	<li><a
+		   		class="waves-effect {% ifequal process 'schedules_seminar_guest_book,' %} active {% endifequal%}"  
+		   		href="{% url 'staffs:guestbook_seminar_list' %}"  marked="1">
+		   		<span class="hide-menu">&nbsp;&nbsp;{% trans "Seminar" %}</span></a></li>
     		
     	</li>
     </ul>

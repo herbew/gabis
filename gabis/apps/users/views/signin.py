@@ -19,7 +19,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self):
         if self.request.user.types in ('001',):
             # return reverse_lazy("staffs:master_company_list")
-            return reverse_lazy("schedules:time_event_ziarah_list")
+            return reverse_lazy("staffs:guestbook_ziarah_list")
         
         logout(self.request)
         # return reverse_lazy("account_login")
@@ -49,7 +49,7 @@ class UserSigninView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self):
         if self.request.user.types in ('001',):
             # return reverse_lazy("staffs:master_company_list")
-            return reverse_lazy("schedules:time_event_ziarah_list")
+            return reverse_lazy("staffs:guestbook_ziarah_list")
         
         logout(self.request)
         return reverse_lazy("account_login")
