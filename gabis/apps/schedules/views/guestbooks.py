@@ -129,13 +129,13 @@ class GuestBookListView(ListView):
         
         # History FIlter
         history_filter = "p0=%s&p1=%s&keuskupan=%s&paroki=%s&wilayah=%s&lingkungan=%s&paid=%s&attended=%s&params=%s" % (
-            p0, page, keuskupan, paroki, wilayah,)
+            p0, page, keuskupan, paroki, wilayah, lingkungan, paid, attended, params)
         history_filter=history_filter.replace('None','')
         
         
         # Param FIlter
         params_filter = "p0=%s&p1=%s&keuskupan=%s&paroki=%s&wilayah=%s&lingkungan=%s&paid=%s&attended=%s&params=%s" % (
-            p0, page, keuskupan, paroki, wilayah,)
+            p0, page, keuskupan, paroki, wilayah, lingkungan, paid, attended, params)
         params_filter = params_filter.replace('None','')
         
     
