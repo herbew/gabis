@@ -24,5 +24,5 @@ urlpatterns = [
     path("guestbook/seminar/list/", 
         view=guestbooks.GuestBookZiarahListView.as_view(),
         kwargs=dict(filter_event=2),
-        name="guestbook_ziarah_list"),
+        name="guestbook_seminar_list"),
     ]
