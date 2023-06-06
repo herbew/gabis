@@ -80,7 +80,7 @@ class GuestBookListView(ListView):
         # Filter Notice 
         filter_in = []
             
-        if keusukupan:
+        if keuskupan:
             filter_in.append("%s" % (_("Keuskupan")))
             
         if paroki:
