@@ -22,7 +22,7 @@ WEEKDAY = (_("Monday"),  _("Tuesday"),  _("Wednesday"),
             _("Thursday"), _("Friday"),  _("Saturday"), _("Sunday"))
 
 SEMINAR_EVENT = "Seminar Kain Kafan Yesus 2023"
-ZIARAH_ENVENT = "Ziarah Kain Kafan Yesus 2023"
+ZIARAH_EVENT = "Ziarah Kain Kafan Yesus 2023"
 
 class Event(TimeStampedModel):
     """Event"""

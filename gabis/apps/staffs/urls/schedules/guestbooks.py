@@ -9,10 +9,10 @@ urlpatterns = [
     path("guestbook/detail/", 
         view=guestbooks.GuestBookDetailListView.as_view(),
         name="guestbook_detail"),
-    path("guestbook/<int:pk_guest_book>/attended/", 
+    path("guestbook/<int:pk_guest_book>/attend/", 
         view=guestbooks.AttendGuestView.as_view(),
         name="guestbook_attended"),
-    path("guestbook/<int:pk_guest_book>/paid/", 
+    path("guestbook/<int:pk_guest_book>/pay/", 
         view=guestbooks.PayGuestView.as_view(),
         name="guestbook_paid"),
     
@@ -25,4 +25,9 @@ urlpatterns = [
         view=guestbooks.GuestBookSeminarListView.as_view(),
         kwargs=dict(filter_event=2),
         name="guestbook_seminar_list"),
+    
+    path("guestbook/<int:pk_guest_book>/delete/", 
+        view=guestbooks.DeleteGuestView.as_view(),
+        name="guestbook_deleted"),
+    
     ]

@@ -23,7 +23,7 @@ from gabis.apps.schedules.models.bookings import BookingTimeEvent
 log = logging.getLogger(__name__)
 
 SEMINAR_EVENT = "Seminar Kain Kafan Yesus 2023"
-ZIARAH_ENVENT = "Ziarah Kain Kafan Yesus 2023"
+ZIARAH_EVENT = "Ziarah Kain Kafan Yesus 2023"
 
 
 class GuestBook(TimeStampedModel):

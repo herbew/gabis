@@ -17,7 +17,7 @@ from django.forms.widgets import NumberInput
 from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkungan)
 from gabis.apps.masters.models.events import TimeEvent
 from gabis.apps.schedules.models.guestbooks import (
-    GuestBook, SEMINAR_EVENT, ZIARAH_ENVENT)
+    GuestBook, SEMINAR_EVENT, ZIARAH_EVENT)
 
 log = logging.getLogger(__name__)
 
@@ -206,7 +206,7 @@ class GuestBookEventZiarahFilterForm(forms.Form):
     
     kloter = forms.ModelChoiceField(
         label=_("Kloter"),
-        queryset=TimeEvent.objects.filter(event__name=ZIARAH_ENVENT).order_by("ordered"),
+        queryset=TimeEvent.objects.filter(event__name=ZIARAH_EVENT).order_by("ordered"),
         empty_label=_("All Kloter ---"),
         widget=forms.Select(attrs={
                 'class':'form-control text-muted'}),

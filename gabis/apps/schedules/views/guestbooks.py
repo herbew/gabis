@@ -40,7 +40,7 @@ from _datetime import datetime
 log = logging.getLogger(__name__)
 
 SEMINAR_EVENT = "Seminar Kain Kafan Yesus 2023"
-ZIARAH_ENVENT = "Ziarah Kain Kafan Yesus 2023"
+ZIARAH_EVENT = "Ziarah Kain Kafan Yesus 2023"
 
 class GuestBookListView(ListView):
     """
@@ -728,4 +728,46 @@ class PayGuestView(View):
         
         #return JsonResponse(dict(status=200, url=self.get_success_url()))
         return JsonResponse(self.get_success_url()) 
+
+
+class DeleteGuestView(View):
+    model = GuestBook
+    process = "schedules_guest_book" 
     
+    def get_success_url(self):
+        pass
+    
+    def get_params_url(self):
+        pass
+        
+    def set_params_url(self, semester):
+        pass
+        
+    def get_object(self):
+        pk_guest_book = self.kwargs.get('pk_guest_book',None)
+        
+        guest_book = get_object_or_404(self.model, pk=pk_guest_book)
+        
+        return guest_book
+    
+    def post(self, request, *args, **kwargs):
+        
+        # Get Params URL
+        obj = self.get_object()
+        
+        self.event = ZIARAH_EVENT
+        
+        if obj.time_event.event.name == SEMINAR_EVENT:
+            self.event = SEMINAR_EVENT
+            
+        name = obj.name
+        nik = object.nik
+        
+        obj.delete()
+        
+        messages.success(request, _("A Guest %s[%s] in %s have been deleted!." % (
+                name, nik, event
+            )))
+        
+        #return JsonResponse(dict(status=200, url=self.get_success_url()))
+        return JsonResponse(self.get_success_url()) 

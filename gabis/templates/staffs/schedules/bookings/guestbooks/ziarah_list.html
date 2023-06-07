@@ -149,7 +149,7 @@
     											title="{% trans 'Delete' %} {{ object.name }}" 
     											data-original-title="{% trans 'Delete' %} {{ object.name }}"
 	                                     		type="button"
-	                                     		onclick='delete_course("{{object.name}}","{% url '")'
+	                                     		onclick='delete_guestbook("{{object.name}}","{% url 'staffs:guestbook_deleted' object.id %}")'
 	                                     		>
 	                                     		<span class="btn-label">
 	                                     			<i class="ti-trash"></i>
@@ -201,6 +201,77 @@
 			
 			window.location.href=url+'?'+fields;
 		}
+		
+		//======================================================================
+		//Update GuestBook Delete
+		//INPUT name, url
+		//OUTPUT redirect staffs: 
+		//if self.event == SEMINAR_EVENT:
+        //    url = reverse_lazy("staffs:guestbook_seminar_list")
+        //else:
+        //    url = reverse_lazy("staffs:guestbook_ziarah_list")
+		//======================================================================
+		function delete_guestbook(name, url) {
+	        swal(
+	            {
+	              title:'{% trans "UPDATE GUESTBOOK DELETE" %}',
+	              text: '{% trans "Are you sure to delete data" %} '+name+" ?",
+	              type:'warning',
+	              showCancelButton:true,
+	              confirmButtonColor:'#3085d6',
+	              cancelButtonColor:'#d33',
+	              confirmButtonText:'{% trans "Yes, delete it" %}',
+	              cancelButtonText:'{% trans "No, cancel it" %}',
+	              confirmButtonClass:'btn btn-success',
+	              cancelButtonClass:'btn btn-default',
+	              buttonsStyling: false
+	            }).then(function (result) {
+	            if (result.value) {
+	            	var data = {
+                    	 	csrfmiddlewaretoken: '{{ csrf_token }}'
+                    	 	};
+	            	  
+	                swal({
+	                        title:'{% trans "DELETED" %}',
+	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully delete it!" %}.',
+	                        type:'success'
+	                        }).then(function (r){
+	                        	swal({
+	   	              		         position: 'top-end',
+	   	              		         type:'warning',
+	   	              		         html:'<div><div><h3>{% trans "GUESTBOOK DELETED"%}</h3></div><div><label>{% trans "The deleting data on progress .." %}</label></div></div>',
+	   	              		       });
+	                        	
+	                        	swal.showLoading();
+	                        	$.ajax({
+	                        		
+		                              url:url,
+		                              type:"POST",
+		                              data:data,
+		                              dataType: "json",
+		                              success: function(data) {
+		                            	  if (data.status==200){
+		                            		  window.location.href=data.url;
+		                            	  }
+		                            	  
+		                              },
+		                              error: function(data){
+		                                  console.log(data);
+		                              }
+		                          });
+	                        });
+	                        
+	              // result.dismiss can be 'cancel', 'overlay',
+	              // 'close', and 'timer'
+	              } else if (result.dismiss === 'cancel') {
+	                swal(
+	                  '{% trans "CANCEL" %}',
+	                  '{% trans "The delete data" %} '+name+', {% trans "have been canceled!" %}.',
+	                  'error'
+	                )
+	              }
+	        });
+	    }
 	</script>
 	
 {% endblock %}
