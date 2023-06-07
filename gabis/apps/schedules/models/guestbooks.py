@@ -163,10 +163,10 @@ class GuestBook(TimeStampedModel):
         d_now = tz.localize(datetime.now())
         
         if self.created >= (d_now - timedelta(hours=24)):
-            return "red"
+            return "#feb8a5"
         
         if self.created  >= (d_now - timedelta(hours=2)):
-            return "yellow"
+            return "#fefda5"
         
         return ""
     
