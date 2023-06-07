@@ -39,7 +39,7 @@ class GuestBookZiarahListView(AdminMixin, MasterGuestBookListView):
     template_name = "staffs/schedules/bookings/guestbooks/ziarah_list.html"
     
 class GuestBookSeminarListView(AdminMixin, MasterGuestBookListView):
-    template_name = "staffs/schedules/bookings/guestbooks/ziarah_list.html"
+    template_name = "staffs/schedules/bookings/guestbooks/seminar_list.html"
     
     
     

@@ -45,7 +45,9 @@
 {% block add_new_button %}{% endblock add_new_button %}
 
 {% block breadcrumb %}
-	
+	<nav class="breadcrumb text-right">
+	    </span> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{% url 'login_redirect' %}">{% trans "Sign In" %}</a>
+	</nav>
 {% endblock breadcrumb %}
 
 {% block content %}

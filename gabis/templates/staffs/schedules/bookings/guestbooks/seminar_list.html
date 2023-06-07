@@ -1,0 +1,213 @@
+{% extends "staffs/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load avatar_tags %}
+{% load utility_tags %}
+
+    
+{% block title_filter %}
+	<ul class="mega-dropdown-menu row">
+	    <li class="col-lg-2 col-xlg-2 m-b-30">
+	         <h1><i class="ti-light-bulb text-info"></i></h1>
+	         <h6 class="text-muted"> {% blocktrans %}To find data <b>Guest</b> easily, please input the parameters in carefully!{% endblocktrans %}</h6>
+	     </li>
+	     <li class="col-lg-10 col-xlg-2 m-b-30">
+	        <form class="form-material form-horizontal" method="get" >
+	             {{ form_filter.as_p }}
+	             <div class="text-right">
+	                 <button 
+	                 	class="btn btn-secondary" 
+	                 	type='button'
+	                 	aria-pressed="false"
+	               		onclick='redirect_url_no_params("{% url 'staffs:guestbook_ziarah_list' %}")'
+	               		data-toggle="tooltip" data-placement="bottom"
+	              		title="{% trans 'Reset params filter ..' %}" 
+	              		data-original-title="{% trans 'Reset params filter ..' %}"
+	                 	>
+	                     <span class="btn-label"><i class="icon-refresh "></i>
+	                     <span class="text">{% trans 'Refresh' %}</span>
+	                 </button> 
+	                 <button 
+	                 	class="btn btn-success" 
+	                 	type="button"
+	                 	aria-pressed="false"
+	                 	onclick='filter_click("{% url 'staffs:guestbook_ziarah_list' %}")'
+	                 	data-toggle="tooltip" data-placement="bottom"
+	              		title="{% trans 'Searching the Guest ..' %}" 
+	              		data-original-title="{% trans 'Searching the Guest ..' %}"
+	                 	>
+	                     <i class="icon-magnifier" aria-hidden="true"></i>
+	                     <span class="text">{% trans "Search" %}</span>
+	                 </button>
+	             </div>
+	         </form>
+	     </li>
+	</ul>
+{% endblock title_filter %}
+
+{% block breadcrumb %}
+	<span class="breadcrumb-item active">
+		<span class="breadcrumb-item active">{% trans "Seminar Kain Kafan Yesus 2023" %}</span>
+	</span>
+{% endblock breadcrumb %}
+
+{% block page_title %}
+	{{ kloter }} 
+{% endblock page_title %}
+
+{% block add_new_button %}
+    <a 
+    	class="btn waves-effect waves-light btn-success d-none d-lg-block m-l-15"
+    	data-toggle="tooltip" 
+    	data-placement="bottom"
+    	href="{% url 'schedules:time_event_ziarah_list' %}?page={{page}}&{{params_filter}}"
+    	title="{% trans 'Add a new registration' %}" 
+    	data-original-title="{% trans 'Add a new registration' %}"
+    	>
+    	<i class="fa fa-plus-circle"></i>
+    	{% trans "Registration" %}
+    </a>
+{% endblock add_new_button %}
+
+{% block content %}
+	<div class="row">
+         <div class="col-sm-12">
+             <div class="card">
+                 <div class="card-body">
+                     <div class="row">
+                     	<div class="col-md-6 col-sm-12">
+                     		<h5 class="card-title">{% trans "Seminar Details" %}</h5>
+                     	</div>
+                     	<div class="col-md-6 col-sm-12 text-right">
+                     		{% if filter_in %}
+                     			<span class="label label-primary">{{ filter_in }}</span>
+                     		{% else %}
+                     			<span class="label label-inverse">{% trans "NO FILTER" %}</span>
+                     		{% endif %}
+                     	</div>
+                     </div>
+                     <div class="table-responsive">
+                         <table id="mytable" class="table table-striped">
+                             <thead>
+                                 <tr>
+                                 	 <th style="width:8%;">#</th>
+                                 	 <th style="width:45%;">{% trans "Person" %}</th>
+                                     <th style="width:45%;">{% trans "Event" %}</th>
+                                     <th style="width:12%;">{% trans "Process" %}</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                             	{% if object_list %}
+                             		{% for no, object in object_list %}
+                             		<tr>
+                             			 <td>
+                                     		<a class="btn btn-light" onClick='data_info("{{ no }}. {{object.name.upper}}","{% trans 'CREATED ON' %} {{object.created|date:'D, d M Y H:m'}}","{% trans 'MODIFIED ON' %} {{object.modified|date:'D, d M Y H:m'}}","{% trans 'BY' %} {{object.user_update}}")'>
+                             			 		{{ no }}
+                             			 	</a>
+                             			 </td>
+                             			 <td>
+                             			 	<small>{% trans "Identity Number" %} :</small> {{ object.nik }}<br>
+                             			 	<small>{% trans "Name" %} :</small> {{ object.name }}<br>
+                             			 	<small>{% trans "Mobile" %} :</small> {{ object.mobile }}<br>
+                             			 	<hr>
+                             			 	<small>{% trans "Keuskupan" %} :</small> {{ object.keuskupan.name }}<br>
+                             			 	<small>{% trans "Paroki" %} :</small> {{ object.paroki.name }}<br>
+                             			 	<small>{% trans "Wilayah" %} :</small> {{ object.wilayah.name }}<br>
+                             			 	<small>{% trans "Lingkungan" %} :</small> {{ object.lingkungan.name }}<br>
+                             			 	
+                             			 </td>
+                             			 <td>
+                             			 	<small>{% trans "TOKEN" %} :</small> {{ object.pin }}<br>
+                             			 	<hr>
+                             			 	<small>{% trans "KLOTER" %} :</small> {{ object.time_event.group }}<br>
+                             			 	<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small>
+                             			 	<hr>
+                             			 	{% if object.attended %}
+                             			 		{% trans 'Attended' %}
+                             			 	{% else %}
+                             			 		{% trans 'Not Attended' %}
+                             			 	{% endif %}
+                             			 </td>
+	                                     <td>
+	                                     	<button class="btn btn-outline-info waves-effect waves-light" 
+	                                     		data-toggle="tooltip" 
+    											data-placement="bottom"
+    											title="{% trans 'Update' %} {{ object.name }}" 
+    											data-original-title="{% trans 'Update' %} {{ object.name }}"
+	                                     		type="button"
+	                                     		onclick='redirect_url_with_params("{% url 'staffs:guestbook_detail' %}?params={{ object.id }}")'
+	                                     		>
+	                                     		<span class="btn-label">
+	                                     			<i class="icon-pencil"></i>
+	                                     		</span>
+	                                     	</button>
+	                                     	<button 
+	                                     		class="btn btn-outline-primary waves-effect waves-light"
+	                                     		data-toggle="tooltip" 
+    											data-placement="bottom" 
+    											title="{% trans 'Delete' %} {{ object.name }}" 
+    											data-original-title="{% trans 'Delete' %} {{ object.name }}"
+	                                     		type="button"
+	                                     		onclick='delete_course("{{object.name}}","{% url '")'
+	                                     		>
+	                                     		<span class="btn-label">
+	                                     			<i class="ti-trash"></i>
+	                                     		</span> 
+	                                     	</button>
+	                                     </td>
+	                                     
+	                                </tr>
+	                                {% endfor %}
+                             	{% else %}
+                             		 <td colspan="4" class="text-center">{% trans "No data Seminar" %}</td>
+                             	{% endif %}
+                             </tbody>
+                         </table>
+                     </div>
+                     {% if object_list %}
+					    <div class="card-footer bg-light">
+					          {% include 'staffs/layout/pagination.html' %}
+					    </div>
+					 {% endif %}
+                 </div>
+             </div>
+         </div>
+     </div>
+	
+{% endblock content %}
+
+{% block extra_jquery %}{% endblock extra_jquery %}
+
+
+{% block extra_js %}
+	{% include "staffs/schedules/bookings/guestbooks/guestbooks.js" %}
+	<script>
+		//====================================================================
+		// Filter Click
+		// Input Params url
+		// ====================================================================
+		function filter_click(url){
+			
+			var keuskupan = $('#id_keuskupan').val();
+			var paroki = $('#id_paroki').val();
+			var wilayah = $('#id_wilayah').val();
+			var lingkungan = $('#id_lingkungan').val();
+			var attended = $('#id_attended')[0].checked;
+			var kloter = $('#id_kloter').val();
+			var params = $('#id_params').val();
+			
+			var fields = "keuskupan="+keuskupan+"&paroki="+paroki+"&wilayah="+wilayah+"&lingkungan="+lingkungan+"&attended="+attended+"&kloter="+kloter+"&params="+params; 
+			
+			window.location.href=url+'?'+fields;
+		}
+	</script>
+	
+{% endblock %}
+
+
+
+
+
+
+

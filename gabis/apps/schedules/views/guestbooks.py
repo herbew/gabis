@@ -30,7 +30,9 @@ from gabis.apps.schedules.forms.guestbooks import (
         GuestBookForm, 
         GuestBookFilterForm,
         TokenFilterForm,
-        GuestBookEventZiarahFilterForm)
+        GuestBookEventZiarahFilterForm,
+        GuestBookEventSeminarFilterForm
+        )
 
 from _datetime import datetime
 
@@ -73,9 +75,6 @@ class GuestBookListView(ListView):
         
         
         filter_event = self.kwargs.get('filter_event', 1)
-        
-        if filter_event == 2:
-            self.process = "schedules_seminar_guest_book" 
         
         
         # Filter Notice 
@@ -149,6 +148,11 @@ class GuestBookListView(ListView):
         else:
             kloter = _("All Kloter")
             
+        form_filter = GuestBookEventZiarahFilterForm(initial=data_filter)
+        if filter_event == 2:
+            self.process = "schedules_seminar_guest_book" 
+            form_filter = GuestBookEventSeminarFilterForm(initial=data_filter)
+            
         try:
             context = super(GuestBookListView, self).get_context_data(*args, **kwargs)
             object_list = [((index +((int(page)*int(self.paginate_by))
@@ -158,7 +162,7 @@ class GuestBookListView(ListView):
             context.update(
                 dict(
                     object_list=object_list,
-                    form_filter=GuestBookEventZiarahFilterForm(initial=data_filter),
+                    form_filter=form_filter,
                     history_filter=history_filter.replace('%20',''),
                     params_filter=params_filter.replace('%20',''),
                     filter_event=filter_event,
@@ -197,7 +201,7 @@ class GuestBookListView(ListView):
             return  dict(
                     page_obj=p,
                     object_list=object_list,
-                    form_filter=GuestBookEventZiarahFilterForm(initial=data_filter),
+                    form_filter=form_filter,
                     history_filter=history_filter.replace('%20',''),
                     params_filter=params_filter.replace('%20',''),
                     filter_event=filter_event,
