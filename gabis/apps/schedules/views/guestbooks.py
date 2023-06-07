@@ -210,9 +210,8 @@ class GuestBookListView(ListView):
         filter_event = self.kwargs.get('filter_event', 1)
         
         query_set = self.model.objects.filter(
-            time_event__event__id=filter_event)
-        # .order_by(
-        #         "time_event__event__start_time", "time_event__event__end_time" )
+            time_event__event__id=filter_event).order_by(
+                 "time_event__ordered", "-created" )
         
         if keuskupan:
             query_set = query_set.filter(keuskupan=keuskupan)
