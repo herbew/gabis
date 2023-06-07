@@ -217,6 +217,7 @@ class GuestBookListView(ListView):
         lingkungan = self.request.GET.get('lingkungan','')
         paid = self.request.GET.get('paid','')
         attended = self.request.GET.get('attended','')
+        kloter = self.request.GET.get('kloter','')
         params = self.request.GET.get('params','')
         
         filter_event = self.kwargs.get('filter_event', 1)
