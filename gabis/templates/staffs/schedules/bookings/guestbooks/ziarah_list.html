@@ -136,7 +136,7 @@
     											title="{% trans 'Update' %} {{ object.name }}" 
     											data-original-title="{% trans 'Update' %} {{ object.name }}"
 	                                     		type="button"
-	                                     		onclick='redirect_url_with_params("")'
+	                                     		onclick='redirect_url_with_params("{% url 'staffs:guestbook_detail' %}?params=object.id")'
 	                                     		>
 	                                     		<span class="btn-label">
 	                                     			<i class="icon-pencil"></i>
