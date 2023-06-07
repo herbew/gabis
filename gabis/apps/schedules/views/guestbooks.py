@@ -761,7 +761,7 @@ class DeleteGuestView(View):
             self.event = SEMINAR_EVENT
             
         name = obj.name
-        nik = object.nik
+        nik = obj.nik
         
         obj.delete()
         
@@ -784,7 +784,7 @@ class DeleteGuestView(View):
             self.event = SEMINAR_EVENT
             
         name = obj.name
-        nik = object.nik
+        nik = obj.nik
         
         obj.delete()
         
