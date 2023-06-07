@@ -53,6 +53,6 @@ class DeleteGuestView(AdminMixin, MasterDeleteGuestView):
         else:
             url = reverse_lazy("staffs:guestbook_ziarah_list")
         
-        return dict(status=200, url)
+        return dict(status=200, url=url)
     
     
