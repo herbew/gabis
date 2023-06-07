@@ -750,6 +750,29 @@ class DeleteGuestView(View):
         
         return guest_book
     
+    def get(self, request, *args, **kwargs):
+        
+        # Get Params URL
+        obj = self.get_object()
+        
+        self.event = ZIARAH_EVENT
+        
+        if obj.time_event.event.name == SEMINAR_EVENT:
+            self.event = SEMINAR_EVENT
+            
+        name = obj.name
+        nik = object.nik
+        
+        obj.delete()
+        
+        messages.success(request, _("A Guest %s[%s] in %s have been deleted!." % (
+                name, nik, event
+            )))
+        
+        #return JsonResponse(dict(status=200, url=self.get_success_url()))
+        return JsonResponse(self.get_success_url()) 
+
+    
     def post(self, request, *args, **kwargs):
         
         # Get Params URL
