@@ -214,7 +214,7 @@ class GuestBookEventZiarahFilterForm(forms.Form):
     
     kloter = forms.ModelChoiceField(
         label=_("Kloter"),
-        queryset=TimeEvent.objects.filter(event__name=SEMINAR_EVENT).order_by("ordered"),
+        queryset=TimeEvent.objects.filter(event__name=ZIARAH_ENVENT).order_by("ordered"),
         empty_label=_("All Kloter ---"),
         widget=forms.Select(attrs={
                 'class':'form-control text-muted'}),

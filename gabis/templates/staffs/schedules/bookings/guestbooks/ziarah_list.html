@@ -53,7 +53,7 @@
 {% endblock breadcrumb %}
 
 {% block page_title %}
-	{% trans "Course IN Faculty" %} {{ faculty.name }}, {% trans "Program" %} {{faculty.get_level}} {{faculty.university.name.upper}} 
+	{{ kloter }} 
 {% endblock page_title %}
 
 {% block add_new_button %}
@@ -77,7 +77,7 @@
                  <div class="card-body">
                      <div class="row">
                      	<div class="col-md-6 col-sm-12">
-                     		<h5 class="card-title">{% trans "Ziarah Details" %} <small>{{ kloter }}</small></h5>
+                     		<h5 class="card-title">{% trans "Ziarah Details" %}</h5>
                      	</div>
                      	<div class="col-md-6 col-sm-12 text-right">
                      		{% if filter_in %}
