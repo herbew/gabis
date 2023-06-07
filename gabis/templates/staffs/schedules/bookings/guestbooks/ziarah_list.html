@@ -92,8 +92,8 @@
                              <thead>
                                  <tr>
                                  	 <th style="width:8%;">#</th>
-                                 	 <th style="width:10%;">{% trans "Identification Number" %}</th>
-                                     <th style="width:70%;">{% trans "Name" %}</th>
+                                 	 <th style="width:45%;">{% trans "Person" %}</th>
+                                     <th style="width:45%;">{% trans "Event" %}</th>
                                      <th style="width:12%;">{% trans "Process" %}</th>
                                  </tr>
                              </thead>
@@ -106,16 +106,28 @@
                              			 		{{ no }}
                              			 	</a>
                              			 </td>
-                             			 <td>{{ object.nik }}</td>
                              			 <td>
-                             			 	{{ object.name }}
-                           			 		<small>
-                           			 			{% if object.level %}
-                           			 			{% else %}
-                           			 				<br>
-                           			 				[{% trans "General To All Programs, Faculties and Majors" %}]
-                           			 			{% endif %}
-                           			 		</small>
+                             			 	<small>{% trans "Identity Number" %} :</small> {{ object.nik }}<br>
+                             			 	<small>{% trans "Name" %} :</small> {{ object.name }}<br>
+                             			 	<small>{% trans "Mobile" %} :</small> {{ object.mobile }}<br>
+                             			 	<hr>
+                             			 	<small>{% trans "Keuskupan" %} :</small> {{ object.keuskupan.name }}<br>
+                             			 	<small>{% trans "Paroki" %} :</small> {{ object.paroki.name }}<br>
+                             			 	<small>{% trans "Wilayah" %} :</small> {{ object.wilayah.name }}<br>
+                             			 	<small>{% trans "Lingkungan" %} :</small> {{ object.lingkungan.name }}<br>
+                             			 	
+                             			 </td>
+                             			 <td>
+                             			 	<small>{% trans "TOKEN" %} :</small> {{ object.pin }}<br>
+                             			 	<hr>
+                             			 	<small>{% trans "KLOTER" %} :</small> {{ object.time_event.group }}<br>
+                             			 	<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small>
+                             			 	<hr>
+                             			 	{% if object.attended %}
+                             			 		{% trans 'Attended' %}
+                             			 	{% else %}
+                             			 		{% trans 'Not Attended' %}
+                             			 	{% endif %}
                              			 </td>
 	                                     <td>
 	                                     	<button class="btn btn-outline-info waves-effect waves-light" 
@@ -169,6 +181,7 @@
 
 
 {% block extra_js %}
+	{% include "staffs/schedules/bookings/guestbooks/guestbooks.js" %}
 	<script>
 		//====================================================================
 		// Filter Click
@@ -183,75 +196,8 @@
 			
 			window.location.href=url+'&'+fields;
 		}
-	
-		//======================================================================
-		//Delete Course
-		//INPUT name, url
-		//OUTPUT redirect list university
-		//======================================================================
-		function delete_course(name, url) {
-	        swal(
-	            {
-	              title:'{% trans "DELETE COURSE" %}',
-	              text: '{% trans "Are you sure to delete data" %} '+name+" ?",
-	              type:'warning',
-	              showCancelButton:true,
-	              confirmButtonColor:'#3085d6',
-	              cancelButtonColor:'#d33',
-	              confirmButtonText:'{% trans "Yes, delete it" %}',
-	              cancelButtonText:'{% trans "No, cancel it" %}',
-	              confirmButtonClass:'btn btn-success',
-	              cancelButtonClass:'btn btn-default',
-	              buttonsStyling: false
-	            }).then(function (result) {
-	            if (result.value) {
-	            	var data = {
-                    	 	csrfmiddlewaretoken: '{{ csrf_token }}'
-                    	 	};
-	            	  
-	                swal({
-	                        title:'{% trans "DELETED" %}',
-	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully delete it!" %}.',
-	                        type:'success'
-	                        }).then(function (r){
-	                        	swal({
-		              		         position: 'top-end',
-		              		         type:'warning',
-		              		         html:'<div><div><h3>{% trans "DELETE COURSE"%}</h3></div><div><label>{% trans "The deleting data on progress .." %}</label></div></div>',
-		              		       });
-	                        	swal.showLoading();
-	                        	$.ajax({
-	                        		
-		                              url:url,
-		                              type:"POST",
-		                              data:data,
-		                              dataType: "json",
-		                              success: function(data) {
-		                            	  if (data.status==200){
-		                            		  window.location.href=data.url;
-		                            	  }
-		                            	  
-		                              },
-		                              error: function(data){
-		                                  console.log(data);
-		                              }
-		                          });
-	                        });
-	                        
-	              // result.dismiss can be 'cancel', 'overlay',
-	              // 'close', and 'timer'
-	              } else if (result.dismiss === 'cancel') {
-	                swal(
-	                  '{% trans "CANCEL" %}',
-	                  '{% trans "The delete data" %} '+name+', {% trans "have been canceled!" %}.',
-	                  'error'
-	                )
-	              }
-	        });
-	    }
-		
-		// select2
 	</script>
+	
 {% endblock %}
 
 
