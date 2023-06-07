@@ -71,6 +71,9 @@ class GuestBookListView(ListView):
         paid = self.request.GET.get('paid','false')
         attended = self.request.GET.get('attended','false')
         kloter = self.request.GET.get('kloter','')
+        if kloter in ('undefined',):
+            kloter = ""
+            
         params = self.request.GET.get('params','')
         
         
@@ -143,6 +146,7 @@ class GuestBookListView(ListView):
         params_filter = params_filter.replace('None','')
         
         
+            
         if kloter:
             kloter = TimeEvent.objects.get(id=kloter).__str__()
         else:
@@ -222,6 +226,9 @@ class GuestBookListView(ListView):
         paid = self.request.GET.get('paid','')
         attended = self.request.GET.get('attended','')
         kloter = self.request.GET.get('kloter','')
+        if kloter in ('undefined',):
+            kloter = ""
+            
         params = self.request.GET.get('params','')
         
         filter_event = self.kwargs.get('filter_event', 1)
