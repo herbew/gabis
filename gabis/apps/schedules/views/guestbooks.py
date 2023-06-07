@@ -66,8 +66,8 @@ class GuestBookListView(ListView):
         paroki = self.request.GET.get('paroki','')
         wilayah = self.request.GET.get('wilayah','')
         lingkungan = self.request.GET.get('lingkungan','')
-        paid = self.request.GET.get('paid',False)
-        attended = self.request.GET.get('attended',False)
+        paid = self.request.GET.get('paid','false')
+        attended = self.request.GET.get('attended','false')
         kloter = self.request.GET.get('kloter','')
         params = self.request.GET.get('params','')
         
@@ -238,9 +238,19 @@ class GuestBookListView(ListView):
             query_set = query_set.filter(lingkungan=lingkungan)
         
         if paid:
+            if paid in ('false', False):
+                paid = False
+            else:
+                paid = True
+                
             query_set = query_set.filter(paid=paid)
             
         if attended:
+            if attended in ('false', False):
+                attended = False
+            else:
+                attended = True
+                
             query_set = query_set.filter(attended=attended)
             
         if params:

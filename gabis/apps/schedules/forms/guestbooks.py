@@ -226,7 +226,6 @@ class GuestBookEventZiarahFilterForm(forms.Form):
         
         self.fields["params"].help_text = _("Input Your NIK/NIS/HP Number!")
         
-        self.fields['attended'].initial  = False
         
 
 class GuestBookEventSeminarFilterForm(forms.Form):
