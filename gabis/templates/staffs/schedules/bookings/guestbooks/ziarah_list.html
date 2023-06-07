@@ -10,7 +10,7 @@
 	<ul class="mega-dropdown-menu row">
 	    <li class="col-lg-2 col-xlg-2 m-b-30">
 	         <h1><i class="ti-light-bulb text-info"></i></h1>
-	         <h6 class="text-muted"> {% blocktrans %}To find data <b>Course</b> easily, please input the parameters in carefully!{% endblocktrans %}</h6>
+	         <h6 class="text-muted"> {% blocktrans %}To find data <b>Guest</b> easily, please input the parameters in carefully!{% endblocktrans %}</h6>
 	     </li>
 	     <li class="col-lg-10 col-xlg-2 m-b-30">
 	        <form class="form-material form-horizontal" method="get" >
@@ -20,7 +20,7 @@
 	                 	class="btn btn-secondary" 
 	                 	type='button'
 	                 	aria-pressed="false"
-	               		onclick='redirect_url_no_params("")'
+	               		onclick='redirect_url_no_params("{% url 'staffs:guestbook_ziarah_list' %}")'
 	               		data-toggle="tooltip" data-placement="bottom"
 	              		title="{% trans 'Reset params filter ..' %}" 
 	              		data-original-title="{% trans 'Reset params filter ..' %}"
@@ -32,10 +32,10 @@
 	                 	class="btn btn-success" 
 	                 	type="button"
 	                 	aria-pressed="false"
-	                 	onclick='filter_click("")'
+	                 	onclick='filter_click("{% url 'staffs:guestbook_ziarah_list' %}")'
 	                 	data-toggle="tooltip" data-placement="bottom"
-	              		title="{% trans 'Searching the Course ..' %}" 
-	              		data-original-title="{% trans 'Searching the Course ..' %}"
+	              		title="{% trans 'Searching the Guest ..' %}" 
+	              		data-original-title="{% trans 'Searching the Guest ..' %}"
 	                 	>
 	                     <i class="icon-magnifier" aria-hidden="true"></i>
 	                     <span class="text">{% trans "Search" %}</span>
@@ -189,12 +189,17 @@
 		// ====================================================================
 		function filter_click(url){
 			
-			var cosp_typed = $('#id_cosp_typed').val();
-			var cosp_name = $('#id_cosp_name').val();
+			var keuskupan = $('#id_keuskupan').val();
+			var paroki = $('#id_paroki').val();
+			var wilayah = $('#id_wilayah').val();
+			var lingkungan = $('#id_lingkungan').val();
+			var attended = $('#id_attended').val();
+			var kloter = $('#id_kloter').val();
+			var params = $('#id_params').val();
 			
-			var fields = "cosp_typed="+cosp_typed+"&cosp_name="+cosp_name; 
+			var fields = "keuskupan="+keuskupan+"&paroki="+paroki+"&wilayah="+wilayah+"&lingkungan="+lingkungan+"&attended="+attended+"&kloter="+kloter+"&params="+params; 
 			
-			window.location.href=url+'&'+fields;
+			window.location.href=url+'?'+fields;
 		}
 	</script>
 	
