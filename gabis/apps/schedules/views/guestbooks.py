@@ -766,7 +766,7 @@ class DeleteGuestView(View):
         obj.delete()
         
         messages.success(request, _("A Guest %s[%s] in %s have been deleted!." % (
-                name, nik, event
+                name, nik, self.event
             )))
         
         #return JsonResponse(dict(status=200, url=self.get_success_url()))
@@ -789,7 +789,7 @@ class DeleteGuestView(View):
         obj.delete()
         
         messages.success(request, _("A Guest %s[%s] in %s have been deleted!." % (
-                name, nik, event
+                name, nik, self.event
             )))
         
         #return JsonResponse(dict(status=200, url=self.get_success_url()))
