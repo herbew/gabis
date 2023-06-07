@@ -196,14 +196,6 @@ class GuestBookEventZiarahFilterForm(forms.Form):
     )
     
     
-    paid = forms.BooleanField(
-        label=_("Is Paid"),
-        widget=forms.CheckboxInput(attrs={
-                'class':'form-control checkbox text-muted',
-                }),
-        required=False,
-        )
-    
     attended = forms.BooleanField(
         label=_("Is Attended"),
         widget=forms.CheckboxInput(attrs={
@@ -234,7 +226,79 @@ class GuestBookEventZiarahFilterForm(forms.Form):
         
         self.fields["params"].help_text = _("Input Your NIK/NIS/HP Number!")
         
+
+class GuestBookEventSeminarFilterForm(forms.Form):
+    
+    
+    keuskupan = forms.ModelChoiceField(
+        label=_("Keuskupan"),
+        queryset=Keuskupan.objects.all().order_by("ordered"),
+        empty_label=_("All Keuskupan ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                'onchange':'paroki_on_changed()'}),
+        required=False,
+    )
+    
+    paroki = forms.ModelChoiceField(
+        label=_("Paroki"),
+        queryset=Paroki.objects.all().order_by("ordered"),
+        empty_label=_("All Paroki ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                'onchange':'wilayah_on_changed()'}),
+        required=False,
+    )
+    
+    wilayah = forms.ModelChoiceField(
+        label=_("Wilayah"),
+        queryset=Wilayah.objects.all().order_by("ordered"),
+        empty_label=_("All Wilayah ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                'onchange':'lingkungan_on_changed()'}),
+        required=False,
+    )
+    
+    lingkungan = forms.ModelChoiceField(
+        label=_("Lingkungan"),
+        queryset=Lingkungan.objects.all().order_by("ordered"),
+        empty_label=_("All Lingkungan ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted',
+                }),
+        required=False,
+    )
+    
+    
+    paid = forms.BooleanField(
+        label=_("Is Paid"),
+        widget=forms.CheckboxInput(attrs={
+                'class':'form-control checkbox text-muted',
+                }),
+        required=False,
+        )
+    
+    attended = forms.BooleanField(
+        label=_("Is Attended"),
+        widget=forms.CheckboxInput(attrs={
+                'class':'form-control checkbox text-muted',
+                }),
+        required=False,
+        )
+    
+    params = forms.CharField(
+        widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255}),
+        required=False
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(GuestBookEventSeminarFilterForm, self).__init__(*args, **kwargs)
         
+        self.fields['params'].label = _("No Identitas")
+        self.fields['params'].required = False
+        
+        self.fields["params"].help_text = _("Input Your NIK/NIS/HP Number!")
         
         
         

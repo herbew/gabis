@@ -48,7 +48,7 @@ class GuestBookListView(ListView):
     model = GuestBook
     template_name = ""
     paginator_class = SafePaginator
-    paginate_by = 27
+    paginate_by = 100
     
     process = "schedules_ziarah_guest_book" 
     
