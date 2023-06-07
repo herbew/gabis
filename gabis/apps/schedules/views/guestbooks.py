@@ -635,6 +635,7 @@ class SeminarGuestView(View):
                     name=obj.name,
                     gender=obj.gender,
                     age=obj.age,
+                    mobile=obj.mobile,
                     email=obj.email,
                     pin=obj.pin)
                 )
@@ -676,6 +677,7 @@ class SeminarGuestView(View):
                     gender=obj.gender,
                     age=obj.age,
                     email=obj.email,
+                    mobile=obj.mobile,
                     pin=obj.pin)
                 )
             
