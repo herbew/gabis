@@ -100,11 +100,8 @@
                              <tbody>
                              	{% if object_list %}
                              		{% for no, object in object_list %}
-                             		{% if object.color %}
-                             		<tr style="background-color:{{object.color}};" >
-                             		{% else %}
+                             		
                              		<tr>
-                             		{% endif %}
                              			 <td>
                                      		<a class="btn btn-light" onClick='data_info("{{ no }}. {{object.name.upper}}","{% trans 'CREATED ON' %} {{object.created|date:'D, d M Y H:m'}}","{% trans 'MODIFIED ON' %} {{object.modified|date:'D, d M Y H:m'}}","{% trans 'BY' %} {{object.user_update}}")'>
                              			 		{{ no }}
@@ -144,7 +141,12 @@
                              			 	{% trans "Booking Time" %} : {{object.created|date:'D, d M Y H:m'}}
                              			 	
                              			 </td>
-	                                     <td>
+                             			 
+                             			 {% if object.color %}
+		                             		<td style="background-color:{{object.color}};" >
+		                             	 {% else %}
+		                             		<td>
+		                             	 {% endif %}
 	                                     	<button class="btn btn-outline-info waves-effect waves-light" 
 	                                     		data-toggle="tooltip" 
     											data-placement="bottom"
