@@ -124,9 +124,17 @@
                              			 	<small>{{ object.time_event.weekday }}, {{ object.time_event.date_string }} {{ object.time_event.start_time_string }} - {{ object.time_event.end_time_string }} WIB</small>
                              			 	<hr>
                              			 	{% if object.attended %}
-                             			 		{% trans 'Attended' %}
+                             			 		{% if object.paid %}
+                             			 			{% trans 'Have Paid and Attended' %}
+                             			 		{% else %}
+                             			 			{% trans 'Attended' %}
+                             			 		{% endif %}
                              			 	{% else %}
-                             			 		{% trans 'Not Attended' %}
+                             			 		{% if object.paid %}
+                             			 			{% trans 'Have Paid and not Attended' %}
+                             			 		{% else %}
+                             			 			{% trans 'Haven not Paid and not Attended' %}
+                             			 		{% endif %}
                              			 	{% endif %}
                              			 </td>
 	                                     <td>
