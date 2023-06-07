@@ -15,7 +15,9 @@ from django.template.defaultfilters import filesizeformat
 from django.forms.widgets import NumberInput
 
 from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkungan)
-from gabis.apps.schedules.models.guestbooks import GuestBook
+from gabis.apps.masters.models.events import TimeEvent
+from gabis.apps.schedules.models.guestbooks import (
+    GuestBook, SEMINAR_EVENT, ZIARAH_ENVENT)
 
 log = logging.getLogger(__name__)
 
@@ -150,7 +152,7 @@ class GuestBookFilterForm(forms.Form):
         
         self.fields["params"].help_text = _("Input Your NIK/NIS/HP Number!")
         
-class GuestBookEventFilterForm(forms.Form):
+class GuestBookEventZiarahFilterForm(forms.Form):
     
     
     keuskupan = forms.ModelChoiceField(
@@ -196,19 +198,28 @@ class GuestBookEventFilterForm(forms.Form):
     
     paid = forms.BooleanField(
         label=_("Is Paid"),
-        widget=forms.Select(attrs={
-                'class':'form-control text-muted',
+        widget=forms.CheckboxInput(attrs={
+                'class':'form-control checkbox text-muted',
                 }),
         required=False,
         )
     
     attended = forms.BooleanField(
         label=_("Is Attended"),
-        widget=forms.Select(attrs={
-                'class':'form-control text-muted',
+        widget=forms.CheckboxInput(attrs={
+                'class':'form-control checkbox text-muted',
                 }),
         required=False,
         )
+    
+    kloter = forms.ModelChoiceField(
+        label=_("Kloter"),
+        queryset=TimeEvent.objects.filter(event__name=SEMINAR_EVENT).order_by("ordered"),
+        empty_label=_("All Kloter ---"),
+        widget=forms.Select(attrs={
+                'class':'form-control text-muted'}),
+        required=False,
+    )
     
     params = forms.CharField(
         widget = TextInput(attrs={'class':'form-control text-muted', 'maxlength':255}),
@@ -216,7 +227,7 @@ class GuestBookEventFilterForm(forms.Form):
         )
 
     def __init__(self, *args, **kwargs):
-        super(GuestBookEventFilterForm, self).__init__(*args, **kwargs)
+        super(GuestBookEventZiarahFilterForm, self).__init__(*args, **kwargs)
         
         self.fields['params'].label = _("No Identitas")
         self.fields['params'].required = False

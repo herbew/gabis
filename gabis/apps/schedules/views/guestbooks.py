@@ -30,7 +30,7 @@ from gabis.apps.schedules.forms.guestbooks import (
         GuestBookForm, 
         GuestBookFilterForm,
         TokenFilterForm,
-        GuestBookEventFilterForm)
+        GuestBookEventZiarahFilterForm)
 
 from _datetime import datetime
 
@@ -66,8 +66,9 @@ class GuestBookListView(ListView):
         paroki = self.request.GET.get('paroki','')
         wilayah = self.request.GET.get('wilayah','')
         lingkungan = self.request.GET.get('lingkungan','')
-        paid = self.request.GET.get('paid','')
-        attended = self.request.GET.get('attended','')
+        paid = self.request.GET.get('paid',False)
+        attended = self.request.GET.get('attended',False)
+        kloter = self.request.GET.get('kloter','')
         params = self.request.GET.get('params','')
         
         
@@ -98,6 +99,9 @@ class GuestBookListView(ListView):
         if attended:
             filter_in.append("%s" % (_("Kedatangan")))
             
+        if kloter:
+            filter_in.append("%s" % (_("Kloter")))
+            
         if params:
             filter_in.append("%s" % (_("Nama/NIK/No Hape dan lainnya")))
             
@@ -124,21 +128,27 @@ class GuestBookListView(ListView):
                 lingkungan=lingkungan,
                 paid=paid,
                 attended=attended,
+                kloter=kloter,
                 params=params
                 )
         
         # History FIlter
-        history_filter = "p0=%s&p1=%s&keuskupan=%s&paroki=%s&wilayah=%s&lingkungan=%s&paid=%s&attended=%s&params=%s" % (
-            p0, page, keuskupan, paroki, wilayah, lingkungan, paid, attended, params)
+        history_filter = "p0=%s&p1=%s&keuskupan=%s&paroki=%s&wilayah=%s&lingkungan=%s&paid=%s&attended=%s&kloter=%s&params=%s" % (
+            p0, page, keuskupan, paroki, wilayah, lingkungan, paid, attended, kloter, params)
         history_filter=history_filter.replace('None','')
         
         
         # Param FIlter
-        params_filter = "p0=%s&p1=%s&keuskupan=%s&paroki=%s&wilayah=%s&lingkungan=%s&paid=%s&attended=%s&params=%s" % (
-            p0, page, keuskupan, paroki, wilayah, lingkungan, paid, attended, params)
+        params_filter = "p0=%s&p1=%s&keuskupan=%s&paroki=%s&wilayah=%s&lingkungan=%s&paid=%s&attended=%s&kloter=%s&params=%s" % (
+            p0, page, keuskupan, paroki, wilayah, lingkungan, paid, attended, kloter, params)
         params_filter = params_filter.replace('None','')
         
-    
+        
+        if kloter:
+            kloter = TimeEvent.objects.get(id=kloter).__str__()
+        else:
+            kloter = _("All Kloter")
+            
         try:
             context = super(GuestBookListView, self).get_context_data(*args, **kwargs)
             object_list = [((index +((int(page)*int(self.paginate_by))
@@ -148,13 +158,14 @@ class GuestBookListView(ListView):
             context.update(
                 dict(
                     object_list=object_list,
-                    form_filter=GuestBookEventFilterForm(initial=data_filter),
+                    form_filter=GuestBookEventZiarahFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
                     params_filter=params_filter.replace('%20',''),
                     filter_event=filter_event,
                     page=page,
                     process=self.process, 
-                    filter_in=filter_in
+                    filter_in=filter_in,
+                    kloter=kloter
                    ) 
                 )
     
@@ -186,13 +197,14 @@ class GuestBookListView(ListView):
             return  dict(
                     page_obj=p,
                     object_list=object_list,
-                    form_filter=GuestBookEventFilterForm(initial=data_filter),
+                    form_filter=GuestBookEventZiarahFilterForm(initial=data_filter),
                     history_filter=history_filter.replace('%20',''),
                     params_filter=params_filter.replace('%20',''),
                     filter_event=filter_event,
                     page=page,
                     process=self.process, 
-                    filter_in=filter_in
+                    filter_in=filter_in,
+                    kloter=kloter
                    ) 
             
     

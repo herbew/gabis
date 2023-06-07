@@ -109,8 +109,6 @@ class TimeEvent(TimeStampedModel):
         super(TimeEvent, self).__init__(*args, **kwargs)
         self._user_update = None
 
-    def __str__(self):
-        return "%s %s - %s" % (self.event, self.start_time, self.end_time)
     
     @property
     def start_time_string(self):
@@ -140,6 +138,10 @@ class TimeEvent(TimeStampedModel):
     @property
     def calendar_end_time_string(self):
         return datetime.strftime(self.end_time, "%Y-%m-%dT%H:%M:%S")
+    
+    def __str__(self):
+        return "%s, %s [ %s - %s ] WIB" % (self.group, self.weekday, 
+                self.start_time_string, self.end_time_string)
     
     @property
     def total_guest_book(self):
