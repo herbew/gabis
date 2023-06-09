@@ -193,11 +193,12 @@
 			var paroki = $('#id_paroki').val();
 			var wilayah = $('#id_wilayah').val();
 			var lingkungan = $('#id_lingkungan').val();
+			var paid = $('#id_paid')[0].checked;
 			var attended = $('#id_attended')[0].checked;
 			var kloter = $('#id_kloter').val();
 			var params = $('#id_params').val();
 			
-			var fields = "keuskupan="+keuskupan+"&paroki="+paroki+"&wilayah="+wilayah+"&lingkungan="+lingkungan+"&attended="+attended+"&kloter="+kloter+"&params="+params; 
+			var fields = "keuskupan="+keuskupan+"&paroki="+paroki+"&wilayah="+wilayah+"&lingkungan="+lingkungan+"&paid="+paid+"&attended="+attended+"&kloter="+kloter+"&params="+params; 
 			
 			window.location.href=url+'?'+fields;
 		}
