@@ -266,7 +266,7 @@ class GuestBookListView(ListView):
             query_set = query_set.filter(attended=attended)
         
         if kloter:
-            query_set = query_set.filter(time_event__id=kloter)
+            query_set = query_set.filter(time_event__id=int(kloter))
             
         if params:
             query_set = query_set.filter(
