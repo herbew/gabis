@@ -221,10 +221,10 @@ class GuestBookEventZiarahFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(GuestBookEventZiarahFilterForm, self).__init__(*args, **kwargs)
         
-        self.fields['params'].label = _("No Identitas")
+        self.fields['params'].label = _("No Identitas/Name/Token")
         self.fields['params'].required = False
         
-        self.fields["params"].help_text = _("Input Your NIK/NIS/HP Number!")
+        self.fields["params"].help_text = _("Input Your Name, NIK/NIS/HP Number, or Token!")
         
         
 
@@ -296,10 +296,10 @@ class GuestBookEventSeminarFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(GuestBookEventSeminarFilterForm, self).__init__(*args, **kwargs)
         
-        self.fields['params'].label = _("No Identitas")
+        self.fields['params'].label = _("No Identitas/Name/Token")
         self.fields['params'].required = False
         
-        self.fields["params"].help_text = _("Input Your NIK/NIS/HP Number!")
+        self.fields["params"].help_text = _("Input Your Name, NIK/NIS/HP Number, or Token!")
         
         
         

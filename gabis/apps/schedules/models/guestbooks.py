@@ -162,6 +162,12 @@ class GuestBook(TimeStampedModel):
         tz = pytz.timezone("Asia/Jakarta")
         d_now = tz.localize(datetime.now())
         
+        if self.paid:
+            return ""
+        
+        if self.attended:
+            return ""
+        
         if self.created <= (d_now - timedelta(hours=24)):
             return "#feb8a5"
         
