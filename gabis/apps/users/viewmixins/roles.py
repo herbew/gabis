@@ -26,6 +26,27 @@ class AdminMixin(UserPassesTestMixin):
             return True
        
         return False
+
+
+class CSMixin(UserPassesTestMixin):
+    """Client"""
+    
+    raise_exception = Http404
+    
+    def get_context_data(self, **kwargs):
+        context = super(CSMixin, self).get_context_data(**kwargs)
+        
+        return context
+    
+    def test_func(self):
+        """
+        Check if request user should access types or not.
+        """
+        
+        if self.request.user.types in( '001','002',) :
+            return True
+       
+        return False
     
 class ClientMixin(UserPassesTestMixin):
     """Client"""

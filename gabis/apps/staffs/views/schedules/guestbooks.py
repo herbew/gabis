@@ -4,7 +4,7 @@ import logging
 
 from django.urls import reverse, reverse_lazy
 
-from gabis.apps.users.viewmixins.roles import AdminMixin
+from gabis.apps.users.viewmixins.roles import AdminMixin, CSMixin
 
 from gabis.apps.schedules.views.guestbooks import (
     GuestBookDetailListView as MasterGuestBookDetailListView,
@@ -19,10 +19,10 @@ SEMINAR_EVENT = "Seminar Kain Kafan Yesus 2023"
 ZIARAH_EVENT = "Ziarah Kain Kafan Yesus 2023"
 
 log = logging.getLogger(__name__)
-class GuestBookDetailListView(AdminMixin, MasterGuestBookDetailListView):
+class GuestBookDetailListView(CSMixin, MasterGuestBookDetailListView):
     template_name = "staffs/schedules/bookings/guestbooks/detail.html"
         
-class AttendGuestView(AdminMixin, MasterAttendGuestView):
+class AttendGuestView(CSMixin, MasterAttendGuestView):
     def get_success_url(self):
         
         obj = self.get_object()
@@ -39,10 +39,10 @@ class PayGuestView(AdminMixin, MasterPayGuestView):
         return dict(status=200, url="%s?params=%s" % (url, obj.id))
     
     
-class GuestBookZiarahListView(AdminMixin, MasterGuestBookListView):
+class GuestBookZiarahListView(CSMixin, MasterGuestBookListView):
     template_name = "staffs/schedules/bookings/guestbooks/ziarah_list.html"
     
-class GuestBookSeminarListView(AdminMixin, MasterGuestBookListView):
+class GuestBookSeminarListView(CSMixin, MasterGuestBookListView):
     template_name = "staffs/schedules/bookings/guestbooks/seminar_list.html"
     
 class DeleteGuestView(AdminMixin, MasterDeleteGuestView):
