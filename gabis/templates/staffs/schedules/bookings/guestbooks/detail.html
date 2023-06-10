@@ -365,65 +365,73 @@
 		//OUTPUT redirect staffs:seminar_detail
 		//======================================================================
 		function update_seminar_paid(name, url) {
-	        swal(
-	            {
-	              title:'{% trans "UPDATE SEMINAR PAYMENT" %}',
-	              text: '{% trans "Are you sure to update data" %} '+name+" ?",
-	              type:'warning',
-	              showCancelButton:true,
-	              confirmButtonColor:'#3085d6',
-	              cancelButtonColor:'#d33',
-	              confirmButtonText:'{% trans "Yes, update it" %}',
-	              cancelButtonText:'{% trans "No, cancel it" %}',
-	              confirmButtonClass:'btn btn-success',
-	              cancelButtonClass:'btn btn-default',
-	              buttonsStyling: false
-	            }).then(function (result) {
-	            if (result.value) {
-	            	var data = {
-                    	 	csrfmiddlewaretoken: '{{ csrf_token }}'
-                    	 	};
-	            	  
-	                swal({
-	                        title:'{% trans "UPDATED" %}',
-	                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully update it!" %}.',
-	                        type:'success'
-	                        }).then(function (r){
-	                        	swal({
-	   	              		         position: 'top-end',
-	   	              		         type:'warning',
-	   	              		         html:'<div><div><h3>{% trans "UPDATE SEMINAR PAID"%}</h3></div><div><label>{% trans "The updating data on progress .." %}</label></div></div>',
-	   	              		       });
-	                        	
-	                        	swal.showLoading();
-	                        	$.ajax({
-	                        		
-		                              url:url,
-		                              type:"POST",
-		                              data:data,
-		                              dataType: "json",
-		                              success: function(data) {
-		                            	  if (data.status==200){
-		                            		  window.location.href=data.url;
-		                            	  }
-		                            	  
-		                              },
-		                              error: function(data){
-		                                  console.log(data);
-		                              }
-		                          });
-	                        });
-	                        
-	              // result.dismiss can be 'cancel', 'overlay',
-	              // 'close', and 'timer'
-	              } else if (result.dismiss === 'cancel') {
-	                swal(
-	                  '{% trans "CANCEL" %}',
-	                  '{% trans "The update data" %} '+name+', {% trans "have been canceled!" %}.',
+			{% if request.user.types in '001,'|slice:',' %}
+		        swal(
+		            {
+		              title:'{% trans "UPDATE SEMINAR PAYMENT" %}',
+		              text: '{% trans "Are you sure to update data" %} '+name+" ?",
+		              type:'warning',
+		              showCancelButton:true,
+		              confirmButtonColor:'#3085d6',
+		              cancelButtonColor:'#d33',
+		              confirmButtonText:'{% trans "Yes, update it" %}',
+		              cancelButtonText:'{% trans "No, cancel it" %}',
+		              confirmButtonClass:'btn btn-success',
+		              cancelButtonClass:'btn btn-default',
+		              buttonsStyling: false
+		            }).then(function (result) {
+		            if (result.value) {
+		            	var data = {
+	                    	 	csrfmiddlewaretoken: '{{ csrf_token }}'
+	                    	 	};
+		            	  
+		                swal({
+		                        title:'{% trans "UPDATED" %}',
+		                        text:'{% trans "The data" %} '+name+', {% trans "have been successfully update it!" %}.',
+		                        type:'success'
+		                        }).then(function (r){
+		                        	swal({
+		   	              		         position: 'top-end',
+		   	              		         type:'warning',
+		   	              		         html:'<div><div><h3>{% trans "UPDATE SEMINAR PAID"%}</h3></div><div><label>{% trans "The updating data on progress .." %}</label></div></div>',
+		   	              		       });
+		                        	
+		                        	swal.showLoading();
+		                        	$.ajax({
+		                        		
+			                              url:url,
+			                              type:"POST",
+			                              data:data,
+			                              dataType: "json",
+			                              success: function(data) {
+			                            	  if (data.status==200){
+			                            		  window.location.href=data.url;
+			                            	  }
+			                            	  
+			                              },
+			                              error: function(data){
+			                                  console.log(data);
+			                              }
+			                          });
+		                        });
+		                        
+		              // result.dismiss can be 'cancel', 'overlay',
+		              // 'close', and 'timer'
+		              } else if (result.dismiss === 'cancel') {
+		                swal(
+		                  '{% trans "CANCEL" %}',
+		                  '{% trans "The update data" %} '+name+', {% trans "have been canceled!" %}.',
+		                  'error'
+		                )
+		              }
+		        });
+		   {% else %}
+            	swal(
+	                  '{% trans "No Permission Update!" %}',
+	                  '{% trans "You have no permission Update Payment!" %}.',
 	                  'error'
-	                )
-	              }
-	        });
+	                );
+            {% endif %}
 	    }
 	    
 	</script>

@@ -257,7 +257,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav" style="padding-top:0px;">
                     <ul id="sidebarnav">
-                        {% if request.user.types in '001,'|slice:',' %}
+                        {% if request.user.types in '001,002,'|slice:',' %}
                             {% include 'staffs/layout/menu.html' %}
                         {% endif %}
                     </ul>
