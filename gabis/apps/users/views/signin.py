@@ -17,7 +17,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        if self.request.user.types in ('001',):
+        if self.request.user.types in ('001','002'):
             # return reverse_lazy("staffs:master_company_list")
             return reverse_lazy("staffs:guestbook_ziarah_list")
         
@@ -47,7 +47,7 @@ class UserSigninView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        if self.request.user.types in ('001',):
+        if self.request.user.types in ('001','002'):
             # return reverse_lazy("staffs:master_company_list")
             return reverse_lazy("staffs:guestbook_ziarah_list")
         
