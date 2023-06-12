@@ -793,7 +793,7 @@ class GuestBookSeminarPrintView(View):
         
         for gb in self.model.objects.filter(time_event__event__name=SEMINAR_EVENT,
             time_event__event__active=True).order_by(
-            "time_event__ordered","paid","attend","name"
+            "time_event__ordered","paid","attended","name"
             ):
             gb_list.append(dict(
                 kloter=gb.time_event.group,
@@ -838,7 +838,7 @@ class GuestBookZiarahPrintView(View):
         
         for gb in self.model.objects.filter(time_event__event__name=ZIARAH_EVENT,
             time_event__event__active=True).order_by(
-            "time_event__ordered","attend","name"
+            "time_event__ordered","attended","name"
             ):
             gb_list.append(dict(
                 kloter=gb.time_event.group,
