@@ -5,6 +5,8 @@ import logging
 import json
 import os 
 
+from datetime import datetime
+
 from itertools import filterfalse, chain
 
 from django.contrib import messages
@@ -22,8 +24,8 @@ from braces.views import FormMessagesMixin
 
 from gabis.core.paginators import SafePaginator
 
-from gabis.libs.contrib.templated_docs import fill_template
-from gabis.libs.contrib.templated_docs.http import FileResponse
+from gabis.libs.templated_docs import fill_template
+from gabis.libs.templated_docs.http import FileResponse
 
 from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkungan)
 from gabis.apps.masters.models.events import (Event, TimeEvent, PICEvent)
@@ -37,7 +39,7 @@ from gabis.apps.schedules.forms.guestbooks import (
         GuestBookEventSeminarFilterForm
         )
 
-from _datetime import datetime
+
 
 
 log = logging.getLogger(__name__)
