@@ -30,4 +30,12 @@ urlpatterns = [
         view=guestbooks.DeleteGuestView.as_view(),
         name="guestbook_deleted"),
     
+    path("guestbook/seminar/print/", 
+        view=guestbooks.GuestBookSeminarPrintView.as_view(),
+        name="guestbook_seminar_print"),
+    
+    path("guestbook/ziarah/print/", 
+        view=guestbooks.GuestBookZiarahPrintView.as_view(),
+        name="guestbook_ziarah_print"),
+     
     ]

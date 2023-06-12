@@ -11,7 +11,9 @@ from gabis.apps.schedules.views.guestbooks import (
     AttendGuestView as MasterAttendGuestView,
     PayGuestView as MasterPayGuestView,
     GuestBookListView as MasterGuestBookListView,
-    DeleteGuestView as MasterDeleteGuestView
+    DeleteGuestView as MasterDeleteGuestView,
+    GuestBookSeminarPrintView as MasterGuestBookSeminarPrintView,
+    GuestBookZiarahPrintView as MasterGuestBookZiarahPrintView
     
     )
 
@@ -54,5 +56,11 @@ class DeleteGuestView(AdminMixin, MasterDeleteGuestView):
             url = reverse_lazy("staffs:guestbook_ziarah_list")
         
         return dict(status=200, url=url)
-    
+
+
+class GuestBookSeminarPrintView(AdminMixin, MasterGuestBookSeminarPrintView):
+    pass
+
+class GuestBookZiarahPrintView(AdminMixin, MasterGuestBookZiarahPrintView):
+    pass
     

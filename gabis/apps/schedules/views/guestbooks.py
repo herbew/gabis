@@ -22,6 +22,9 @@ from braces.views import FormMessagesMixin
 
 from gabis.core.paginators import SafePaginator
 
+from gabis.libs.contrib.templated_docs import fill_template
+from gabis.libs.contrib.templated_docs.http import FileResponse
+
 from gabis.apps.masters.models.zones import (Keuskupan, Paroki, Wilayah, Lingkungan)
 from gabis.apps.masters.models.events import (Event, TimeEvent, PICEvent)
 from gabis.apps.schedules.models.bookings import BookingTimeEvent
@@ -772,3 +775,93 @@ class DeleteGuestView(View):
         
         #return JsonResponse(dict(status=200, url=self.get_success_url()))
         return JsonResponse(self.get_success_url()) 
+    
+    
+
+class GuestBookSeminarPrintView(View):
+    
+    model = GuestBook
+    
+    
+    def get(self, request, *args, **kwargs):
+                
+        gb_list = []
+        
+        dtime_str = datetime.strftime(datetime.now(), "%d%m%Y_%H%M%S")
+        
+        for gb in self.model.objects.filter(time_event__event__name=SEMINAR_EVENT,
+            time_event__event__active=True).oreder_by(
+            "time_event__ordered","paid","attend","name"
+            ):
+            gb_list.append(dict(
+                kloter=gb.time_event.group,
+                name=gb.name,
+                nik=gb.nik,
+                token=gb.pin,
+                mobile=gb.mobile,
+                registered=datetime.strftime(gb.created, "%d/%m/%Y %H:%M:%S"),
+                paid="Paid" if gb.paid else "NO Paid Yet.",
+                attend="Attended" if gb.attend else "NO Attend Yet.",
+                keuskupan=gb.keuskupan.name,
+                paroki=gb.paroki.name,
+                wilayah=gb.wilayah.name,
+                lingkungan=gb.lingkungan.name,
+                idrow=gb.id
+                ))
+        
+        
+        datas = [(index+1,q)  for index, q in enumerate(gb_list, start=0)]
+    
+        context = dict(
+                title=SEMINAR_EVENT,
+                datas=datas
+            )
+    
+        file_name = fill_template('reports/seminar.ods', context, output_format='xls')
+        visible_file_name = 'seminar_%s.xls' % (dtime_str, )
+        
+        return FileResponse(file_name, visible_file_name, delete=True)
+    
+    
+class GuestBookZiarahPrintView(View):
+    
+    model = GuestBook
+    
+    
+    def get(self, request, *args, **kwargs):
+                
+        gb_list = []
+        
+        dtime_str = datetime.strftime(datetime.now(), "%d%m%Y_%H%M%S")
+        
+        for gb in self.model.objects.filter(time_event__event__name=ZIARAH_EVENT,
+            time_event__event__active=True).oreder_by(
+            "time_event__ordered","attend","name"
+            ):
+            gb_list.append(dict(
+                kloter=gb.time_event.group,
+                name=gb.name,
+                nik=gb.nik,
+                token=gb.pin,
+                mobile=gb.mobile,
+                registered=datetime.strftime(gb.created, "%d/%m/%Y %H:%M:%S"),
+                attend="Attended" if gb.attend else "NO Attend Yet.",
+                keuskupan=gb.keuskupan.name,
+                paroki=gb.paroki.name,
+                wilayah=gb.wilayah.name,
+                lingkungan=gb.lingkungan.name,
+                idrow=gb.id
+                ))
+        
+        
+        datas = [(index+1,q)  for index, q in enumerate(gb_list, start=0)]
+    
+        context = dict(
+                title=SEMINAR_EVENT,
+                datas=datas
+            )
+    
+        file_name = fill_template('reports/ziarah.ods', context, output_format='xls')
+        visible_file_name = 'ziarah_%s.xls' % (dtime_str, )
+        
+        return FileResponse(file_name, visible_file_name, delete=True)

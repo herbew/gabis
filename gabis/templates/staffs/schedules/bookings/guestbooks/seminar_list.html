@@ -92,11 +92,24 @@
                      <div class="table-responsive">
                          <table id="mytable" class="table table-striped">
                              <thead>
+                             	<div class="row" style="padding-bottom: 5px;">
+										<div class="col-md-12 text-right">
                                  <tr>
                                  	 <th style="width:8%;">#</th>
                                  	 <th style="width:45%;">{% trans "Person" %}</th>
                                      <th style="width:45%;">{% trans "Event" %}</th>
-                                     <th style="width:12%;">{% trans "Process" %}</th>
+                                     <th class="text-right" style="width:12%;">
+                                     	{% trans "Process" %}&bsp;&bsp;
+	                                     <button type="button" 
+											class="btn waves-effect waves-light btn-secondary" 
+											data-toggle="tooltip" data-placement="bottom" 
+											title="{% trans "Print Guest Book seminar list" %}" 
+											data-original-title="{% trans "Print Guest Book seminar list" %}"
+											onclick='print("{% url 'staffs:guestbook_seminar_print' %}")'
+											>
+											<i class="icon-printer"></i>
+										</button>
+                                     </th>
                                  </tr>
                              </thead>
                              <tbody>
@@ -206,6 +219,28 @@
 {% block extra_js %}
 	{% include "staffs/schedules/bookings/guestbooks/guestbooks.js" %}
 	<script>
+		function print(url){
+			{% if request.user.types in '001,'|slice:',' %}
+		      // Loading Alert
+			  swal({
+		         position: 'top-end',
+		         type:'warning',
+		         html:'<div><div><h3>{% trans "Report Guest Book Seminar"%}</h3></div><div><label>{% trans "Reporting data on progress .." %}</label></div></div>',
+		         showConfirmButton: false,
+		         timer:5000
+		       });
+			   swal.showLoading();
+			   window.location.href=url;
+			{% else %}
+				swal(
+	                  '{% trans "No Permission Delete!" %}',
+	                  '{% trans "You have no permission print!" %}.',
+	                  'error'
+	                );
+			{% endif %}
+		    }
+	
+	
 		//====================================================================
 		// Filter Click
 		// Input Params url
