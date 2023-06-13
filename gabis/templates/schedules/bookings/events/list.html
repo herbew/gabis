@@ -96,15 +96,27 @@
                                         "{% trans 'Thursday' %}",
                                         "{% trans 'Friday' %}",
                                         "{% trans 'Saturday' %}"];
+                                        
+                        
 
                         var group = e.event.title.split(",")[0];
                         var available = "{% trans 'Available : ' %} " + e.event.title.split("Avail: ")[1];
                         var start = e.event.start.toISOString().split("T")[1].split(":")[0]+":"+e.event.start.toISOString().split("T")[1].split(":")[1];
                         var end = e.event.end.toISOString().split("T")[1].split(":")[0]+":"+e.event.end.toISOString().split("T")[1].split(":")[1];
+                    	var wd = weekday[e.event.start.getDay()]
+                    	
+                    	if ((start == '17:00')||(start == '18:00')||(start == '19:00')){
+                            i = e.event.start.getDay() - 1;
+                            if (i < 0){
+                                i = 6;
+                            }
+                    		wd = weekday[i];
+                    	}
+                    	
                     	swal({
 	                          title: group,
 	                          html: '<div>' + 
-                                        '<h3>' + weekday[e.event.start.getDay()] + 
+                                        '<h3>' + wd + 
                                         ', '+ start +"-"+ end + " WIB.<br>" +
                                         available + "</h3> <br>" +
                                         '{% trans "Are you sure to continue the registration process" %}?'+                              
@@ -157,7 +169,8 @@
               				title: "{{ object.group }}, "+"{% trans "Avail: " %}"+"{{object.available}}",
               				start:"{{ object.calendar_start_time_string }}",
                       		end:"{{ object.calendar_end_time_string }}",
-                      		color:'{{ object.color }}'
+                      		color:'{{ object.color }}',
+                      		weekday:'{{ object.weekday }}'
               			}{% if not forloop.last %},{% endif %}
               		{% endfor %}
               	]
