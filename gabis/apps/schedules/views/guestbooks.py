@@ -792,8 +792,8 @@ class GuestBookSeminarPrintView(View):
         paroki = self.request.GET.get('paroki','')
         wilayah = self.request.GET.get('wilayah','')
         lingkungan = self.request.GET.get('lingkungan','')
-        paid = self.request.GET.get('paid','')
-        attended = self.request.GET.get('attended','')
+        paid = ''
+        attended = ''
         kloter = self.request.GET.get('kloter','')
         if kloter in ('undefined',):
             kloter = ""
@@ -818,21 +818,21 @@ class GuestBookSeminarPrintView(View):
         if lingkungan:
             query_set = query_set.filter(lingkungan=lingkungan)
         
-        if paid:
-            if paid in ('false', False):
-                paid = False
-            else:
-                paid = True
-                
-            query_set = query_set.filter(paid=paid)
-            
-        if attended:
-            if attended in ('false', False):
-                attended = False
-            else:
-                attended = True
-                
-            query_set = query_set.filter(attended=attended)
+        # if paid:
+        #     if paid in ('false', False):
+        #         paid = False
+        #     else:
+        #         paid = True
+        #
+        #     query_set = query_set.filter(paid=paid)
+        #
+        # if attended:
+        #     if attended in ('false', False):
+        #         attended = False
+        #     else:
+        #         attended = True
+        #
+        #     query_set = query_set.filter(attended=attended)
         
         if kloter:
             query_set = query_set.filter(time_event__id=int(kloter))
@@ -892,9 +892,9 @@ class GuestBookZiarahPrintView(View):
         paroki = self.request.GET.get('paroki','')
         wilayah = self.request.GET.get('wilayah','')
         lingkungan = self.request.GET.get('lingkungan','')
-        paid = self.request.GET.get('paid','')
-        attended = self.request.GET.get('attended','')
-        kloter = self.request.GET.get('kloter','')
+        paid = ''
+        attended = ''
+        kloter = self.request.GET.get('')
         if kloter in ('undefined',):
             kloter = ""
             
@@ -918,21 +918,21 @@ class GuestBookZiarahPrintView(View):
         if lingkungan:
             query_set = query_set.filter(lingkungan=lingkungan)
         
-        if paid:
-            if paid in ('false', False):
-                paid = False
-            else:
-                paid = True
-                
-            query_set = query_set.filter(paid=paid)
-            
-        if attended:
-            if attended in ('false', False):
-                attended = False
-            else:
-                attended = True
-                
-            query_set = query_set.filter(attended=attended)
+        # if paid:
+        #     if paid in ('false', False):
+        #         paid = False
+        #     else:
+        #         paid = True
+        #
+        #     query_set = query_set.filter(paid=paid)
+        #
+        # if attended:
+        #     if attended in ('false', False):
+        #         attended = False
+        #     else:
+        #         attended = True
+        #
+        #     query_set = query_set.filter(attended=attended)
         
         if kloter:
             query_set = query_set.filter(time_event__id=int(kloter))
