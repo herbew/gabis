@@ -786,15 +786,69 @@ class GuestBookSeminarPrintView(View):
     
     
     def get(self, request, *args, **kwargs):
-                
-        gb_list = []
         
-        dtime_str = datetime.strftime(datetime.now(), "%d%m%Y_%H%M%S")
+        # History params filter    
+        keuskupan = self.request.GET.get('keuskupan','')
+        paroki = self.request.GET.get('paroki','')
+        wilayah = self.request.GET.get('wilayah','')
+        lingkungan = self.request.GET.get('lingkungan','')
+        paid = self.request.GET.get('paid','')
+        attended = self.request.GET.get('attended','')
+        kloter = self.request.GET.get('kloter','')
+        if kloter in ('undefined',):
+            kloter = ""
+            
+        params = self.request.GET.get('params','')
         
-        for gb in self.model.objects.filter(time_event__event__name=SEMINAR_EVENT,
+        
+        query_set = self.model.objects.filter(time_event__event__name=SEMINAR_EVENT,
             time_event__event__active=True).order_by(
             "time_event__ordered","paid","attended","name"
-            ):
+            )
+        
+        if keuskupan:
+            query_set = query_set.filter(keuskupan=keuskupan)
+            
+        if paroki:
+            query_set = query_set.filter(paroki=paroki)
+            
+        if wilayah:
+            query_set = query_set.filter(wilayah=wilayah)
+            
+        if lingkungan:
+            query_set = query_set.filter(lingkungan=lingkungan)
+        
+        if paid:
+            if paid in ('false', False):
+                paid = False
+            else:
+                paid = True
+                
+            query_set = query_set.filter(paid=paid)
+            
+        if attended:
+            if attended in ('false', False):
+                attended = False
+            else:
+                attended = True
+                
+            query_set = query_set.filter(attended=attended)
+        
+        if kloter:
+            query_set = query_set.filter(time_event__id=int(kloter))
+            
+        if params:
+            query_set = query_set.filter(
+                Q(name__icontains=params)|
+                Q(nik__icontains=params)|
+                Q(mobile__icontains=params)|
+                Q(pin__icontains=params)
+                )
+        
+        gb_list = []
+        dtime_str = datetime.strftime(datetime.now(), "%d%m%Y_%H%M%S")
+        
+        for gb in query_set:
             gb_list.append(dict(
                 kloter=gb.time_event.group,
                 name=gb.name,
@@ -808,7 +862,8 @@ class GuestBookSeminarPrintView(View):
                 paroki=gb.paroki.name,
                 wilayah=gb.wilayah.name,
                 lingkungan=gb.lingkungan.name,
-                idrow=gb.id
+                idrow=gb.id,
+                url=gb.url_guestbook_staff
                 ))
         
         
@@ -831,15 +886,70 @@ class GuestBookZiarahPrintView(View):
     
     
     def get(self, request, *args, **kwargs):
+        
+        # History params filter    
+        keuskupan = self.request.GET.get('keuskupan','')
+        paroki = self.request.GET.get('paroki','')
+        wilayah = self.request.GET.get('wilayah','')
+        lingkungan = self.request.GET.get('lingkungan','')
+        paid = self.request.GET.get('paid','')
+        attended = self.request.GET.get('attended','')
+        kloter = self.request.GET.get('kloter','')
+        if kloter in ('undefined',):
+            kloter = ""
+            
+        params = self.request.GET.get('params','')
+        
+        
+        query_set = self.model.objects.filter(time_event__event__name=ZIARAH_EVENT,
+            time_event__event__active=True).order_by(
+            "time_event__ordered","attended","name"
+            )
+        
+        if keuskupan:
+            query_set = query_set.filter(keuskupan=keuskupan)
+            
+        if paroki:
+            query_set = query_set.filter(paroki=paroki)
+            
+        if wilayah:
+            query_set = query_set.filter(wilayah=wilayah)
+            
+        if lingkungan:
+            query_set = query_set.filter(lingkungan=lingkungan)
+        
+        if paid:
+            if paid in ('false', False):
+                paid = False
+            else:
+                paid = True
                 
+            query_set = query_set.filter(paid=paid)
+            
+        if attended:
+            if attended in ('false', False):
+                attended = False
+            else:
+                attended = True
+                
+            query_set = query_set.filter(attended=attended)
+        
+        if kloter:
+            query_set = query_set.filter(time_event__id=int(kloter))
+            
+        if params:
+            query_set = query_set.filter(
+                Q(name__icontains=params)|
+                Q(nik__icontains=params)|
+                Q(mobile__icontains=params)|
+                Q(pin__icontains=params)
+                )
+                    
         gb_list = []
         
         dtime_str = datetime.strftime(datetime.now(), "%d%m%Y_%H%M%S")
         
-        for gb in self.model.objects.filter(time_event__event__name=ZIARAH_EVENT,
-            time_event__event__active=True).order_by(
-            "time_event__ordered","attended","name"
-            ):
+        for gb in query_set:
             gb_list.append(dict(
                 kloter=gb.time_event.group,
                 name=gb.name,
@@ -852,7 +962,8 @@ class GuestBookZiarahPrintView(View):
                 paroki=gb.paroki.name,
                 wilayah=gb.wilayah.name,
                 lingkungan=gb.lingkungan.name,
-                idrow=gb.id
+                idrow=gb.id,
+                url=gb.url_guestbook_staff
                 ))
         
         
