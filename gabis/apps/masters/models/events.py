@@ -121,16 +121,16 @@ class TimeEvent(TimeStampedModel):
     @property
     def date_string(self):
         ts = self.start_time
-        if self.start_time_string in ('17:00','18:00','19:00'):
-            ts = ts - timedelta(days=1)
+        # if self.start_time_string in ('17:00','18:00','19:00'):
+        #     ts = ts - timedelta(days=1)
             
         return datetime.strftime(ts, "%d %B %Y")
     
     @property
     def weekday(self):
         ts = self.start_time
-        if self.start_time_string in ('17:00','18:00','19:00'):
-            ts = ts - timedelta(days=1)
+        # if self.start_time_string in ('17:00','18:00','19:00'):
+        #     ts = ts - timedelta(days=1)
         return WEEKDAY[ts.weekday()]
         
         
@@ -141,16 +141,16 @@ class TimeEvent(TimeStampedModel):
     @property
     def calendar_start_time_string(self):
         ts = self.start_time
-        if self.start_time_string in ('17:00','18:00','19:00'):
-            ts = ts - timedelta(days=1)
+        # if self.start_time_string in ('17:00','18:00','19:00'):
+        #     ts = ts - timedelta(days=1)
             
         return datetime.strftime(ts, "%Y-%m-%dT%H:%M:%S")
     
     @property
     def calendar_end_time_string(self):
         te = self.end_time
-        if self.start_time_string in ('18:00','19:00','20:00'):
-            te = te - timedelta(days=1)
+        # if self.start_time_string in ('18:00','19:00','20:00'):
+        #     te = te - timedelta(days=1)
             
         return datetime.strftime(te, "%Y-%m-%dT%H:%M:%S")
     
