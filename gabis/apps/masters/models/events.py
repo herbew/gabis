@@ -120,11 +120,18 @@ class TimeEvent(TimeStampedModel):
     
     @property
     def date_string(self):
-        return datetime.strftime(self.start_time, "%d %B %Y")
+        ts = self.start_time
+        if self.start_time_string in ('17:00','18:00','19:00'):
+            ts = ts - timedelta(days=1)
+            
+        return datetime.strftime(ts, "%d %B %Y")
     
     @property
     def weekday(self):
-        return WEEKDAY[self.start_time.weekday()]
+        ts = self.start_time
+        if self.start_time_string in ('17:00','18:00','19:00'):
+            ts = ts - timedelta(days=1)
+        return WEEKDAY[ts.weekday()]
         
         
     @property
