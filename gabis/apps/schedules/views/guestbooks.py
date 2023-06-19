@@ -849,6 +849,31 @@ class GuestBookSeminarPrintView(View):
         dtime_str = datetime.strftime(datetime.now(), "%d%m%Y_%H%M%S")
         
         for gb in query_set:
+            keuskupan = "No Keuskupan selected!"
+            paroki = "No Paroki selected!"
+            wilayah = "No Wilayah selected!"
+            lingkungan = "No Lingkungan selected!"
+            
+            try:
+                keuskupan = gb.keuskupan.name
+            except:
+                pass
+            
+            try:
+                paroki = gb.paroki.name
+            except:
+                pass
+            
+            try:
+                wilayah = gb.wilayah.name
+            except:
+                pass
+            
+            try:
+                lingkungan = gb.lingkungan.name
+            except:
+                pass
+            
             gb_list.append(dict(
                 kloter=gb.time_event.group,
                 name=gb.name,
@@ -858,10 +883,10 @@ class GuestBookSeminarPrintView(View):
                 registered=datetime.strftime(gb.created, "%d/%m/%Y %H:%M:%S"),
                 paid="Paid" if gb.paid else "NO Paid Yet.",
                 attend="Attended" if gb.attended else "NO Attend Yet.",
-                keuskupan=gb.keuskupan.name,
-                paroki=gb.paroki.name,
-                wilayah=gb.wilayah.name,
-                lingkungan=gb.lingkungan.name,
+                keuskupan=keuskupan,
+                paroki=paroki,
+                wilayah=wilayah,
+                lingkungan=lingkungan,
                 idrow=gb.id,
                 url=gb.url_guestbook_staff
                 ))
@@ -950,6 +975,31 @@ class GuestBookZiarahPrintView(View):
         dtime_str = datetime.strftime(datetime.now(), "%d%m%Y_%H%M%S")
         
         for gb in query_set:
+            keuskupan = "No Keuskupan selected!"
+            paroki = "No Paroki selected!"
+            wilayah = "No Wilayah selected!"
+            lingkungan = "No Lingkungan selected!"
+            
+            try:
+                keuskupan = gb.keuskupan.name
+            except:
+                pass
+            
+            try:
+                paroki = gb.paroki.name
+            except:
+                pass
+            
+            try:
+                wilayah = gb.wilayah.name
+            except:
+                pass
+            
+            try:
+                lingkungan = gb.lingkungan.name
+            except:
+                pass
+            
             gb_list.append(dict(
                 kloter=gb.time_event.group,
                 name=gb.name,
@@ -957,11 +1007,12 @@ class GuestBookZiarahPrintView(View):
                 token=gb.pin,
                 mobile=gb.mobile,
                 registered=datetime.strftime(gb.created, "%d/%m/%Y %H:%M:%S"),
+                paid="Paid" if gb.paid else "NO Paid Yet.",
                 attend="Attended" if gb.attended else "NO Attend Yet.",
-                keuskupan=gb.keuskupan.name,
-                paroki=gb.paroki.name,
-                wilayah=gb.wilayah.name,
-                lingkungan=gb.lingkungan.name,
+                keuskupan=keuskupan,
+                paroki=paroki,
+                wilayah=wilayah,
+                lingkungan=lingkungan,
                 idrow=gb.id,
                 url=gb.url_guestbook_staff
                 ))
