@@ -876,6 +876,10 @@ class GuestBookSeminarPrintView(View):
             
             gb_list.append(dict(
                 kloter=gb.time_event.group,
+                event_ts="%s, %s : %s-%s" % (gb.time_event.weekday, 
+                        gb.time_event.date_string,  
+                        gb.time_event.start_time_string,  
+                        gb.time_event.end_time_string),
                 name=gb.name,
                 nik=gb.nik,
                 token=gb.pin,
@@ -1002,6 +1006,10 @@ class GuestBookZiarahPrintView(View):
             
             gb_list.append(dict(
                 kloter=gb.time_event.group,
+                event_ts="%s, %s : %s-%s" % (gb.time_event.weekday, 
+                        gb.time_event.date_string,  
+                        gb.time_event.start_time_string,  
+                        gb.time_event.end_time_string),
                 name=gb.name,
                 nik=gb.nik,
                 token=gb.pin,
