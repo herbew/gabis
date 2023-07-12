@@ -923,7 +923,7 @@ class GuestBookZiarahPrintView(View):
         lingkungan = self.request.GET.get('lingkungan','')
         paid = ''
         attended = ''
-        kloter = self.request.GET.get('')
+        kloter = self.request.GET.get('kloter','')
         if kloter in ('undefined',):
             kloter = ""
             
