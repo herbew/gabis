@@ -208,12 +208,7 @@
           padding: 2px
         }
     </style>
-    <div class="row">
-    	<div class="col-sm-12 text-right">
-    		{% trans 'Scan Me' %} &nbsp; &nbsp;
-    		{% qr_from_text "https://forms.gle/pkejQxG16qzVBAoT8" size="t" image_format="png" error_correction="t" %}
-    	</div>
-    </div>
+    
 	<div class="row">
          <div class="col-sm-12">
              <div class="card">
@@ -223,6 +218,12 @@
              </div>
          </div>
      </div>
+     <div class="row">
+    	<div class="col-sm-12 text-center">
+    		{% trans 'Scan Me' %}<br>
+    		{% qr_from_text "https://forms.gle/pkejQxG16qzVBAoT8" size="t" image_format="png" error_correction="t" %}
+    	</div>
+    </div>
 {% endblock content %}
 
 {% block extra_jquery %}{% endblock extra_jquery %}
