@@ -8,7 +8,7 @@
 {% load tz %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
-{% load static %}
+{% load qr_code %}
 
 {% block extra_head %}
 	{% get_current_language as LANGUAGE_CODE %}
@@ -208,6 +208,12 @@
           padding: 2px
         }
     </style>
+    <div class="row">
+    	<div class="col-sm-12 text-right">
+    		{% trans 'Scan Me' %} &nbsp; &nbsp;
+    		{% qr_from_text "https://forms.gle/pkejQxG16qzVBAoT8" size="t" image_format="png" error_correction="t" %}
+    	</div>
+    </div>
 	<div class="row">
          <div class="col-sm-12">
              <div class="card">
