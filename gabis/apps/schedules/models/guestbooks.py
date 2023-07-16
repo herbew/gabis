@@ -178,18 +178,18 @@ class GuestBook(TimeStampedModel):
     
     @property
     def active_event(self):
-        tz = pytz.timezone("UTC")
-        d_now = tz.localize(datetime.now())
+        # tz = pytz.timezone("UTC")
+        # d_now = tz.localize(datetime.now())
+        #
+        # start_time = self.time_event.end_time 
+        #
+        # end_time = start_time + timedelta(minutes=15)
+        # start_time = start_time - timedelta(minutes=75)
+        #
+        # if (d_now >= start_time ) and (d_now <= end_time):
+        #     return True
         
-        start_time = self.time_event.end_time 
-        
-        end_time = start_time + timedelta(minutes=15)
-        start_time = start_time - timedelta(minutes=75)
-        
-        if (d_now >= start_time ) and (d_now <= end_time):
-            return True
-        
-        return False
+        return True
     
     @property
     def url_guestbook_staff(self):
