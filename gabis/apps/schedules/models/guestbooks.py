@@ -183,8 +183,8 @@ class GuestBook(TimeStampedModel):
         
         start_time = self.time_event.end_time 
         
+        end_time = start_time + timedelta(minutes=15)
         start_time = start_time - timedelta(minutes=75)
-        end_time = start_time + timedelta(minutes=60)
         
         if (d_now >= start_time ) and (d_now <= end_time):
             return True
