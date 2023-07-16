@@ -181,11 +181,12 @@ class GuestBook(TimeStampedModel):
         tz = pytz.timezone("UTC")
         d_now = tz.localize(datetime.now())
         
-        start_time = self.time_event.start_time - timedelta(minutes=10)
-        end_time = self.time_event.end_time + timedelta(minutes=70)
+        start_time = self.time_event.end_time 
         
-        if (start_time >= d_now) and (d_now <= end_time):
-
+        start_time = start_time - timedelta(minutes=75)
+        end_time = start_time + timedelta(minutes=15)
+        
+        if (d_now >= start_time ) and (d_now <= end_time):
             return True
         
         return False
